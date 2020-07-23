@@ -128,6 +128,8 @@ class QuizController extends FrontendController
         if (request()->wantsJson()) {
             return $question->id;
        }
+
+       return abort(500);
     }
 
     /**
