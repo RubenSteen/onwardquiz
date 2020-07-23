@@ -23,14 +23,15 @@ class UserController extends BackendController
                 'id' => $user->id,
 				'discord_id' => $user->discord_id,
 				'username' => $user->username,
-				'discriminator' => $user->discriminator,
+                'discriminator' => $user->discriminator,
+                'getFullUsername' => $user->getFullUsername(),
                 'email' => $user->email,
-                'teamsCount' => $user->teams_count,
                 'last_activity' => (is_null($user->last_activity)) ? null : $user->last_activity->isoFormat('MMMM D, Y - h:mm A'),
+                'avatar' => $user->getAvatar(),
 				'isEditor' => $user->isEditor(),
 				'isSuperAdmin' => $user->isSuperAdmin(),
 				'isBanned' => $user->isBanned(),
-				'isConfirmed' => $user->isConfirmed(),
+                'isConfirmed' => $user->isConfirmed(),
             ];
             return $data;
 		});
