@@ -77,7 +77,7 @@ class QuizController extends FrontendController
             $possible_question_images->push($question->template->getAssetFolderWithFile()); // Feed the template image to the collection
 
             // Add all other pictures to the collection
-            foreach($question->pictures as $picture) {
+            foreach($question->pictures->where('active', true) as $picture) {
                 $possible_question_images->push($picture->image->getAssetFolderWithFile());
             }
 

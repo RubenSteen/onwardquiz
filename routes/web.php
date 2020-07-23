@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function($router)
 	*/
 	Route::get('quiz', ['as' => 'quiz.index',	'uses' => 'QuizController@index']);
 	Route::get('quiz/{map:id}', ['as' => 'quiz.show',	'uses' => 'QuizController@show']);
-	Route::POST('quiz/{map:id}/question', ['as' => 'quiz.get-question',	'uses' => 'QuizController@getQuestion']);
+	Route::post('quiz/{map:id}/question', ['as' => 'quiz.get-question',	'uses' => 'QuizController@getQuestion']);
 	Route::post('quiz/{map:id}/{question:id}/check', ['as' => 'quiz.check-answer',	'uses' => 'QuizController@checkAnswer']);
 
 	/*

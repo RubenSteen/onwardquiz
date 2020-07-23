@@ -87,7 +87,6 @@
           .then(response => {
             this.question = response.data.question
             this.answers = response.data.answers
-            console.log(response.data)
             // this.questions = response.data
           })
           .catch(function (error) {
