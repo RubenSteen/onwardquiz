@@ -19,19 +19,11 @@ class QuizController extends FrontendController
     public function index()
     {
         // abort_if(Gate::denies('index-quiz'), 403);
-        // $maps = Map::with(['image'])->whereHas('questions', function ($query) {
-        //     $query->where('published', '=', true);
-        // })
-        //     ->withCount('questions')
-        //     ->where('published', '=', true)
-        //     ->get();
 
         $maps = Map::with(['image'])
             ->where('published', '=', true)
             ->get();
 
-        
-        
         $maps = $maps->map(function ($map) {
             return [
                 'id' => $map->id,
@@ -42,16 +34,8 @@ class QuizController extends FrontendController
             ];
         });
 
-        $questions = [
-            'Red car',
-            'Something a bit longer',
-            'APC',
-            'Something thats very long so it gets a new line'
-        ];
-
         return Inertia::render('Quiz/Index', [
             'maps' => $maps,
-            'questions' => $questions,
         ]);
     }
 
