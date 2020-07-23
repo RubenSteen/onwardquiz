@@ -19,17 +19,25 @@ class QuizController extends FrontendController
     public function index()
     {
         // abort_if(Gate::denies('index-quiz'), 403);
+        // $maps = Map::with(['image'])->whereHas('questions', function ($query) {
+        //     $query->where('published', '=', true);
+        // })
+        //     ->withCount('questions')
+        //     ->where('published', '=', true)
+        //     ->get();
+
         $maps = Map::with(['image'])
-            ->withCount('questions')
             ->where('published', '=', true)
             ->get();
+
+        
         
         $maps = $maps->map(function ($map) {
             return [
                 'id' => $map->id,
                 'name' => $map->name,
                 'description' => $map->description,
-                'questions_count' => $map->questions_count,
+                'questions_count' => $map->questions->where('published', true)->count(),
                 'image' => $map->image->getAssetFolderWithFile(),
             ];
         });
