@@ -102,6 +102,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function($router)
 		*/
 		Route::get('users', ['as' => 'user.index',	'uses' => 'UserController@index']);
 		Route::get('user/{user_id}/edit', ['as' => 'user.edit',	'uses' => 'UserController@edit']);
+		Route::patch('user/{user:id}', ['as' => 'user.update',	'uses' => 'UserController@update']);
 
 		/*
 		|--------------------------------------------------------------------------

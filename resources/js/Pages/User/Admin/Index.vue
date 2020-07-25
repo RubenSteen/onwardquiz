@@ -136,7 +136,7 @@
                                 <div class="max-w-lg">
                                   <div class="relative flex items-start">
                                     <div class="flex items-center h-5">
-                                      <input v-model="selectedUser.isBanned" id="banned" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                      <input v-model="form.banned" id="banned" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                     </div>
                                     <div class="ml-3 text-sm leading-5">
                                       <label for="banned" class="font-medium text-gray-700">Banned</label>
@@ -145,7 +145,7 @@
                                   <div class="mt-4">
                                     <div class="relative flex items-start">
                                       <div class="flex items-center h-5">
-                                        <input v-model="selectedUser.isConfirmed" id="confirmed" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                        <input v-model="form.confirmed" id="confirmed" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                       </div>
                                       <div class="ml-3 text-sm leading-5">
                                         <label for="confirmed" class="font-medium text-gray-700">Confirmed</label>
@@ -155,7 +155,7 @@
                                   <div class="mt-4">
                                     <div class="relative flex items-start">
                                       <div class="flex items-center h-5">
-                                        <input v-model="selectedUser.isEditor" id="editor" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                        <input v-model="form.editor" id="editor" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                       </div>
                                       <div class="ml-3 text-sm leading-5">
                                         <label for="editor" class="font-medium text-gray-700">Editor</label>
@@ -165,7 +165,7 @@
                                   <div class="mt-4">
                                     <div class="relative flex items-start">
                                       <div class="flex items-center h-5">
-                                        <input v-model="selectedUser.isSuperAdmin" id="super-admin" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                        <input v-model="form.super_admin" id="super-admin" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                       </div>
                                       <div class="ml-3 text-sm leading-5">
                                         <label for="super-admin" class="font-medium text-gray-700">Super Admin</label>
@@ -191,7 +191,7 @@
           </div>
           <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
             <span class="flex w-full rounded-md shadow-sm sm:col-start-2">
-              <button type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+              <button @click="updateUser" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Submit
               </button>
             </span>
@@ -233,8 +233,48 @@
     },
     data() {
       return {
-        selectedUser: null
+        selectedUser: null,
+        form: {
+          banned: false,
+          confirmed: false,
+          editor: false,
+          super_admin: false,
+        },
+        loading: false,
       }
     }, // End Data
+    methods: {
+      updateUser() {
+        this.loading = true;
+
+        var data = new FormData();
+
+        data.append('_method', 'PATCH');
+
+        for (var field in this.form) {
+          data.append(field, this.form[field]) // append form field to request
+        }
+
+        this.$inertia.post(route('admin.user.update', this.selectedUser.id), data)
+          .then(() => {
+            this.loading = false;
+
+            // Check if any errors exist
+            if (Object.keys(this.$page.errors).length === 0) {
+              this.selectedUser = null;
+            }
+          })
+      }, // End updateUser()
+    }, // End Methods
+    watch: {
+      selectedUser: function () {
+        if (this.selectedUser != null) {
+          this.form.banned = this.selectedUser.isBanned;
+          this.form.confirmed = this.selectedUser.isConfirmed;
+          this.form.super_admin = this.selectedUser.isSuperAdmin;
+          this.form.editor = this.selectedUser.isEditor;
+        }
+      },// End selectedAnswer
+    }, // End watch
   }
 </script>

@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
+use App\Http\Requests\User\UserUpdate;
 
 class UserController extends BackendController
 {
@@ -120,10 +121,21 @@ class UserController extends BackendController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $map_id)
+    public function update(Request $request, User $user)
     {
         abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
         // abort_if(Gate::denies('update-user'), 403);
+
+        $request->merge(['banned' => $request->banned == 'true' ? true : false]);
+        $request->merge(['confirmed' => $request->confirmed == 'true' ? true : false]);
+        $request->merge(['super_admin' => $request->super_admin == 'true' ? true : false]);
+        $request->merge(['editor' => $request->editor == 'true' ? true : false]);
+        
+        $validatedData = \Validator::make($request->all(), UserUpdate::getRules())->validate();
+
+        $user->update($validatedData);
+
+        return redirect()->back()->with('success', "User ({$user->getFullUsername()}) was successfully updated!");
     }
 
     /**
@@ -152,60 +164,5 @@ class UserController extends BackendController
 
 	// Anything else than default methods is below here
 	
-	public function toggleBan($id)
-	{
-        abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
-		// abort_if(Gate::denies('ban-user'), 403);
 
-		$user = User::find($id);
-
-		// Authenticated user cannot ban him/her self.
-		if (\Auth::id() !== $user->id) {
-			$isBanned = ($user->banned) ? true : false;
-
-			$user->update([
-				'banned' => !$isBanned // Set value that is the opposite of current $user->banned
-			]);
-
-			return redirect()->back();
-		}
-	}
-
-	public function toggleConfirm($id)
-	{
-        abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
-		// abort_if(Gate::denies('confirm-user'), 403);
-
-		$user = User::find($id);
-
-		// Authenticated user cannot confirm him/her self.
-		if (\Auth::id() !== $user->id) {
-			$isConfirmed = ($user->confirmed) ? true : false;
-
-			$user->update([
-				'confirmed' => !$isConfirmed // Set value that is the opposite of current $user->confirmed
-			]);
-
-			return redirect()->back();
-		}
-	}
-
-	public function toggleEditor($id)
-	{
-        abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
-		// abort_if(Gate::denies('editor-user'), 403);
-
-		$user = User::find($id);
-
-		// Authenticated user cannot confirm him/her self.
-		if (\Auth::id() !== $user->id) {
-			$isEditor = ($user->editor) ? true : false;
-
-			$user->update([
-				'editor' => !$isEditor // Set value that is the opposite of current $user->confirmed
-			]);
-
-			return redirect()->back();
-		}
-	}
 }
