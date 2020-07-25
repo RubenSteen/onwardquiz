@@ -22,7 +22,7 @@ class AbortIfBanned
 
             return redirect('/')->with('warning', [
                 'title' => "Account suspension",
-                'message' => "You account has been suspended. Please contact @cruorzy#1337 on discord for futher details...",
+                'message' => "Your account has been suspended. Please contact @cruorzy#1337 on discord for futher details...",
             ]);
         }
 
