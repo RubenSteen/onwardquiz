@@ -43,9 +43,14 @@ class AuthenticateUser {
      */
     public function execute($hasCode, AuthenticateUserListener $listener)
     {
-        if ( ! $hasCode) return $this->getAuthorizationFirst();
+        if (! $hasCode) {
+            return $this->getAuthorizationFirst();
+        }
+
         $user = $this->users->findByDiscordIdOrCreate($this->getDiscordUser());
+
         $this->auth->login($user, true);
+
         return $listener->userHasLoggedIn($user);
     }
 

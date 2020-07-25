@@ -42,6 +42,7 @@ class UserRepository
             }
             
         }
+        
 
         return $user->update([
             'token' => $userData->token,

@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\AbortIfBanned::class,
             \App\Http\Middleware\CheckIfConfirmed::class,
+            \App\Http\Middleware\oAuth2Resync::class,
         ],
 
         'api' => [
