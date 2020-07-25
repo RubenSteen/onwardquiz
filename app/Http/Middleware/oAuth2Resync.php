@@ -17,9 +17,15 @@ class oAuth2Resync
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->last_discord_sync->subHours(6) > \Carbon\Carbon::now()) {
-            
-            SyncoAuth2::dispatch(Auth::user());
+        if (Auth::check() && Auth::user()->last_discord_sync->addHours(6) < \Carbon\Carbon::now()) {
+
+            if (\App::environment('production', 'staging')) {
+                SyncoAuth2::dispatch(Auth::user());
+            } else {
+                Auth::user()->update([
+                    'last_discord_sync' => \Carbon\Carbon::now()
+                ]);
+            }
 
         }
 
