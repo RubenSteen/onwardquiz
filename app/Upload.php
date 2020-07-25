@@ -73,5 +73,4 @@ class Upload extends Model
     {
         return "{$this->created_at->isoFormat('Y')}/{$this->created_at->isoFormat('MM')}/{$this->created_at->isoFormat('DD')}";
     }
-
 }

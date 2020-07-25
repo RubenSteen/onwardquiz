@@ -36,11 +36,11 @@ class QuestionPictureObserver
      */
     public function deleted(QuestionPicture $picture)
     {
-        if($picture->isForceDeleting()){
+        if ($picture->isForceDeleting()) {
             return $this->forceDeleted($picture);
         }
 
-        $picture->image()->each(function($instance){
+        $picture->image()->each(function ($instance) {
             $instance->delete();
         });
     }

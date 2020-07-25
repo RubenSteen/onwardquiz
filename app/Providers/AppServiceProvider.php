@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Have to find a better solution for this, mainly using this because Traefik will now pass through the right headers to show laravel/php its actually a HTTPS connection.
-        if(config('app.forceHTTPS')) {
+        if (config('app.forceHTTPS')) {
             \URL::forceScheme('https');
         }
     }
@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
     protected function registerLengthAwarePaginator()
     {
         $this->app->bind(LengthAwarePaginator::class, function ($app, $values) {
-            return new class(...array_values($values)) extends LengthAwarePaginator {
+            return new class (...array_values($values)) extends LengthAwarePaginator {
                 public function only(...$attributes)
                 {
                     return $this->transform(function ($item) use ($attributes) {

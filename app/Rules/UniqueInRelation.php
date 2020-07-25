@@ -21,7 +21,7 @@ class UniqueInRelation implements Rule
      * @param  Model  $relation
      * @return void
      */
-    public function __construct($parent, String $column, $relation)
+    public function __construct($parent, string $column, $relation)
     {
         $this->parent = $parent; // Model instance of the parent
 
@@ -42,9 +42,9 @@ class UniqueInRelation implements Rule
         $query = DB::table($this->relation->getTable())
             ->where($this->column, $this->parent->id); // Get all the rows that belong to the parent.
 
-            if ($this->relation->id !== null) {
-                $query = $query->where('id', '!=', $this->relation->id); // Makes sure to not include it self.
-            }
+        if ($this->relation->id !== null) {
+            $query = $query->where('id', '!=', $this->relation->id); // Makes sure to not include it self.
+        }
             
         return $query->where($attribute, $value) // Search for the given value on the attribute.
             ->doesntExist();

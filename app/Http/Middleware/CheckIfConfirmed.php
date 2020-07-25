@@ -17,7 +17,6 @@ class CheckIfConfirmed
     public function handle($request, Closure $next)
     {
         if (Auth::check() && Auth::user()->isConfirmed() === false) {
-
             Auth::logout();
 
             return redirect('/')->with('warning', [

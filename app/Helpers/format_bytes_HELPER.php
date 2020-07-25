@@ -1,7 +1,8 @@
 <?php
 
 if (! function_exists('format_bytes_HELPER')) {
-    function format_bytes_HELPER($size, $precision = 2) {
+    function format_bytes_HELPER($size, $precision = 2)
+    {
         if ($size > 0) {
             $size = (int) $size;
             $base = log($size) / log(1024);
@@ -12,4 +13,4 @@ if (! function_exists('format_bytes_HELPER')) {
             return $size;
         }
     }
-} 
+}

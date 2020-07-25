@@ -17,7 +17,6 @@ class AbortIfBanned
     public function handle($request, Closure $next)
     {
         if (Auth::check() && Auth::user()->isBanned()) {
-
             Auth::logout();
 
             return redirect('/')->with('warning', [

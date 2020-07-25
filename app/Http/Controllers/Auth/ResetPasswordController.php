@@ -18,7 +18,6 @@ class ResetPasswordController extends FrontendController
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
 
     /**

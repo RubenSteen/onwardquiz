@@ -21,8 +21,8 @@ class Question extends Model
     }
 
     public function map()
-	{
-		return $this->belongsTo('App\Map');
+    {
+        return $this->belongsTo('App\Map');
     }
     
     public function template()
@@ -31,7 +31,7 @@ class Question extends Model
     }
 
     public function pictures()
-	{
-		return $this->hasMany('App\QuestionPicture');
+    {
+        return $this->hasMany('App\QuestionPicture');
     }
 }

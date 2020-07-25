@@ -13,7 +13,10 @@ use Socialite;
 
 class SyncoAuth2 implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -31,7 +34,7 @@ class SyncoAuth2 implements ShouldQueue
     {
         $this->user = $user;
 
-        $this->userRepository = new UserRepository;
+        $this->userRepository = new UserRepository();
     }
 
     /**

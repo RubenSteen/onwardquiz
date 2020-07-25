@@ -25,7 +25,7 @@ class TeamController extends BackendController
 
         $teamsPagination = $teams->links();
 
-		$teams = $teams->map(function (Team $team) {
+        $teams = $teams->map(function (Team $team) {
             $data = [
                 'id' => $team->id,
                 'name' => $team->name,
@@ -35,7 +35,7 @@ class TeamController extends BackendController
                 'hasImage' => false,
             ];
 
-            if($team->image !== null) {
+            if ($team->image !== null) {
                 $data['image'] = [
                     'id' => $team->image->id,
                     'name' => $team->image->name,

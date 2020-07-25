@@ -77,7 +77,7 @@ class QuizController extends FrontendController
             $possible_question_images->push($question->template->getAssetFolderWithFile()); // Feed the template image to the collection
 
             // Add all other pictures to the collection
-            foreach($question->pictures->where('active', true) as $picture) {
+            foreach ($question->pictures->where('active', true) as $picture) {
                 $possible_question_images->push($picture->image->getAssetFolderWithFile());
             }
 
@@ -91,8 +91,7 @@ class QuizController extends FrontendController
                 'callout' => $question->callout,
             ];
 
-            foreach($answers as $answer) {
-                
+            foreach ($answers as $answer) {
                 $data['answers'][] = [
                     'id' => $answer->id,
                     'callout' => $answer->callout,
@@ -102,7 +101,7 @@ class QuizController extends FrontendController
             shuffle($data['answers']);
 
             return response()->json($data);
-       }
+        }
 
         return abort(500);
     }
@@ -119,14 +118,14 @@ class QuizController extends FrontendController
 
         if (request()->wantsJson()) {
             return $question->id;
-       }
+        }
 
-       return abort(500);
+        return abort(500);
     }
 
     /**
      * Shows the landing page of the website, placed here here since i don't want a seperate controller
-     * 
+     *
      */
     public function landing()
     {
@@ -135,7 +134,7 @@ class QuizController extends FrontendController
 
     /**
      * Activity check, placed here here since i don't want a seperate controller.
-     * 
+     *
      */
     public function activityCheck()
     {

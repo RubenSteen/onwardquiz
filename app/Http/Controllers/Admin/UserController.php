@@ -10,40 +10,40 @@ use App\Http\Requests\User\UserUpdate;
 
 class UserController extends BackendController
 {
-	public function index()
-	{
+    public function index()
+    {
         abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
         // abort_if(Gate::denies('index-user'), 403);
         
         $users = User::withCount('teams')->paginate(15);
 
-		$usersPagination = $users->links();
-		
-		$users = $users->map(function (User $user) {
+        $usersPagination = $users->links();
+        
+        $users = $users->map(function (User $user) {
             $data = [
                 'id' => $user->id,
-				'discord_id' => $user->discord_id,
-				'username' => $user->username,
+                'discord_id' => $user->discord_id,
+                'username' => $user->username,
                 'discriminator' => $user->discriminator,
                 'getFullUsername' => $user->getFullUsername(),
                 'email' => $user->email,
                 'last_activity' => (is_null($user->last_activity)) ? null : $user->last_activity->isoFormat('MMMM D, Y - h:mm A'),
                 'avatar' => $user->getAvatar(),
-				'isEditor' => $user->isEditor(),
-				'isSuperAdmin' => $user->isSuperAdmin(),
-				'isBanned' => $user->isBanned(),
+                'isEditor' => $user->isEditor(),
+                'isSuperAdmin' => $user->isSuperAdmin(),
+                'isBanned' => $user->isBanned(),
                 'isConfirmed' => $user->isConfirmed(),
             ];
             return $data;
-		});
+        });
 
         return Inertia::render('User/Admin/Index', [
-			'users' => $users,
-			'usersPagination' => $usersPagination,
+            'users' => $users,
+            'usersPagination' => $usersPagination,
         ]);
-	}
+    }
 
-	/**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,16 +90,16 @@ class UserController extends BackendController
         // abort_if(Gate::denies('update-user'), 403);
 
         $user = User::withCount('teams')->find($user_id);
-		
-		$user = [
+        
+        $user = [
             'id' => $user->id,
-			'discord_id' => $user->discord_id,
-			'username' => $user->username,
-			'discriminator' => $user->discriminator,
+            'discord_id' => $user->discord_id,
+            'username' => $user->username,
+            'discriminator' => $user->discriminator,
             'email' => $user->email,
-			'isEditor' => $user->isEditor(),
-			'isSuperAdmin' => $user->isSuperAdmin(),
-			'isBanned' => $user->isBanned(),
+            'isEditor' => $user->isEditor(),
+            'isSuperAdmin' => $user->isSuperAdmin(),
+            'isBanned' => $user->isBanned(),
             'isConfirmed' => $user->isConfirmed(),
             'teams' => ($user->teams->isEmpty()) ? null : $user->teams->map(function ($team) {
                 return [
@@ -110,7 +110,7 @@ class UserController extends BackendController
         ];
 
         return Inertia::render('User/Admin/Show-Edit', [
-			'user' => $user,
+            'user' => $user,
         ]);
     }
 
@@ -162,7 +162,5 @@ class UserController extends BackendController
         // abort_if(Gate::denies('restore-map'), 403);
     }
 
-	// Anything else than default methods is below here
-	
-
+    // Anything else than default methods is below here
 }

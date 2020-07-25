@@ -29,8 +29,8 @@ class User extends Authenticatable
     ];
 
     public function teams()
-	{
-		return $this->belongsToMany('App\Team', 'team_user');
+    {
+        return $this->belongsToMany('App\Team', 'team_user');
     }
     
     public function updateLastActivity()

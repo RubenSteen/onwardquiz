@@ -18,7 +18,6 @@ class VerificationController extends FrontendController
     | be re-sent if the user didn't receive the original email message.
     |
     */
-
     use VerifiesEmails;
 
     /**

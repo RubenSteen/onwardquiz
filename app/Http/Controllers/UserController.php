@@ -10,7 +10,7 @@ use Auth;
 
 class UserController extends FrontendController
 {
-    public function index ()
+    public function index()
     {
         // abort_if(Gate::denies('user-index'), 403);
 

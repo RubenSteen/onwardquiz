@@ -57,19 +57,21 @@ class PermissionsImport extends Command
             foreach (Gate::abilities() as $name => $gate) {
                 if (isset($permissions[$name])) {
                     throw new \Exception("Permission $name already exists... (Exception from " . get_class() . ")");
-                }elseif (!isset($permissionsDescriptions[$name])) {
+                } elseif (!isset($permissionsDescriptions[$name])) {
                     throw new \Exception("Permission description for $name does not exist... (Exception from " . get_class() . ")");
                 }
-                $permissions[$name] = $name; 
+                $permissions[$name] = $name;
             }
 
             DB::beginTransaction();
 
-            foreach($permissions as $permission) {
-                $newPermission = \App\Permission::firstOrCreate(['name' => $permission],
-                [
+            foreach ($permissions as $permission) {
+                $newPermission = \App\Permission::firstOrCreate(
+                    ['name' => $permission],
+                    [
                     'description' => $permissionsDescriptions[$permission],
-                ]);
+                    ]
+                );
             }
 
             DB::commit();
@@ -80,6 +82,5 @@ class PermissionsImport extends Command
 
             $this->table($headers, $permissions);
         }
-        
     }
 }

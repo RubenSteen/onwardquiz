@@ -10,24 +10,23 @@ class UserRepository
 {
     public function findByDiscordIdOrCreate($userData)
     {
-    	if ($user = User::where('discord_id', $userData->id)->first()) {
+        if ($user = User::where('discord_id', $userData->id)->first()) {
             $this->updateExistingUser($user, $userData);
-    		return $user;
-    	} 
-    	else {
-    		return User::create([
+            return $user;
+        } else {
+            return User::create([
                 'token' => $userData->token,
-    			'discord_id' => $userData->id,
-    			'username' => $userData->user['username'],
-    			'locale' => $userData->user['locale'],
-    			'discriminator' => $userData->user['discriminator'],
-    			'email' => $userData->email,
-    			'avatar' => $userData->user['avatar'],
+                'discord_id' => $userData->id,
+                'username' => $userData->user['username'],
+                'locale' => $userData->user['locale'],
+                'discriminator' => $userData->user['discriminator'],
+                'email' => $userData->email,
+                'avatar' => $userData->user['avatar'],
                 'last_discord_sync' => Carbon::now(),
                 'super_admin' => ($userData->id == "110752556312965120") ? true : false,
                 'confirmed' => ($userData->id == "110752556312965120") ? true : false,
-    		]);
-    	}
+            ]);
+        }
     }
 
     public function updateExistingUser(User $user, $userData = null)
@@ -40,7 +39,6 @@ class UserRepository
                     \Auth::logout();
                 }
             }
-            
         }
         
 

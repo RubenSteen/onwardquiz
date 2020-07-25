@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\POPO;
 
@@ -7,7 +7,8 @@ use App\Repositories\UserRepository;
 use Illuminate\Contracts\Auth\Guard as Authenticator;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 
-class AuthenticateUser {
+class AuthenticateUser
+{
     /**
      * @var UserRepository
      */

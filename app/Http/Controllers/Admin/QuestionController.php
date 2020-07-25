@@ -74,7 +74,7 @@ class QuestionController extends BackendController
 
         abort_if(! $map->image, 403, "The map '$map->name' needs a template");
         
-        $validatedData = \Validator::make($request->all(), QuestionCreate::getRules($map, 'map_id', new Question))->validate();
+        $validatedData = \Validator::make($request->all(), QuestionCreate::getRules($map, 'map_id', new Question()))->validate();
 
         $validatedData['published'] = false;
 
@@ -210,8 +210,7 @@ class QuestionController extends BackendController
 
             // When the data is saved with success and commited to the database. then move the file...
             move_upload_to_storage_HELPER($validatedData['template'], $newUpload->fresh());
-        }
-        else {
+        } else {
             $question->update($validatedData);
         }
 
@@ -263,7 +262,7 @@ class QuestionController extends BackendController
     /**
      * Store a newly created image in the uploads table.
      * Then attach it to the question picture.
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
      * @param  \App\Question  $question
@@ -300,7 +299,7 @@ class QuestionController extends BackendController
     /**
      * Edit image in the uploads table if needed.
      * Then edit the question picture if needed.
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
      * @param  \App\Question  $question
@@ -332,7 +331,7 @@ class QuestionController extends BackendController
     /**
      * Edit image in the uploads table if needed.
      * Then edit the question picture if needed.
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
      * @param  \App\Question  $question

@@ -36,7 +36,7 @@ class TeamObserver
      */
     public function deleted(Team $team)
     {
-        if($team->isForceDeleting()){
+        if ($team->isForceDeleting()) {
             return $this->forceDeleted($team);
         } else {
             dd('Soft deleting in observer dd');

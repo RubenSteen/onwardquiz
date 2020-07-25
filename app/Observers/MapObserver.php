@@ -36,18 +36,17 @@ class MapObserver
      */
     public function deleted(Map $map)
     {
-        if($map->isForceDeleting()){
+        if ($map->isForceDeleting()) {
             return $this->forceDeleted($map);
         }
 
-        $map->questions()->each(function($instance){
+        $map->questions()->each(function ($instance) {
             $instance->delete();
         });
 
-        $map->image()->each(function($instance){
+        $map->image()->each(function ($instance) {
             $instance->delete();
         });
-        
     }
 
     /**

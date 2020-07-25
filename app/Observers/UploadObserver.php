@@ -16,7 +16,6 @@ class UploadObserver
      */
     public function creating(Upload $upload)
     {
-        
     }
 
     /**
@@ -27,7 +26,6 @@ class UploadObserver
      */
     public function created(Upload $upload)
     {
-
     }
 
     /**
@@ -38,7 +36,6 @@ class UploadObserver
      */
     public function updated(Upload $upload)
     {
-        
     }
 
     /**
@@ -49,7 +46,7 @@ class UploadObserver
      */
     public function deleted(Upload $upload)
     {
-        if($upload->isForceDeleting()){
+        if ($upload->isForceDeleting()) {
             return $this->forceDeleted($upload);
         } else {
             // Soft deleting
@@ -64,7 +61,6 @@ class UploadObserver
      */
     public function restored(Upload $upload)
     {
-        
     }
 
     /**

@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\POPO;
 
-interface AuthenticateUserListener {
+interface AuthenticateUserListener
+{
 
     /**
      * @param $user

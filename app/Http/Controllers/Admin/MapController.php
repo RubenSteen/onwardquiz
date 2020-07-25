@@ -26,7 +26,7 @@ class MapController extends BackendController
         $mapsPagination = $maps->links();
         //dd($mapsPagination);
         
-		$maps = $maps->map(function (Map $map) {
+        $maps = $maps->map(function (Map $map) {
             $data = [
                 'id' => $map->id,
                 'name' => $map->name,
@@ -37,7 +37,7 @@ class MapController extends BackendController
                 'questionCount' => $map->questions_count,
             ];
 
-            if($map->image !== null) {
+            if ($map->image !== null) {
                 $data['image'] = [
                     'id' => $map->image->id,
                     'name' => $map->image->name,
@@ -119,7 +119,7 @@ class MapController extends BackendController
             'published' => $map->published ? true : false,
         ];
 
-        if($map->image !== null) {
+        if ($map->image !== null) {
             $data['image'] = [
                 'id' => $map->image->id,
                 'name' => $map->image->name,
@@ -162,7 +162,6 @@ class MapController extends BackendController
         $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map_id, $map))->validate();
 
         if (isset($validatedData['image'])) {
-
             DB::beginTransaction();
             
             // Method in extended controller
@@ -177,8 +176,7 @@ class MapController extends BackendController
 
             // When the data is saved with success and commited to the database. then move the file...
             move_upload_to_storage_HELPER($validatedData['image'], $newUpload->fresh());
-        }
-        else {
+        } else {
             $map->update($validatedData);
         }
 
