@@ -12,8 +12,8 @@ class MapsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Map::class, 1000)->create()->each(function ($map) {
-            if (RAND(0,100) > 30) {
-                for ($i=0; $i < rand(10,100); $i++) { 
+            if (RAND(0, 100) > 30) {
+                for ($i = 0; $i < rand(10, 100); $i++) {
                     $map->questions()->save(factory(App\Question::class)->make());
                 }
             }

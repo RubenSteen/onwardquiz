@@ -12,7 +12,6 @@ class TeamsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Team::class, 1000)->create()->each(function ($team) {
-            
-	    });
+        });
     }
 }

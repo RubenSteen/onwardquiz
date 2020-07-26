@@ -18,12 +18,12 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-    	'discord_id' => rand(30000, 9999999999),
-    	'token' => rand(30000, 9999999999),
-    	'email' => $faker->unique()->safeEmail,
-    	'username' => $faker->userName,
-    	'locale' => $faker->locale,
-    	'discriminator' => rand(1000, 9999),
-    	'last_discord_sync' => \Carbon\Carbon::now(),
+        'discord_id' => rand(30000, 9999999999),
+        'token' => rand(30000, 9999999999),
+        'email' => $faker->unique()->safeEmail,
+        'username' => $faker->userName,
+        'locale' => $faker->locale,
+        'discriminator' => rand(1000, 9999),
+        'last_discord_sync' => \Carbon\Carbon::now(),
     ];
 });
