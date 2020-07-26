@@ -36,9 +36,9 @@ class MapUpdate extends FormRequest
      * Also keeping the old rules() method so laravel does not break behind the scenes.
      * @return array
      */
-    public static function getRules($id = null, $map)
+    public static function getRules($map)
     {
-        return array_merge(MapCreate::getRules($id), [
+        return array_merge(MapCreate::getRules($map->id), [
             'image' => 'sometimes|required|image|max:15000',
             'description' => 'nullable',
             'published' => [

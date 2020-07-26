@@ -11,7 +11,7 @@ use App\Repositories\UserRepository;
 use App\User;
 use Socialite;
 
-class SyncoAuth2 implements ShouldQueue
+class SyncDiscord implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;

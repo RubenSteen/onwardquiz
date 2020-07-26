@@ -12,7 +12,8 @@
 <file>tests</file>
 
 <!-- exclude our migrations directory from the violation check-->
-<exclude-pattern>*/migrations/*</exclude-pattern>
+<exclude-pattern>database/migrations</exclude-pattern>
+<exclude-pattern>database/seeds</exclude-pattern>
 
 <!-- ignore warnings and display ERRORS only -->
 <arg  value="np"/>

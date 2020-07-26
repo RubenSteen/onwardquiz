@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-use App\Jobs\SyncoAuth2;
+use App\Jobs\SyncDiscord;
 
-class oAuth2Resync
+class DiscordResync
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class oAuth2Resync
     {
         if (Auth::check() && Auth::user()->last_discord_sync->addHours(6) < \Carbon\Carbon::now()) {
             if (\App::environment('production', 'staging')) {
-                SyncoAuth2::dispatch(Auth::user());
+                SyncDiscord::dispatch(Auth::user());
             } else {
                 Auth::user()->update([
                     'last_discord_sync' => \Carbon\Carbon::now()

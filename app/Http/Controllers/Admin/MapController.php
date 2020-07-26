@@ -159,7 +159,7 @@ class MapController extends BackendController
 
         $map = Map::find($map_id);
         
-        $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map_id, $map))->validate();
+        $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map))->validate();
 
         if (isset($validatedData['image'])) {
             DB::beginTransaction();
@@ -206,15 +206,4 @@ class MapController extends BackendController
     }
 
     // Anything else than default methods is below here
-
-    /**
-     * Vue.js sends a post on image change, then it validates automaticly.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function imageValidation(Request $request, $id)
-    {
-        \Validator::make($request->all(), \Arr::only(MapUpdate::getRules($id), ['image']))->validate();
-    }
 }
