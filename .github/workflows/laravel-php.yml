@@ -40,6 +40,9 @@ jobs:
         mkdir -p database
         touch database/database.sqlite
         php artisan migrate
+    
+    - name: Execute Security Checker (composer) via SensioLabs
+      run: vendor/bin/security-checker security:check composer.lock
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
