@@ -44,6 +44,9 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
 
+      - name: Execute phpcs (PSR Quality tests) via PHP_CodeSniffer
+      run: vendor/bin/phpcs # To autmaticly fix them use vendor/bin/phpcbf
+
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
