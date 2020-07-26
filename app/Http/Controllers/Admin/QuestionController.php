@@ -41,8 +41,8 @@ class QuestionController extends BackendController
 
         $data = [
             'id' => $map->id,
-            'name' => $map->name,
             'description' => $map->description,
+            'name' => $map->name,
             'published' => $map->published,
             'deleted_at' => $map->deleted_at,
             'created_at' => $map->created_at,
