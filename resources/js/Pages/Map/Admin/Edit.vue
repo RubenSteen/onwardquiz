@@ -11,6 +11,15 @@
               This information will be displayed publicly so be careful what you write down...
             </p>
           </div>
+          <div class="flex justify-end">
+            <span class="ml-3 inline-flex rounded-md shadow-sm">
+              <button :disabled="loading" @click="deleteMap" type="button" ref="submit"
+                :class="{ 'cursor-not-allowed bg-red-400 text-gray-700': loading === true,  'text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700': loading === false}"
+                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out">
+                Delete
+              </button>
+            </span>
+          </div>
           <div class="mt-6 sm:mt-5">
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
               <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
@@ -214,6 +223,22 @@
             this.form.image = null;
           })
       }, // End updateMap()
+      deleteMap() {
+        if (!confirm('Are you sure you want to delete this map')) {
+          return;
+        }
+
+        this.loading = true;
+
+        var data = new FormData();
+
+        data.append('_method', 'DELETE');
+
+        this.$inertia.post(route('admin.map.destroy', {map: this.map.id}), data)
+          .then(() => {
+            this.loading = false;
+          })
+      }, // End deleteMap()
       getFileFromInput(event) {
         if (typeof event.target.files[0] !== 'undefined') {
           this.form.image = event.target.files[0];

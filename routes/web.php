@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
         Route::post('map', ['as' => 'map.store',    'uses' => 'MapController@store']);
         Route::get('map/{map_id}/edit', ['as' => 'map.edit',    'uses' => 'MapController@edit']);
         Route::patch('map/{map_id}', ['as' => 'map.update', 'uses' => 'MapController@update']);
+        Route::delete('map/{map}', ['as' => 'map.destroy', 'uses' => 'MapController@destroy']);
         Route::post('map/{map_id}/image-validation', ['as' => 'map.image-validation',   'uses' => 'MapController@imageValidation']);
 
         /*

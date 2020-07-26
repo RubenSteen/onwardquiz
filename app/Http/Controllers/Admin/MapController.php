@@ -189,9 +189,13 @@ class MapController extends BackendController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Map $map)
     {
         // abort_if(Gate::denies('delete-map'), 403); // OR/AND // abort_if(Gate::denies('forceDelete-map'), 403);
+
+        $map->delete();
+
+        return redirect()->route('admin.map.index')->with('success', 'Map was deleted!');
     }
 
     /**
