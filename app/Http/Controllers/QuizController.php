@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use App\Map;
 use App\Question;
 
-class QuizController extends FrontendController
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -121,23 +120,5 @@ class QuizController extends FrontendController
         }
 
         return abort(500);
-    }
-
-    /**
-     * Shows the landing page of the website, placed here here since i don't want a seperate controller
-     *
-     */
-    public function landing()
-    {
-        return Inertia::render('Landing');
-    }
-
-    /**
-     * Activity check, placed here here since i don't want a seperate controller.
-     *
-     */
-    public function activityCheck()
-    {
-        return json_encode('You are alive!');
     }
 }

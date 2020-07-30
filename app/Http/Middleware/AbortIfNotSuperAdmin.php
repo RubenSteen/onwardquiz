@@ -20,6 +20,6 @@ class AbortIfNotSuperAdmin
             return $next($request);
         }
 
-        return abort(403);
+        return abort(403, 'Forbidden');
     }
 }

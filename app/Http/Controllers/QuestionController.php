@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
@@ -12,7 +12,7 @@ use App\Http\Requests\Question\QuestionUpdate;
 use DB;
 use Illuminate\Support\Facades\Gate;
 
-class QuestionController extends BackendController
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,7 +57,7 @@ class QuestionController extends BackendController
             ],
         ];
 
-        return Inertia::render('Question/Admin/Create', [
+        return Inertia::render('Question/Create', [
             'map' => $data
         ]);
     }
@@ -90,7 +90,7 @@ class QuestionController extends BackendController
         // When the data is saved with success and commited to the database. then move the file...
         move_upload_to_storage_HELPER($validatedData['template'], $newUpload->fresh());
 
-        return redirect()->route('admin.question.edit', ['map' => $map->id, 'question' => $newQuestion->id])->with('success', "Question was successfully created for the map {$map->name}!");
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $newQuestion->id])->with('success', "Question was successfully created for the map {$map->name}!");
     }
 
     /**
@@ -172,7 +172,7 @@ class QuestionController extends BackendController
             ]);
         }
 
-        return Inertia::render('Question/Admin/Edit', [
+        return Inertia::render('Question/Edit', [
             'question' => $data
         ]);
     }

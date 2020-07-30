@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use App\Http\Requests\User\UserUpdate;
 
-class UserController extends BackendController
+class UserController extends AdminController
 {
     public function index()
     {
         abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
         // abort_if(Gate::denies('index-user'), 403);
         
-        $users = User::withCount('teams')->paginate(15);
+        $users = User::paginate(15);
 
         $usersPagination = $users->links();
         

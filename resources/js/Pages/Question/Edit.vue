@@ -363,7 +363,7 @@
       <div class="mt-8 border-t border-gray-200 pt-5">
         <div class="flex justify-end">
           <span class="inline-flex rounded-md shadow-sm">
-            <inertia-link :href="$route('admin.map.edit', {map_id: question.map.id})"
+            <inertia-link :href="$route('map.edit', {map_id: question.map.id})"
               class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
               Cancel
             </inertia-link>
@@ -383,7 +383,7 @@
 </template>
 
 <script>
-  import Layout from '../../Shared/Layout'
+  import Layout from '../Shared/Layout'
 
   export default {
     components: {
@@ -430,7 +430,7 @@
           }
         }
 
-        this.$inertia.post(route('admin.question.update', {map: this.question.map.id, question: this.question.id}), data)
+        this.$inertia.post(route('question.update', {map: this.question.map.id, question: this.question.id}), data)
           .then(() => {
             this.loading = false;
             this.form.template = null;
@@ -482,9 +482,9 @@
         let submitRoute = ''
 
         if (this.newOrEditPicture.form.id != null) {
-          submitRoute = route('admin.question.edit.image', {map: this.question.map.id, question: this.question.id, picture: this.newOrEditPicture.form.id})
+          submitRoute = route('question.edit.image', {map: this.question.map.id, question: this.question.id, picture: this.newOrEditPicture.form.id})
         } else {
-          submitRoute = route('admin.question.store.image', {map: this.question.map.id, question: this.question.id})
+          submitRoute = route('question.store.image', {map: this.question.map.id, question: this.question.id})
         }
 
         data.append('newOrEditPicture[_method]', 'POST');
@@ -521,7 +521,7 @@
 
         data.append('_method', 'DELETE');
 
-        this.$inertia.post(route('admin.question.delete.image', {map: this.question.map.id, question: this.question.id, picture: id}), data)
+        this.$inertia.post(route('question.delete.image', {map: this.question.map.id, question: this.question.id, picture: id}), data)
           .then(() => {
             this.loading = false;
             this.resetnewOrEditPicture();

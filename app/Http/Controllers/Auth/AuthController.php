@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Controller;
 use App\POPO\AuthenticateUser;
 use App\POPO\AuthenticateUserListener;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use Socialite;
 * https://laracasts.com/series/whats-new-in-laravel-5/episodes/9
 */
 
-class AuthController extends FrontendController implements AuthenticateUserListener
+class AuthController extends Controller implements AuthenticateUserListener
 {
     /**
      * Redirect the user to the Discord authentication page.

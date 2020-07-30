@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\DefaultLaravel;
+namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Upload;
 
 class Controller extends BaseController
 {
@@ -17,7 +18,7 @@ class Controller extends BaseController
     // Should be called when saving to database.
     protected function deleteAllOtherUploads($instance)
     {
-        $uploads = \App\Upload::where([
+        $uploads = Upload::where([
             'uploadable_id' => $instance->id,
             'uploadable_type' => get_class($instance),
         ])->get();

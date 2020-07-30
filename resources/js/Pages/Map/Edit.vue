@@ -147,7 +147,7 @@
       <div class="mt-8 border-t border-gray-200 pt-5">
         <div class="flex justify-end">
           <span class="inline-flex rounded-md shadow-sm">
-            <inertia-link :href="$route('admin.map.index')"
+            <inertia-link :href="$route('map.index')"
               class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
               Cancel
             </inertia-link>
@@ -164,13 +164,13 @@
       <div class="mt-8"> 
         <h3 class="text-lg leading-6 font-medium text-gray-900">
           Questions
-          <inertia-link :href="$route('admin.question.create', {map: map.id})" class="cursor-pointer inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 text-white ml-2 transition duration-150 ease-in-out">
+          <inertia-link :href="$route('question.create', {map: map.id})" class="cursor-pointer inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 text-white ml-2 transition duration-150 ease-in-out">
             Create
           </inertia-link>
         </h3>
         <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 text-center overflow-auto h-64 sm:h-full border border-gray-300 rounded-md box-border py-4 px-2">
           <span v-for="question in map.questions">
-            <inertia-link :href="$route('admin.question.edit', {map: map.id, question: question.id})" class=" mr-8">{{ question.callout }}</inertia-link>
+            <inertia-link :href="$route('question.edit', {map: map.id, question: question.id})" class=" mr-8">{{ question.callout }}</inertia-link>
           </span>
         </div>
       </div>
@@ -180,7 +180,7 @@
 </template>
 
 <script>
-  import Layout from '../../Shared/Layout'
+  import Layout from '../Shared/Layout'
 
   export default {
     components: {
@@ -217,7 +217,7 @@
           }
         }
 
-        this.$inertia.post(route('admin.map.update', this.map.id), data)
+        this.$inertia.post(route('map.update', this.map.id), data)
           .then(() => {
             this.loading = false;
             this.form.image = null;
@@ -234,7 +234,7 @@
 
         data.append('_method', 'DELETE');
 
-        this.$inertia.post(route('admin.map.destroy', {map: this.map.id}), data)
+        this.$inertia.post(route('map.destroy', {map: this.map.id}), data)
           .then(() => {
             this.loading = false;
           })

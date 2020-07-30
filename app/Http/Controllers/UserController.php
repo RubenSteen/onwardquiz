@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Auth;
 
-class UserController extends FrontendController
+class UserController extends Controller
 {
     public function index()
     {

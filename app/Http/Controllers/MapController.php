@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Map;
@@ -10,8 +10,9 @@ use App\Http\Requests\Map\MapUpdate;
 use DB;
 use Illuminate\Support\Facades\Gate;
 
-class MapController extends BackendController
+class MapController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +20,7 @@ class MapController extends BackendController
      */
     public function index()
     {
-        // abort_if(Gate::denies('index-map'), 403);
+        $this->authorize('viewAny-map');
 
         $maps = Map::with('image')->withCount('questions')->paginate();
 
@@ -52,7 +53,7 @@ class MapController extends BackendController
             return $data;
         });
 
-        return Inertia::render('Map/Admin/Index', [
+        return Inertia::render('Map/Index', [
             'maps' => $maps,
             'mapsPagination' => $mapsPagination,
         ]);
@@ -65,8 +66,9 @@ class MapController extends BackendController
      */
     public function create()
     {
-        // abort_if(Gate::denies('create-map'), 403);
-        return Inertia::render('Map/Admin/Create');
+        $this->authorize('create-map');
+        
+        return Inertia::render('Map/Create');
     }
 
     /**
@@ -77,7 +79,7 @@ class MapController extends BackendController
      */
     public function store(Request $request)
     {
-        // abort_if(Gate::denies('create-map'), 403);
+        $this->authorize('create-map');
         
         $validatedData = \Validator::make($request->all(), MapCreate::getRules())->validate();
             
@@ -86,7 +88,7 @@ class MapController extends BackendController
             'published' => 0,
         ]);
 
-        return redirect()->route('admin.map.edit', $newMap->id)->with('success', 'Map was successfully created!');
+        return redirect()->route('map.edit', $newMap->id)->with('success', 'Map was successfully created!');
     }
 
     /**
@@ -97,7 +99,7 @@ class MapController extends BackendController
      */
     public function show($id)
     {
-        // abort_if(Gate::denies('view-map'), 403); // OR/AND // abort_if(Gate::denies('viewAny-map'), 403);
+        $this->authorize('view-map');
     }
 
     /**
@@ -108,7 +110,7 @@ class MapController extends BackendController
      */
     public function edit($map_id)
     {
-        // abort_if(Gate::denies('update-map'), 403);
+        $this->authorize('update-map');
         
         $map = Map::with('image', 'questions')->find($map_id);
 
@@ -139,7 +141,7 @@ class MapController extends BackendController
             ];
         });
 
-        return Inertia::render('Map/Admin/Edit', [
+        return Inertia::render('Map/Edit', [
             'map' => $data
         ]);
     }
@@ -153,7 +155,7 @@ class MapController extends BackendController
      */
     public function update(Request $request, $map_id)
     {
-        // abort_if(Gate::denies('update-map'), 403);
+        $this->authorize('update-map');
 
         $request->merge(['published' => $request->published == 'true' ? true : false]);
 
@@ -191,11 +193,11 @@ class MapController extends BackendController
      */
     public function destroy(Map $map)
     {
-        // abort_if(Gate::denies('delete-map'), 403); // OR/AND // abort_if(Gate::denies('forceDelete-map'), 403);
+        $this->authorize('delete-map'); // OR/AND // $this->authorize('forceDelete-map');
 
         $map->delete();
 
-        return redirect()->route('admin.map.index')->with('success', 'Map was deleted!');
+        return redirect()->route('map.index')->with('success', 'Map was deleted!');
     }
 
     /**
@@ -206,7 +208,7 @@ class MapController extends BackendController
      */
     public function restore($id)
     {
-        // abort_if(Gate::denies('restore-map'), 403);
+        $this->authorize('restore-map');
     }
 
     // Anything else than default methods is below here

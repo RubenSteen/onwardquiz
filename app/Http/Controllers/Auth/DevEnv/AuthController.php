@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth\DevEnv;
 
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Inertia\Inertia;
 
-class AuthController extends FrontendController
+class AuthController extends Controller
 {
     public function showLogin()
     {
