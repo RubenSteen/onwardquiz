@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Question;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -84,7 +85,7 @@ class MapTest extends TestCase
 
         $this->post(route('map.store'), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0],"The name field is required.");
+        $this->assertEquals(session('errors')->get('name')[0], "The name field is required.");
     }
 
     /** @test */
@@ -98,7 +99,7 @@ class MapTest extends TestCase
         $this->post(route('map.store'), $data)->isSuccessful();
         $this->post(route('map.store'), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0],"The name has already been taken.");
+        $this->assertEquals(session('errors')->get('name')[0], "The name has already been taken.");
     }
 
     /*
@@ -154,7 +155,7 @@ class MapTest extends TestCase
 
         $this->patch(route('map.update', $map->id), ['name' => 'Some other name'])->assertForbidden();
 
-        $this->assertDatabaseHas((new Map)->getTable(), ['name' => $map->name]);
+        $this->assertDatabaseHas((new Map())->getTable(), ['name' => $map->name]);
     }
 
     /** @test */
@@ -166,7 +167,7 @@ class MapTest extends TestCase
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
 
-        $this->assertDatabaseMissing((new Map)->getTable(), ['name' => $map->name]);
+        $this->assertDatabaseMissing((new Map())->getTable(), ['name' => $map->name]);
     }
 
     /** @test */
@@ -178,7 +179,7 @@ class MapTest extends TestCase
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
 
-        $this->assertDatabaseMissing((new Map)->getTable(), ['name' => $map->name]);
+        $this->assertDatabaseMissing((new Map())->getTable(), ['name' => $map->name]);
     }
 
     /** @test */
@@ -194,7 +195,8 @@ class MapTest extends TestCase
         $map = factory(Map::class)->create();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
-        $this->assertEquals(session('errors')->get('name')[0],"The name field is required.");
+
+        $this->assertEquals(session('errors')->get('name')[0], "The name field is required.");
     }
 
     /** @test */
@@ -211,7 +213,8 @@ class MapTest extends TestCase
         ];
 
         $this->patch(route('map.update', $updateMap->id), $data)->assertSessionHasErrors();
-        $this->assertEquals(session('errors')->get('name')[0],"The name has already been taken.");
+
+        $this->assertEquals(session('errors')->get('name')[0], "The name has already been taken.");
     }
 
     /** @test */
@@ -228,25 +231,86 @@ class MapTest extends TestCase
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('published')[0],"The published field is required.");
+        $this->assertEquals(session('errors')->get('published')[0], "The published field is required.");
     }
 
-//    /** @test */
-//    public function published_is_only_possible_with_a_minimum_of_4_questions_published_while_updating_a_map()
-//    {
-//        $this->signIn(['editor' => true]);
-//
-//        // Data that will be send
-//        $data = [
-//            'published' => 'true',
-//        ];
-//
-//        $map = factory(Map::class)->create();
-//
-//        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
-//
-//        $this->assertEquals(session('errors')->get('published')[0],"The published field is required.");
-//    }
+    private $min_questions_published = 4;
+
+    /** @test */
+    public function cannot_publish_a_map_if_it_does_not_have_x_questions_published_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = [
+            'published' => true,
+        ];
+
+        $map = factory(Map::class)->create();
+
+        for ($i = 0; $i < $this->min_questions_published; $i++) {
+            $map->questions()->create(factory(Question::class)->raw(['published' => false]));
+        }
+
+        $this->assertCount($this->min_questions_published, Question::all());
+
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('published')[0],"Cannot be published, the map requires to have a minimum of 4 questions published");
+    }
+
+    /** @test */
+    public function can_publish_a_map_if_it_does_have_x_questions_published_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = [
+            'published' => true,
+        ];
+
+        $map = factory(Map::class)->create();
+
+        for ($i = 0; $i < $this->min_questions_published; $i++) {
+            $map->questions()->create(factory(Question::class)->raw(['published' => true]));
+        }
+
+        $this->assertCount($this->min_questions_published, Question::where('published', true)->get());
+
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->isSuccessful();
+
+        $this->assertDatabaseHas((new Map())->getTable(), ['published' => true]);
+    }
+
+    /** @test */
+    public function description_is_nullable_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = [
+            'description' => '',
+        ];
+
+        $map = factory(Map::class)->create(['description' => 'Something']);
+
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->isSuccessful();
+
+        $this->assertDatabaseHas((new Map())->getTable(), ['description' => null]);
+    }
+
+    /** @test */
+    public function description_can_be_set_to_a_string_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = [
+            'description' => 'Some other text',
+        ];
+
+        $map = factory(Map::class)->create(['description' => 'Something']);
+
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->isSuccessful();
+
+        $this->assertDatabaseMissing((new Map())->getTable(), ['description' => $map->description]);
+    }
 
     /*
      * Delete tests
