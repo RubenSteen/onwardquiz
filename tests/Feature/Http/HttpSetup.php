@@ -135,6 +135,10 @@ class HttpSetup extends TestCase
                 'method' => 'PATCH',
                 'url' => 'admin/user/{user}',
             ],
+            [
+                'method' => 'PUT',
+                'url' => 'map/{map_id}',
+            ],
         ];
     }
 

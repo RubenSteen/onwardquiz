@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Question;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\Map;
 use App\User;
@@ -312,6 +314,70 @@ class MapTest extends TestCase
         $this->assertDatabaseMissing((new Map())->getTable(), ['description' => $map->description]);
     }
 
+    /** @test */
+    public function image_is_nullable_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = array_merge(factory(Map::class)->raw(), ['image' => '']);
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+
+        $this->assertEquals(0, $map->image()->count());
+        $this->assertDatabaseCount((new Map())->getTable(), 1);
+    }
+
+    /** @test */
+    public function image_must_be_a_type_of_image_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = array_merge(factory(Map::class)->raw(), ['image' => 'some text']);
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('image')[0],"The image must be an image.");
+    }
+
+    private $map_max_image_size = 15000;
+
+    /** @test */
+    public function a_image_can_be_uploaded_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = factory(Map::class)->raw();
+
+        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+
+        $this->assertEquals(1, $map->image()->count());
+        $this->assertDatabaseCount((new Map())->getTable(), 1);
+    }
+
+    /** @test */
+    public function image_size_cannot_be_greater_then_x_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = factory(Map::class)->raw();
+
+        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size(($this->map_max_image_size + 1));
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('image')[0],"The image may not be greater than 15000 kilobytes.");
+    }
+
     /*
      * Delete tests
      */
@@ -359,4 +425,44 @@ class MapTest extends TestCase
     /*
      * Restore tests
      */
+
+    /** @test */
+    public function a_authenticated_user_cannot_restore_a_map()
+    {
+        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+
+        $this->assertCount(0, Map::all());
+
+        $this->signIn();
+
+        $this->put(route('map.restore', $map->id))->assertForbidden();
+    }
+
+    /** @test */
+    public function a_superadmin_can_restore_a_map()
+    {
+        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+
+        $this->assertCount(0, Map::all());
+
+        $this->signIn(['super_admin' => true, 'editor' => false]);
+
+        $this->put(route('map.restore', $map->id))->isSuccessful();
+
+        $this->assertCount(1, Map::all());
+    }
+
+    /** @test */
+    public function a_editor_can_restore_a_map()
+    {
+        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+
+        $this->assertCount(0, Map::all());
+
+        $this->signIn(['super_admin' => false, 'editor' => true]);
+
+        $this->put(route('map.restore', $map->id))->isSuccessful();
+
+        $this->assertCount(1, Map::all());
+    }
 }

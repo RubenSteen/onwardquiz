@@ -206,9 +206,13 @@ class MapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore($map)
     {
         $this->authorize('restore-map');
+
+        $map = Map::withTrashed()->find($map)->restore();
+
+        return redirect()->route('map.edit', $map_id)->with('success', 'Map was restored!');
     }
 
     // Anything else than default methods is below here
