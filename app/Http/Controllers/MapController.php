@@ -157,7 +157,7 @@ class MapController extends Controller
     {
         $this->authorize('update-map');
 
-        $request->merge(['published' => $request->published == 'true' ? true : false]);
+        //$request->merge(['published' => $request->published == 'true' ? true : false]);
 
         $map = Map::find($map_id);
         

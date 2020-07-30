@@ -13,6 +13,10 @@ class Map extends Model
         'name', 'description', 'published'
     ];
 
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
     public static function boot()
     {
         parent::boot();

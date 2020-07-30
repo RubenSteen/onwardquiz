@@ -50,13 +50,9 @@ class MapTest extends TestCase
     /** @test */
     public function a_authenticated_user_cannot_create_a_map()
     {
-        $this->withoutExceptionHandling();
-        
         $this->signIn();
 
-        $this->expectExceptionMessage('This action is unauthorized.');
-
-        $this->post(route('map.store'), factory(Map::class)->raw());
+        $this->post(route('map.store'), factory(Map::class)->raw())->assertForbidden();
     }
 
     /** @test */
@@ -64,7 +60,7 @@ class MapTest extends TestCase
     {
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->post(route('map.store'), factory(Map::class)->raw());
+        $this->post(route('map.store'), factory(Map::class)->raw())->isSuccessful();
 
         $this->assertCount(1, Map::all());
     }
@@ -72,53 +68,37 @@ class MapTest extends TestCase
     /** @test */
     public function a_editor_can_create_a_map()
     {
-        $this->withoutExceptionHandling();
-
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->post(route('map.store'), factory(Map::class)->raw());
+        $this->post(route('map.store'), factory(Map::class)->raw())->isSuccessful();
 
         $this->assertCount(1, Map::all());
     }
 
-        /** @test */
-    public function a_map_name_is_required()
+    /** @test */
+    public function name_is_required_while_creating_a_map()
     {
-        // Expected error messages
-        $errors = [
-            'The name field is required.'
-        ];
+        $this->signIn(['editor' => true]);
 
+        $data = factory(Map::class)->raw(['name' => '']);
+
+        $this->post(route('map.store'), $data)->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('name')[0],"The name field is required.");
+    }
+
+    /** @test */
+    public function name_is_unique_while_creating_a_map()
+    {
         $this->signIn(['editor' => true]);
 
         // Data that will be send
-        $data = [
-            'name' => ''
-        ];
+        $data = factory(Map::class)->raw(['name' => 'testing']);
 
-        // Checks if the data array contains everything in the validation rules
-        // If a field can be present sometimes you can higher the expectedCount.
-        $this->assertCount(0, array_diff(array_keys(MapCreate::getRules()), array_keys($data)));
+        $this->post(route('map.store'), $data)->isSuccessful();
+        $this->post(route('map.store'), $data)->assertSessionHasErrors();
 
-        $newMap = factory(Map::class)->raw($data);
-
-        $this->post(route('map.store'), $newMap)->assertSessionHasErrors();
-
-        foreach(session('errors')->all() as $error) {
-            $this->assertContains($error, $errors);
-        }
-    }
-
-        /** @test */
-    public function a_map_does_not_accept_values_that_are_not_in_the_validation()
-    {
-        $this->signIn(['editor' => true]);
-
-        $newMap = factory(Map::class)->raw(['published' => true]);
-
-        $this->post(route('map.store'), $newMap);
-
-        $this->assertDatabaseHas((new Map())->getTable(), ['published' => false]);
+        $this->assertEquals(session('errors')->get('name')[0],"The name has already been taken.");
     }
 
     /*
@@ -170,13 +150,11 @@ class MapTest extends TestCase
     {
         $map = factory(Map::class)->create();
 
-        $this->withoutExceptionHandling();
-
         $this->signIn();
 
-        $this->expectExceptionMessage('This action is unauthorized.');
+        $this->patch(route('map.update', $map->id), ['name' => 'Some other name'])->assertForbidden();
 
-        $this->patch(route('map.update', $map->id), ['name' => 'Some other name']);
+        $this->assertDatabaseHas((new Map)->getTable(), ['name' => $map->name]);
     }
 
     /** @test */
@@ -186,9 +164,7 @@ class MapTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->patch(route('map.update', $map->id), ['name' => 'Some other name']);
-
-        $this->assertCount(1, Map::all());
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
 
         $this->assertDatabaseMissing((new Map)->getTable(), ['name' => $map->name]);
     }
@@ -198,37 +174,78 @@ class MapTest extends TestCase
     {
         $map = factory(Map::class)->create();
 
-        $this->withoutExceptionHandling();
-
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->patch(route('map.update', $map->id), ['name' => 'Some other name']);
-
-        $this->assertCount(1, Map::all());
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
 
         $this->assertDatabaseMissing((new Map)->getTable(), ['name' => $map->name]);
     }
 
+    /** @test */
+    public function name_is_required_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        // Data that will be send
+        $data = [
+            'name' => '',
+        ];
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
+        $this->assertEquals(session('errors')->get('name')[0],"The name field is required.");
+    }
+
+    /** @test */
+    public function name_is_unique_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $existingMap = factory(Map::class)->create();
+        $updateMap = factory(Map::class)->create();
+
+        // Data that will be send
+        $data = [
+            'name' => $existingMap->name,
+        ];
+
+        $this->patch(route('map.update', $updateMap->id), $data)->assertSessionHasErrors();
+        $this->assertEquals(session('errors')->get('name')[0],"The name has already been taken.");
+    }
+
+    /** @test */
+    public function published_is_required_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        // Data that will be send
+        $data = [
+            'published' => '',
+        ];
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('published')[0],"The published field is required.");
+    }
+
 //    /** @test */
-//    public function a_map_requires_a_name()
+//    public function published_is_only_possible_with_a_minimum_of_4_questions_published_while_updating_a_map()
 //    {
 //        $this->signIn(['editor' => true]);
 //
-//        $newMap = factory(Map::class)->raw(['name' => '']);
+//        // Data that will be send
+//        $data = [
+//            'published' => 'true',
+//        ];
 //
-//        $this->post(route('map.store'), $newMap)->assertSessionHasErrors('name');
-//    }
+//        $map = factory(Map::class)->create();
 //
-//    /** @test */
-//    public function a_map_does_not_accept_values_that_are_not_in_the_validation()
-//    {
-//        $this->signIn(['editor' => true]);
+//        $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
 //
-//        $newMap = factory(Map::class)->raw(['published' => true]);
-//
-//        $this->post(route('map.store'), $newMap);
-//
-//        $this->assertDatabaseHas((new Map())->getTable(), ['published' => false]);
+//        $this->assertEquals(session('errors')->get('published')[0],"The published field is required.");
 //    }
 
     /*
@@ -242,13 +259,9 @@ class MapTest extends TestCase
 
         $this->assertCount(1, Map::all());
 
-        $this->withoutExceptionHandling();
-
         $this->signIn();
 
-        $this->expectExceptionMessage('This action is unauthorized.');
-
-        $this->delete(route('map.destroy', $map->id));
+        $this->delete(route('map.destroy', $map->id))->assertForbidden();
     }
 
     /** @test */
@@ -260,7 +273,7 @@ class MapTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->delete(route('map.destroy', $map->id));
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
 
         $this->assertCount(0, Map::all());
     }
@@ -272,11 +285,9 @@ class MapTest extends TestCase
 
         $this->assertCount(1, Map::all());
 
-        $this->withoutExceptionHandling();
-
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->delete(route('map.destroy', $map->id));
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
 
         $this->assertCount(0, Map::all());
     }

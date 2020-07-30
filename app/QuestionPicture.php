@@ -13,6 +13,10 @@ class QuestionPicture extends Model
         'difficulty', 'active'
     ];
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     public static function boot()
     {
         parent::boot();

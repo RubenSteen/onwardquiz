@@ -13,6 +13,10 @@ class Question extends Model
         'callout', 'published'
     ];
 
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
     public static function boot()
     {
         parent::boot();
