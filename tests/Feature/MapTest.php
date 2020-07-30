@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Question;
+use App\Upload;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -439,6 +440,42 @@ class MapTest extends TestCase
         $this->delete(route('map.destroy', $map->id))->isSuccessful();
 
         $this->assertCount(0, Map::all());
+    }
+
+    /** @test */
+    public function questions_get_deleted_when_a_map_is_deleted()
+    {
+        $map = factory(Map::class)->create();
+
+        $map->questions()->create(factory(Question::class)->raw());
+
+        $this->assertCount(1, Map::all());
+        $this->assertCount(1, Question::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+
+        $this->assertCount(0, Map::all());
+        $this->assertCount(0, Question::all());
+    }
+
+    /** @test */
+    public function images_get_deleted_when_a_map_is_deleted()
+    {
+        $map = factory(Map::class)->create();
+
+        $map->image()->create(factory(Upload::class)->raw());
+
+        $this->assertCount(1, Map::all());
+        $this->assertCount(1, Upload::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+
+        $this->assertCount(0, Map::all());
+        $this->assertCount(0, Upload::all());
     }
 
     /*
