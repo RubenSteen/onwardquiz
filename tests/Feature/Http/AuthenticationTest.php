@@ -7,8 +7,6 @@ use Tests\Feature\Http\HttpSetup;
 
 class AuthenticationTest extends HttpSetup
 {
-
-
     /**
      * @test
      * @dataProvider protectedRoutesProvider
@@ -18,12 +16,9 @@ class AuthenticationTest extends HttpSetup
         $this->assertGuest();
 
         if ($authenticated === true) {
-            $this->withoutExceptionHandling();
-
-            $this->expectExceptionMessage('Unauthenticated.');
+            $response = $this->$method($url)->assertRedirect('login/discord');
+        } else {
+            $response = $this->$method($url)->assertStatus($status ?: 200);
         }
-
-        $response = $this->$method($url)->assertStatus($status ?: 200);
     }
-
 }

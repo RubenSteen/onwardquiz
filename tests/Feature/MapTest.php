@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Map;
 use App\User;
+use App\Http\Requests\Map\MapCreate;
+use App\Http\Requests\Map\MapUpdate;
 
 class MapTest extends TestCase
 {
@@ -16,18 +18,6 @@ class MapTest extends TestCase
     /*
      * Index tests
      */
-
-    /** @test */
-    public function a_guest_cannot_view_the_index()
-    {
-        $this->withoutExceptionHandling();
-
-        $this->assertGuest();
-
-        $this->expectExceptionMessage('Unauthenticated.');
-
-        $this->get(route('map.index'));
-    }
 
     /** @test */
     public function a_authenticated_user_cannot_view_the_index()
@@ -56,18 +46,6 @@ class MapTest extends TestCase
     /*
      * Create tests
      */
-
-    /** @test */
-    public function a_guest_cannot_create_a_map()
-    {
-        $this->withoutExceptionHandling();
-
-        $this->assertGuest();
-
-        $this->expectExceptionMessage('Unauthenticated.');
-
-        $this->post(route('map.store'), factory(Map::class)->raw());
-    }
 
     /** @test */
     public function a_authenticated_user_cannot_create_a_map()
@@ -104,13 +82,31 @@ class MapTest extends TestCase
     }
 
         /** @test */
-    public function a_map_requires_a_name()
+    public function a_map_name_is_required()
     {
+        // Expected error messages
+        $errors = [
+            'The name field is required.'
+        ];
+
         $this->signIn(['editor' => true]);
 
-        $newMap = factory(Map::class)->raw(['name' => '']);
+        // Data that will be send
+        $data = [
+            'name' => ''
+        ];
 
-        $this->post(route('map.store'), $newMap)->assertSessionHasErrors('name');
+        // Checks if the data array contains everything in the validation rules
+        // If a field can be present sometimes you can higher the expectedCount.
+        $this->assertCount(0, array_diff(array_keys(MapCreate::getRules()), array_keys($data)));
+
+        $newMap = factory(Map::class)->raw($data);
+
+        $this->post(route('map.store'), $newMap)->assertSessionHasErrors();
+
+        foreach(session('errors')->all() as $error) {
+            $this->assertContains($error, $errors);
+        }
     }
 
         /** @test */
@@ -134,20 +130,6 @@ class MapTest extends TestCase
     /*
      * Edit tests
      */
-
-    /** @test */
-    public function a_guest_cannot_edit_a_map()
-    {
-        $map = factory(Map::class)->create();
-
-        $this->withoutExceptionHandling();
-
-        $this->assertGuest();
-
-        $this->expectExceptionMessage('Unauthenticated.');
-
-        $this->get(route('map.edit', $map->id));
-    }
 
     /** @test */
     public function a_authenticated_user_cannot_edit_a_map()
@@ -182,20 +164,6 @@ class MapTest extends TestCase
     /*
      * Update tests
      */
-
-    /** @test */
-    public function a_guest_cannot_update_a_map()
-    {
-        $map = factory(Map::class)->create();
-
-        $this->withoutExceptionHandling();
-
-        $this->assertGuest();
-
-        $this->expectExceptionMessage('Unauthenticated.');
-
-        $this->patch(route('map.update', $map->id), ['name' => 'Some other name']);
-    }
 
     /** @test */
     public function a_authenticated_user_cannot_update_a_map()
@@ -266,22 +234,6 @@ class MapTest extends TestCase
     /*
      * Delete tests
      */
-
-    /** @test */
-    public function a_guest_cannot_delete_a_map()
-    {
-        $map = factory(Map::class)->create();
-
-        $this->assertCount(1, Map::all());
-
-        $this->withoutExceptionHandling();
-
-        $this->assertGuest();
-
-        $this->expectExceptionMessage('Unauthenticated.');
-
-        $this->delete(route('map.destroy', $map->id));
-    }
 
     /** @test */
     public function a_authenticated_user_cannot_delete_a_map()
