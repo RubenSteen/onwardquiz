@@ -363,6 +363,25 @@ class MapTest extends TestCase
     }
 
     /** @test */
+    public function delete_old_image_when_a_user_adds_a_new_one_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = factory(Map::class)->raw();
+
+        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
+
+        $map = factory(Map::class)->create();
+
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+
+        $this->assertEquals(1, $map->image()->count());
+        $this->assertEquals(2, $map->image()->withTrashed()->count());
+        $this->assertDatabaseCount((new Map())->getTable(), 1);
+    }
+
+    /** @test */
     public function image_size_cannot_be_greater_then_x_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
