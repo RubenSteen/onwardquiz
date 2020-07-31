@@ -26,10 +26,10 @@ class QuestionObserver
      */
     public function updated(Question $question)
     {
-        if ($question->map->questions->where('published', true)->count() < 4 && $question->map->published == true) {
-            $question->map->update(['published' => false]);
-            Session::flash('warning', "{$question->map->name} has been unpublished due it not having the right amount of questions published");
-        }
+//        if ($question->map->questions->where('published', true)->count() < 4 && $question->map->published == true) {
+//            $question->map->update(['published' => false]);
+//            Session::flash('warning', "{$question->map->name} has been unpublished due it not having the right amount of questions published");
+//        }
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Map;
+use Carbon\Carbon;
 
 class MapObserver
 {
@@ -40,13 +41,43 @@ class MapObserver
             return $this->forceDeleted($map);
         }
 
-        $map->questions()->each(function ($instance) {
+        $map->questions()->each(function ($instance) use ($map) {
             $instance->delete();
         });
 
         $map->image()->each(function ($instance) {
             $instance->delete();
         });
+    }
+
+    /**
+     * Handle the map "restoring" event.
+     *
+     * @param  \App\Map  $map
+     * @return void
+     */
+    public function restoring(Map $map)
+    {
+        $max_seconds_between_timestamps = 5;
+
+        $max_restore_time = $map->deleted_at->addSeconds($max_seconds_between_timestamps)->toDateTimeString();
+
+        $images = $map->image()->withTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        $questions = $map->questions()->withTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        // Only restore ONE and the NEWEST image that is within x seconds of the map->deleted_at timestamp!
+        if($images->count() > 0) {
+            $images->first()
+                ->restore();
+        }
+
+        // Only restore questions that are within x seconds of the map->deleted_at timestamp!
+        if($questions->count() > 0) {
+            $questions->each(function ($instance) {
+                $instance->restore();
+            });
+        }
     }
 
     /**
@@ -57,7 +88,9 @@ class MapObserver
      */
     public function restored(Map $map)
     {
-        //
+//        $map->questions()->withTrashed()->each(function ($instance) {
+//            $instance->restore();
+//        });
     }
 
     /**

@@ -210,9 +210,9 @@ class MapController extends Controller
     {
         $this->authorize('restore-map');
 
-        $map = Map::withTrashed()->find($map)->restore();
+        $map = tap(Map::withTrashed()->find($map))->restore();
 
-        return redirect()->route('map.edit', $map_id)->with('success', 'Map was restored!');
+        return redirect()->route('map.edit', $map->id)->with('success', 'Map was restored!');
     }
 
     // Anything else than default methods is below here
