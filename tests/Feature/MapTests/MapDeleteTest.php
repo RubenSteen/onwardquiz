@@ -15,7 +15,7 @@ class MapDeleteTest extends TestCase
     /** @test */
     public function a_authenticated_user_cannot_delete_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->assertCount(1, Map::all());
 
@@ -27,7 +27,7 @@ class MapDeleteTest extends TestCase
     /** @test */
     public function a_superadmin_can_delete_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->assertCount(1, Map::all());
 
@@ -41,7 +41,7 @@ class MapDeleteTest extends TestCase
     /** @test */
     public function a_editor_can_delete_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->assertCount(1, Map::all());
 
@@ -55,7 +55,7 @@ class MapDeleteTest extends TestCase
     /** @test */
     public function questions_get_deleted_when_a_map_is_deleted()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $map->questions()->create(factory(Question::class)->raw(['map_id' => $map->id]));
 
@@ -73,7 +73,7 @@ class MapDeleteTest extends TestCase
     /** @test */
     public function images_get_deleted_when_a_map_is_deleted()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $map->image()->create(factory(Upload::class)->raw());
 

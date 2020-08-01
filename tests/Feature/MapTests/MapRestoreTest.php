@@ -16,7 +16,7 @@ class MapRestoreTest extends TestCase
     /** @test */
     public function a_authenticated_user_cannot_restore_a_map()
     {
-        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+        $map = $this->createMap(['deleted_at' => Carbon::now()]);
 
         $this->assertCount(0, Map::all());
 
@@ -30,7 +30,7 @@ class MapRestoreTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+        $map = $this->createMap(['deleted_at' => Carbon::now()]);
 
         $this->assertCount(0, Map::all());
 
@@ -44,7 +44,7 @@ class MapRestoreTest extends TestCase
     /** @test */
     public function a_editor_can_restore_a_map()
     {
-        $map = factory(Map::class)->create(['deleted_at' => Carbon::now()]);
+        $map = $this->createMap(['deleted_at' => Carbon::now()]);
 
         $this->assertCount(0, Map::all());
 
@@ -68,7 +68,7 @@ class MapRestoreTest extends TestCase
         $timeWithinRange = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds - 1)); // Is a second within range so it will get restored
         $timeExactlyWithinRange = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds($addSeconds); // Is exactly on the time so it still will get restored
 
-        $map = factory(Map::class)->create(['deleted_at' => $timeMap]);
+        $map = $this->createMap(['deleted_at' => $timeMap]);
 
         factory(Question::class)->create(['deleted_at' => $timeOutOfRange, 'map_id' => $map->id, 'callout' => 'outofrange']); // Is just out of range to get restored
         factory(Question::class)->create(['deleted_at' => $timeWithinRange, 'map_id' => $map->id, 'callout' => 'secondwithinrange']); // Is a second within range so it will get restored
@@ -96,7 +96,7 @@ class MapRestoreTest extends TestCase
         $timeMap = Carbon::createFromTimestamp($currentTime->timestamp);
         $timeOutOfRange = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds + 1)); // Is just out of range to get restored
 
-        $map = factory(Map::class)->create(['deleted_at' => $timeMap]);
+        $map = $this->createMap(['deleted_at' => $timeMap]);
 
         factory(Question::class)->create(['deleted_at' => $timeOutOfRange, 'map_id' => $map->id]); // Is just out of range to get restored
 
@@ -121,7 +121,7 @@ class MapRestoreTest extends TestCase
         $timeOldest = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds - 2)); // Has been deleted before the $timeNewest timestamp
         $timeNewest = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds - 1)); // The newest has been deleted later than the oldest
 
-        $map = factory(Map::class)->create(['deleted_at' => $timeMap]);
+        $map = $this->createMap(['deleted_at' => $timeMap]);
 
         factory(Upload::class)->create(['deleted_at' => $timeOldest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'oldest.jpg']); // Older image but still in range for restore
         factory(Upload::class)->create(['deleted_at' => $timeNewest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'newest.jpg']); // Most recent image that will be restored
@@ -147,7 +147,7 @@ class MapRestoreTest extends TestCase
         $timeMap = Carbon::createFromTimestamp($currentTime->timestamp);
         $timeQuestion = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds + 1)); // Has been deleted but is outside the max deleted_at time
 
-        $map = factory(Map::class)->create(['deleted_at' => $timeMap]);
+        $map = $this->createMap(['deleted_at' => $timeMap]);
 
         factory(Upload::class)->create(['deleted_at' => $timeQuestion, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map']);
 

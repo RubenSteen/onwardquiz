@@ -9,7 +9,6 @@
 <file>app</file>
 <file>database</file>
 <file>routes</file>
-<file>tests</file>
 
 <!-- exclude our migrations directory from the violation check-->
 <exclude-pattern>database/migrations</exclude-pattern>

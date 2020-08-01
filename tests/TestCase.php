@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Map;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
@@ -66,5 +67,16 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $user;
+    }
+
+    protected function createMap($overrides = [], $amount = 1)
+    {
+        $data = factory(Map::class, $amount)->create($overrides);
+
+        if ($amount > 1) {
+            return $data;
+        }
+
+        return $data->first();
     }
 }

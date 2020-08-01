@@ -11,9 +11,9 @@ class MapEditTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_authenticated_user_cannot_edit_a_map()
+    public function a_authenticated_user_cannot_view_the_edit_page()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn(['super_admin' => false, 'editor' => false]);
 
@@ -21,9 +21,9 @@ class MapEditTest extends TestCase
     }
 
     /** @test */
-    public function a_superadmin_can_edit_a_map()
+    public function a_superadmin_can_view_the_edit_page()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
@@ -31,9 +31,9 @@ class MapEditTest extends TestCase
     }
 
     /** @test */
-    public function a_editor_can_edit_a_map()
+    public function a_editor_can_view_the_edit_page()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 

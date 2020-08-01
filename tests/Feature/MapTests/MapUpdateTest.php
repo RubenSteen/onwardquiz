@@ -15,7 +15,7 @@ class MapUpdateTest extends TestCase
     /** @test */
     public function a_authenticated_user_cannot_update_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn();
 
@@ -27,7 +27,7 @@ class MapUpdateTest extends TestCase
     /** @test */
     public function a_superadmin_can_update_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
@@ -39,7 +39,7 @@ class MapUpdateTest extends TestCase
     /** @test */
     public function a_editor_can_update_a_map()
     {
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
@@ -58,7 +58,7 @@ class MapUpdateTest extends TestCase
             'name' => '',
         ];
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
@@ -70,8 +70,8 @@ class MapUpdateTest extends TestCase
     {
         $this->signIn(['editor' => true]);
 
-        $existingMap = factory(Map::class)->create();
-        $updateMap = factory(Map::class)->create();
+        $existingMap = $this->createMap();
+        $updateMap = $this->createMap();
 
         // Data that will be send
         $data = [
@@ -93,7 +93,7 @@ class MapUpdateTest extends TestCase
             'published' => '',
         ];
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
 
@@ -111,7 +111,7 @@ class MapUpdateTest extends TestCase
             'published' => true,
         ];
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         for ($i = 0; $i < $this->min_questions_published; $i++) {
             $map->questions()->create(factory(Question::class)->raw(['published' => false, 'map_id' => $map->id]));
@@ -133,7 +133,7 @@ class MapUpdateTest extends TestCase
             'published' => true,
         ];
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         for ($i = 0; $i < $this->min_questions_published; $i++) {
             $map->questions()->create(factory(Question::class)->raw(['published' => true, 'map_id' => $map->id]));
@@ -155,7 +155,7 @@ class MapUpdateTest extends TestCase
             'description' => '',
         ];
 
-        $map = factory(Map::class)->create(['description' => 'Something']);
+        $map = $this->createMap(['description' => 'Something']);
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->isSuccessful();
 
@@ -171,7 +171,7 @@ class MapUpdateTest extends TestCase
             'description' => 'Some other text',
         ];
 
-        $map = factory(Map::class)->create(['description' => 'Something']);
+        $map = $this->createMap(['description' => 'Something']);
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->isSuccessful();
 
@@ -185,7 +185,7 @@ class MapUpdateTest extends TestCase
 
         $data = array_merge(factory(Map::class)->raw(), ['image' => '']);
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
@@ -200,7 +200,7 @@ class MapUpdateTest extends TestCase
 
         $data = array_merge(factory(Map::class)->raw(), ['image' => 'some text']);
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
@@ -218,7 +218,7 @@ class MapUpdateTest extends TestCase
 
         $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
@@ -235,7 +235,7 @@ class MapUpdateTest extends TestCase
 
         $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
@@ -254,7 +254,7 @@ class MapUpdateTest extends TestCase
 
         $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size(($this->map_max_image_size + 1));
 
-        $map = factory(Map::class)->create();
+        $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 

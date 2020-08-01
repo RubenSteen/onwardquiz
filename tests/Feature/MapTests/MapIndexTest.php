@@ -10,7 +10,7 @@ class MapIndexTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_authenticated_user_cannot_view_the_index()
+    public function a_authenticated_user_cannot_view_the_index_page()
     {
         $this->signIn(['super_admin' => false, 'editor' => false]);
 
@@ -18,18 +18,24 @@ class MapIndexTest extends TestCase
     }
 
     /** @test */
-    public function a_superadmin_can_view_the_index()
+    public function a_superadmin_can_view_the_index_page()
     {
+        $this->createMap();
+
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->get(route('map.index'))->assertStatus(200);
+        $this->get(route('map.index'))->assertStatus(200)
+            ->assertPropCount('maps', 1);
     }
 
     /** @test */
-    public function a_editor_can_view_the_index()
+    public function a_editor_can_view_the_index_page()
     {
+        $this->createMap();
+
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->get(route('map.index'))->assertStatus(200);
+        $this->get(route('map.index'))->assertStatus(200)
+            ->assertPropCount('maps', 1);
     }
 }
