@@ -112,7 +112,7 @@ class MapRestoreTest extends TestCase
     }
 
     /** @test */
-    public function the_first_image_will_get_restored_if_the_image_deleted_at_timestamp_is_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
+    public function the_first_template_will_get_restored_if_the_template_deleted_at_timestamp_is_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
     {
         $currentTime = Carbon::now();
         $addSeconds = $this->max_time_before_out_of_range_for_the_restore_in_seconds;
@@ -123,8 +123,8 @@ class MapRestoreTest extends TestCase
 
         $map = $this->createMap(['deleted_at' => $timeMap]);
 
-        factory(Upload::class)->create(['deleted_at' => $timeOldest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'oldest.jpg']); // Older image but still in range for restore
-        factory(Upload::class)->create(['deleted_at' => $timeNewest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'newest.jpg']); // Most recent image that will be restored
+        factory(Upload::class)->create(['deleted_at' => $timeOldest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'oldest.jpg']); // Older template but still in range for restore
+        factory(Upload::class)->create(['deleted_at' => $timeNewest, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map', 'name' => 'newest.jpg']); // Most recent template that will be restored
 
         $this->assertCount(0, Map::all());
         $this->assertCount(0, Upload::all());
@@ -139,7 +139,7 @@ class MapRestoreTest extends TestCase
     }
 
     /** @test */
-    public function no_image_will_get_restored_if_they_question_deleted_at_timestamp_is_not_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
+    public function no_template_will_get_restored_if_they_question_deleted_at_timestamp_is_not_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
     {
         $currentTime = Carbon::now();
         $addSeconds = $this->max_time_before_out_of_range_for_the_restore_in_seconds;

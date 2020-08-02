@@ -22,7 +22,7 @@ class MapController extends Controller
     {
         $this->authorize('viewAny-map');
 
-        $maps = Map::with('image')->withCount('questions')->paginate();
+        $maps = Map::with('template')->withCount('questions')->paginate();
 
         $mapsPagination = $maps->links();
         //dd($mapsPagination);
@@ -38,16 +38,16 @@ class MapController extends Controller
                 'questionCount' => $map->questions_count,
             ];
 
-            if ($map->image !== null) {
-                $data['image'] = [
-                    'id' => $map->image->id,
-                    'name' => $map->image->name,
-                    'file_name' => $map->image->file_name,
-                    'location' => $map->image->getAssetFolderWithFile(),
-                    'created_at' => $map->image->created_at,
-                    'updated_at' => $map->image->updated_at,
+            if ($map->template !== null) {
+                $data['template'] = [
+                    'id' => $map->template->id,
+                    'name' => $map->template->name,
+                    'file_name' => $map->template->file_name,
+                    'location' => $map->template->getAssetFolderWithFile(),
+                    'created_at' => $map->template->created_at,
+                    'updated_at' => $map->template->updated_at,
                 ];
-                $humanReadableSize = format_bytes_HELPER($map->image->size);
+                $humanReadableSize = format_bytes_HELPER($map->template->size);
                 $data['hasTemplate'] = $humanReadableSize;
             }
             return $data;
@@ -76,7 +76,7 @@ class MapController extends Controller
      * Store a newly created map in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
@@ -104,7 +104,7 @@ class MapController extends Controller
     {
         $this->authorize('update-map');
         
-        $map = Map::with('image', 'questions')->find($map_id);
+        $map = Map::with('template', 'questions')->find($map_id);
 
         $data = [
             'id' => $map->id,
@@ -113,14 +113,14 @@ class MapController extends Controller
             'published' => $map->published ? true : false,
         ];
 
-        if ($map->image !== null) {
-            $data['image'] = [
-                'id' => $map->image->id,
-                'name' => $map->image->name,
-                'file_name' => $map->image->file_name,
-                'location' => $map->image->getAssetFolderWithFile(),
-                'created_at' => $map->image->created_at,
-                'updated_at' => $map->image->updated_at,
+        if ($map->template !== null) {
+            $data['template'] = [
+                'id' => $map->template->id,
+                'name' => $map->template->name,
+                'file_name' => $map->template->file_name,
+                'location' => $map->template->getAssetFolderWithFile(),
+                'created_at' => $map->template->created_at,
+                'updated_at' => $map->template->updated_at,
             ];
         }
 
@@ -143,7 +143,7 @@ class MapController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $map_id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $map_id)
@@ -156,7 +156,7 @@ class MapController extends Controller
         
         $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map))->validate();
 
-        if (isset($validatedData['image'])) {
+        if (isset($validatedData['template'])) {
             DB::beginTransaction();
             
             // Method in extended controller
@@ -165,12 +165,12 @@ class MapController extends Controller
             $map->update($validatedData);
 
             // Save the file to the database with this helper.
-            $newUpload = save_upload_to_database_HELPER($validatedData['image'], $map->image());
+            $newUpload = save_upload_to_database_HELPER($validatedData['template'], $map->template());
 
             DB::commit();
 
             // When the data is saved with success and commited to the database. then move the file...
-            move_upload_to_storage_HELPER($validatedData['image'], $newUpload->fresh());
+            move_upload_to_storage_HELPER($validatedData['template'], $newUpload->fresh());
         } else {
             $map->update($validatedData);
         }
@@ -182,7 +182,7 @@ class MapController extends Controller
      * Remove the specified map from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Map $map)
@@ -198,7 +198,7 @@ class MapController extends Controller
      * Restore the specified map from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function restore($map)
@@ -209,6 +209,4 @@ class MapController extends Controller
 
         return redirect()->route('map.edit', $map->id)->with('success', 'Map was restored!');
     }
-
-    // Anything else than default methods is below here
 }

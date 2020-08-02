@@ -39,7 +39,7 @@ class MapUpdate extends FormRequest
     public static function getRules($map)
     {
         return array_merge(MapCreate::getRules($map->id), [
-            'image' => 'sometimes|required|image|max:15000',
+            'template' => 'sometimes|required|image|max:15000',
             'description' => 'nullable',
             'published' => [
                 'required',

@@ -19,7 +19,7 @@
           <div class="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
             <inertia-link :href="$route('quiz.show', {map: map.id})" v-for="(map, index) in maps" :key="index" class="flex flex-col rounded-lg shadow-lg overflow-hidden">
               <div class="flex-shrink-0">
-                <img class="h-48 w-full object-cover" :src="map.image" :alt="'Image of ' + map.name">
+                <img class="h-48 w-full object-cover" :src="map.template" :alt="'Template of ' + map.name">
               </div>
               <div class="flex-1 p-6 flex flex-col justify-between">
                 <div class="flex-1">

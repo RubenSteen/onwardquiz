@@ -62,20 +62,20 @@
                 <div class="flex items-center">
                   <span class="h-48 w-64 md:w-64 md:h-64 overflow-hidden bg-gray-100 flex">
                     <div class="col-span-4 flex justify-center self-center">
-                      <img v-if="map.image" class="rounded-lg" :src="map.image.location" :alt="map.image.name">
+                      <img v-if="map.template" class="rounded-lg" :src="map.template.location" :alt="map.template.name">
                       <img v-else src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
-                        alt="No image">
+                        alt="No template available">
                     </div>
                   </span>
                   <span class="ml-5 rounded-md shadow-sm flex">
                     <div>
-                      <a :href="map.image.location" target="_blank" v-if="map.image" type="button"
+                      <a :href="map.template.location" target="_blank" v-if="map.template" type="button"
                         class="py-2 px-3 border-2 border-indigo-600 hover:border-indigo-700 rounded-md text-sm leading-4 font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:border-indigo-800 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                         Download
                       </a>
                       <input @change="getFileFromInput" type="file" ref="file" style="display: none">
                       <button @click="$refs.file.click()" type="button"
-                        :class="{ 'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red': $page.errors.image}"
+                        :class="{ 'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red': $page.errors.template}"
                         class=" ml-2 py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                         Change
                       </button>
@@ -83,18 +83,19 @@
                   </span>
 
                 </div>
-                <p class="mt-2 text-xs italic text-indigo-500">Changing this image has a great impact, every question
+                <p class="mt-2 text-xs italic text-indigo-500">Changing this template has a great impact, every question
                   will have atleast 1 template image that is based on this...<br>
-                  That means if you wanna change this image, also change all the question templates (map overview
-                  images)</p>
+                  That means if you wanna change this image, also change all the question templates<br>
+                  All the questions will get unpublished and you have to publish (and check the templates) manually.
+                </p>
                 <div class="mt-4">
-                  <p class="mt-2 text-xs text-red-600" v-show="$page.errors.image" v-for="(error, index) in $page.errors.image" :key="index">
+                  <p class="mt-2 text-xs text-red-600" v-show="$page.errors.template" v-for="(error, index) in $page.errors.template" :key="index">
                     {{ error }}</p>
-                  <div v-if="form.image"
-                    :class="{ 'border-red-500 text-red-900 placeholder-red-300': $page.errors.image, 'border-indigo-500': !$page.errors.image}"
+                  <div v-if="form.template"
+                    :class="{ 'border-red-500 text-red-900 placeholder-red-300': $page.errors.template, 'border-indigo-500': !$page.errors.template}"
                     class="relative text-gray-500 text-xs border rounded-md w-auto box-border p-4">
                     <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-                      <button @click="form.image = null" type="button"
+                      <button @click="form.template = null" type="button"
                         class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,9 +103,9 @@
                         </svg>
                       </button>
                     </div>
-                    File to upload : {{ form.image.name }}</br>
-                    Type : {{ form.image.type }}</br>
-                    Size : {{ readableBytes(form.image.size) }}
+                    File to upload : {{ form.template.name }}</br>
+                    Type : {{ form.template.type }}</br>
+                    Size : {{ readableBytes(form.template.size) }}
                   </div>
                 </div>
               </div>
@@ -195,7 +196,7 @@
         form: {
           name: this.map.name,
           description: this.map.description == null ? '' : this.map.description,
-          image: null,
+          template: null,
           published: this.map.published,
         },
         loading: false,
@@ -210,7 +211,7 @@
         data.append('_method', 'PATCH');
 
         for (var field in this.form) {
-          if (field === 'image' && this.form[field] === null) { // If the image field is null then do not send.
+          if (field === 'template' && this.form[field] === null) { // If the template field is null then do not send.
             continue
           } else {
             data.append(field, this.form[field]) // append form field to request
@@ -220,7 +221,7 @@
         this.$inertia.post(route('map.update', this.map.id), data)
           .then(() => {
             this.loading = false;
-            this.form.image = null;
+            this.form.template = null;
           })
       }, // End updateMap()
       deleteMap() {
@@ -241,7 +242,7 @@
       }, // End deleteMap()
       getFileFromInput(event) {
         if (typeof event.target.files[0] !== 'undefined') {
-          this.form.image = event.target.files[0];
+          this.form.template = event.target.files[0];
         }
       }, //End getFileFromInput()
       readableBytes(bytes) {

@@ -24,7 +24,7 @@ class Map extends Model
         Map::observe(Observers\MapObserver::class);
     }
 
-    public function image()
+    public function template()
     {
         return $this->morphOne('App\Upload', 'uploadable');
     }

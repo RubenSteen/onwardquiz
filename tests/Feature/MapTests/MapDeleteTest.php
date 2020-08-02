@@ -71,11 +71,11 @@ class MapDeleteTest extends TestCase
     }
 
     /** @test */
-    public function images_get_deleted_when_a_map_is_deleted()
+    public function template_gets_deleted_when_a_map_is_deleted()
     {
         $map = $this->createMap();
 
-        $map->image()->create(factory(Upload::class)->raw());
+        $map->template()->create(factory(Upload::class)->raw());
 
         $this->assertCount(1, Map::all());
         $this->assertCount(1, Upload::all());

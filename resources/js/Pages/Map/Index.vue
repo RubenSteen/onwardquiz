@@ -41,9 +41,9 @@
               <div class="flex items-center px-2 py-2 sm:px-6">
                 <div class="min-w-0 flex-1 flex items-center">
                   <div class="flex-shrink-0">
-                    <img v-if="map.image" class="h-16 w-16 rounded-md" :src="map.image.location" :alt="map.image.name" />
+                    <img v-if="map.template" class="h-16 w-16 rounded-md" :src="map.template.location" :alt="map.template.name" />
                     <img v-else class="h-16 w-16 rounded-md" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
-                        alt="No image" />
+                        alt="No image available" />
                   </div>
                   <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>

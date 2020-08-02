@@ -179,85 +179,85 @@ class MapUpdateTest extends TestCase
     }
 
     /** @test */
-    public function image_is_nullable_while_updating_a_map()
+    public function template_is_nullable_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
-        $data = array_merge(factory(Map::class)->raw(), ['image' => '']);
+        $data = array_merge(factory(Map::class)->raw(), ['template' => '']);
 
         $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
-        $this->assertEquals(0, $map->image()->count());
+        $this->assertEquals(0, $map->template()->count());
         $this->assertDatabaseCount((new Map())->getTable(), 1);
     }
 
     /** @test */
-    public function image_must_be_a_type_of_image_while_updating_a_map()
+    public function template_must_be_a_type_of_template_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
-        $data = array_merge(factory(Map::class)->raw(), ['image' => 'some text']);
+        $data = array_merge(factory(Map::class)->raw(), ['template' => 'some text']);
 
         $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('image')[0],"The image must be an image.");
+        $this->assertEquals(session('errors')->get('template')[0],"The template must be an image.");
     }
 
-    private $map_max_image_size = 15000;
+    private $map_max_template_size = 15000;
 
     /** @test */
-    public function a_image_can_be_uploaded_while_updating_a_map()
+    public function a_template_can_be_uploaded_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
         $data = factory(Map::class)->raw();
 
-        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
+        $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_template_size);
 
         $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
-        $this->assertEquals(1, $map->image()->count());
+        $this->assertEquals(1, $map->template()->count());
         $this->assertDatabaseCount((new Map())->getTable(), 1);
     }
 
     /** @test */
-    public function delete_old_image_when_a_user_adds_a_new_one_while_updating_a_map()
+    public function delete_old_template_when_a_user_adds_a_new_one_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
         $data = factory(Map::class)->raw();
 
-        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_image_size);
+        $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_template_size);
 
         $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
-        $this->assertEquals(1, $map->image()->count());
-        $this->assertEquals(2, $map->image()->withTrashed()->count());
+        $this->assertEquals(1, $map->template()->count());
+        $this->assertEquals(2, $map->template()->withTrashed()->count());
         $this->assertDatabaseCount((new Map())->getTable(), 1);
     }
 
     /** @test */
-    public function image_size_cannot_be_greater_then_x_while_updating_a_map()
+    public function template_size_cannot_be_greater_then_x_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
         $data = factory(Map::class)->raw();
 
-        $data['image'] = UploadedFile::fake()->image('avatar.jpg')->size(($this->map_max_image_size + 1));
+        $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size(($this->map_max_template_size + 1));
 
         $map = $this->createMap();
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('image')[0],"The image may not be greater than 15000 kilobytes.");
+        $this->assertEquals(session('errors')->get('template')[0],"The template may not be greater than 15000 kilobytes.");
     }
 }

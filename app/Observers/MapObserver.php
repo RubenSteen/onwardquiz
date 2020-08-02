@@ -45,7 +45,7 @@ class MapObserver
             $instance->delete();
         });
 
-        $map->image()->each(function ($instance) {
+        $map->template()->each(function ($instance) {
             $instance->delete();
         });
     }
@@ -62,13 +62,13 @@ class MapObserver
 
         $max_restore_time = $map->deleted_at->addSeconds($max_seconds_between_timestamps)->toDateTimeString();
 
-        $images = $map->image()->withTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+        $template = $map->template()->withTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
 
         $questions = $map->questions()->withTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
 
-        // Only restore ONE and the NEWEST image that is within x seconds of the map->deleted_at timestamp!
-        if($images->count() > 0) {
-            $images->first()
+        // Only restore ONE and the NEWEST template that is within x seconds of the map->deleted_at timestamp!
+        if($template->count() > 0) {
+            $template->first()
                 ->restore();
         }
 
