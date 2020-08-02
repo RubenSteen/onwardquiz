@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Map;
+use App\Question;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
@@ -72,6 +73,17 @@ abstract class TestCase extends BaseTestCase
     protected function createMap($overrides = [], $amount = 1)
     {
         $data = factory(Map::class, $amount)->create($overrides);
+
+        if ($amount > 1) {
+            return $data;
+        }
+
+        return $data->first();
+    }
+
+    protected function createQuestion($overrides = [], $amount = 1)
+    {
+        $data = factory(Question::class, $amount)->create($overrides);
 
         if ($amount > 1) {
             return $data;

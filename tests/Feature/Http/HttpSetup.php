@@ -85,7 +85,7 @@ class HttpSetup extends TestCase
             ],
             [
                 'method' => 'DELETE',
-                'url' => 'map/{map}/question/{question}/{picture}/image',
+                'url' => 'map/{map}/question/{question}/{picture}/picture',
             ],
             [
                 'method' => 'POST',
@@ -109,11 +109,11 @@ class HttpSetup extends TestCase
             ],
             [
                 'method' => 'POST',
-                'url' => 'map/{map}/question/{question}/image',
+                'url' => 'map/{map}/question/{question}/picture',
             ],
             [
                 'method' => 'POST',
-                'url' => 'map/{map}/question/{question}/{picture}/image',
+                'url' => 'map/{map}/question/{question}/{picture}/picture',
             ],
             [
                 'method' => 'POST',
@@ -125,7 +125,7 @@ class HttpSetup extends TestCase
             ],
             [
                 'method' => 'PATCH',
-                'url' => 'map/{map_id}',
+                'url' => 'map/{map}',
             ],
             [
                 'method' => 'PATCH',
@@ -138,6 +138,10 @@ class HttpSetup extends TestCase
             [
                 'method' => 'PUT',
                 'url' => 'map/{map_id}',
+            ],
+            [
+                'method' => 'PUT',
+                'url' => 'map/{map}/question/{question}/{picture}/picture',
             ],
         ];
     }

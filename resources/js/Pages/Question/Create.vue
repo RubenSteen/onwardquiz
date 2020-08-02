@@ -50,13 +50,13 @@
                 </div>
                 <small class="text-red-700 text-xs sm:text-red-500">
                       There always have to be 1 template picture for a question. </br>
-                      When the question is created you will be able to add more picutes. </br>
-                      Make sure the template being used is the same as the map image.</br></br>
+                      When the question is created you will be able to add more pictures. </br>
+                      Make sure the template being used is the same as the map template.</br></br>
                       Click
-                  <a :href="map.image.location" :download="map.image.name" class="italic text-red-600">
+                  <a :href="map.template.location" :download="map.template.name" class="italic text-red-600">
                     here
                   </a>
-                  for the image
+                  for the template
                 </small>
                 <div class="mt-4">
                   <p class="mt-2 text-xs text-red-600" v-show="$page.errors.template" v-for="error in $page.errors.template">
@@ -96,9 +96,9 @@
                       There always have to be 1 template picture for a question. </br>
                       When the question is created you will be able to add more picutes. </br>
                       For now make sure to use the parent (overview) template as a first picture.</br></br>
-                      <a :href="map.image.location" target="_blank" type="button"
+                      <a :href="map.template.location" target="_blank" type="button"
                         class="text-red-700 text-xs sm:text-red-600 hover:text-red-800 text-xs hover:sm:text-red-700 underline">
-                        Click here for the image
+                        Click here for the template
                       </a>
                     </small>
                   </div>

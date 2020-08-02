@@ -22,7 +22,7 @@ class MapCreateTest extends TestCase
     {
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->get(route('map.index'))->assertStatus(200);
+        $this->get(route('map.create'))->assertStatus(200);
     }
 
     /** @test */
@@ -30,6 +30,6 @@ class MapCreateTest extends TestCase
     {
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->get(route('map.index'))->assertStatus(200);
+        $this->get(route('map.create'))->assertStatus(200);
     }
 }

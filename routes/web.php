@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     Route::get('map/create', ['as' => 'map.create', 'uses' => 'MapController@create']);
     Route::post('map', ['as' => 'map.store',    'uses' => 'MapController@store']);
     Route::get('map/{map_id}/edit', ['as' => 'map.edit',    'uses' => 'MapController@edit']);
-    Route::patch('map/{map_id}', ['as' => 'map.update', 'uses' => 'MapController@update']);
+    Route::patch('map/{map}', ['as' => 'map.update', 'uses' => 'MapController@update']);
     Route::delete('map/{map}', ['as' => 'map.destroy', 'uses' => 'MapController@destroy']);
     Route::put('map/{map_id}', ['as' => 'map.restore', 'uses' => 'MapController@restore']);
     Route::post('map/{map_id}/image-validation', ['as' => 'map.image-validation',   'uses' => 'MapController@imageValidation']);
@@ -59,9 +59,10 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     Route::post('map/{map:id}/question', ['as' => 'question.store', 'uses' => 'QuestionController@store']);
     Route::get('map/{map:id}/question/{question:id}/edit', ['as' => 'question.edit',    'uses' => 'QuestionController@edit']);
     Route::patch('map/{map:id}/question/{question:id}', ['as' => 'question.update', 'uses' => 'QuestionController@update']);
-    Route::post('map/{map:id}/question/{question:id}/image', ['as' => 'question.store.image',   'uses' => 'QuestionController@storeImage']);
-    Route::post('map/{map:id}/question/{question:id}/{picture:id}/image', ['as' => 'question.edit.image',   'uses' => 'QuestionController@editImage']);
-    Route::delete('map/{map:id}/question/{question:id}/{picture:id}/image', ['as' => 'question.delete.image',   'uses' => 'QuestionController@deleteImage']);
+    Route::post('map/{map:id}/question/{question:id}/picture', ['as' => 'question.store.picture',   'uses' => 'QuestionController@storePicture']);
+    Route::post('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.update.picture',   'uses' => 'QuestionController@updatePicture']);
+    Route::delete('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.delete.destroy',   'uses' => 'QuestionController@destroyPicture']);
+    Route::put('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.restore.picture',   'uses' => 'QuestionController@restorePicture']);
 
     /*
     |--------------------------------------------------------------------------

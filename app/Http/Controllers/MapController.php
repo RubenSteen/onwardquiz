@@ -15,8 +15,8 @@ class MapController extends Controller
     /**
      * Display a listing of the maps.
      *
-     * @return \Inertia\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Inertia\Response
      */
     public function index()
     {
@@ -25,7 +25,6 @@ class MapController extends Controller
         $maps = Map::with('template')->withCount('questions')->paginate();
 
         $mapsPagination = $maps->links();
-        //dd($mapsPagination);
         
         $maps = $maps->map(function (Map $map) {
             $data = [
@@ -62,8 +61,8 @@ class MapController extends Controller
     /**
      * Show the form for creating a new map.
      *
-     * @return \Inertia\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Inertia\Response
      */
     public function create()
     {
@@ -76,8 +75,8 @@ class MapController extends Controller
      * Store a newly created map in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -97,8 +96,8 @@ class MapController extends Controller
      * Show the form for editing the map.
      *
      * @param  int  $map_id
-     * @return \Inertia\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Inertia\Response
      */
     public function edit($map_id)
     {
@@ -140,19 +139,18 @@ class MapController extends Controller
 
     /**
      * Update the specified map in storage.
+     * Then upload the template and save it in the database linked to the question.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $map_id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @param  \App\Map $map
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, $map_id)
+    public function update(Request $request, Map $map)
     {
         $this->authorize('update-map');
 
         //$request->merge(['published' => $request->published == 'true' ? true : false]);
-
-        $map = Map::find($map_id);
         
         $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map))->validate();
 
@@ -163,6 +161,15 @@ class MapController extends Controller
             $this->deleteAllOtherUploads($map);
 
             $map->update($validatedData);
+
+            $questions = $map->questions()->withTrashed()->get();
+
+            // Unpublish all the questions because the map template has changed
+            if($questions->count() > 0) {
+                $questions->each(function ($instance) {
+                    $instance->update(['published' => false]);
+                });
+            }
 
             // Save the file to the database with this helper.
             $newUpload = save_upload_to_database_HELPER($validatedData['template'], $map->template());
@@ -181,9 +188,9 @@ class MapController extends Controller
     /**
      * Remove the specified map from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @param  \App\Map $map
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy(Map $map)
     {
@@ -197,15 +204,15 @@ class MapController extends Controller
     /**
      * Restore the specified map from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @param  int $map_id
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function restore($map)
+    public function restore($map_id)
     {
         $this->authorize('restore-map');
 
-        $map = tap(Map::withTrashed()->find($map))->restore();
+        $map = tap(Map::withTrashed()->find($map_id))->restore();
 
         return redirect()->route('map.edit', $map->id)->with('success', 'Map was restored!');
     }

@@ -482,9 +482,9 @@
         let submitRoute = ''
 
         if (this.newOrEditPicture.form.id != null) {
-          submitRoute = route('question.edit.image', {map: this.question.map.id, question: this.question.id, picture: this.newOrEditPicture.form.id})
+          submitRoute = route('question.update.picture', {map: this.question.map.id, question: this.question.id, picture: this.newOrEditPicture.form.id})
         } else {
-          submitRoute = route('question.store.image', {map: this.question.map.id, question: this.question.id})
+          submitRoute = route('question.store.picture', {map: this.question.map.id, question: this.question.id})
         }
 
         data.append('newOrEditPicture[_method]', 'POST');
@@ -521,7 +521,7 @@
 
         data.append('_method', 'DELETE');
 
-        this.$inertia.post(route('question.delete.image', {map: this.question.map.id, question: this.question.id, picture: id}), data)
+        this.$inertia.post(route('question.destroy.image', {map: this.question.map.id, question: this.question.id, picture: id}), data)
           .then(() => {
             this.loading = false;
             this.resetnewOrEditPicture();

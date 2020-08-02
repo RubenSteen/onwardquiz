@@ -194,7 +194,7 @@ class MapUpdateTest extends TestCase
     }
 
     /** @test */
-    public function template_must_be_a_type_of_template_while_updating_a_map()
+    public function template_must_be_a_type_of_image_while_updating_a_map()
     {
         $this->signIn(['editor' => true]);
 
@@ -259,5 +259,46 @@ class MapUpdateTest extends TestCase
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('template')[0],"The template may not be greater than 15000 kilobytes.");
+    }
+
+    /** @test */
+    public function when_a_template_gets_modified_the_questions_that_are_linked_to_the_map_will_all_be_unpublished_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = factory(Map::class)->raw();
+
+        $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->map_max_template_size);
+
+        $map = $this->createMap();
+
+        $this->createQuestion(['published' => true, 'map_id' => $map->id], 10);
+
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+
+        $this->assertDatabaseMissing((new Question())->getTable(), ['published' => true]);
+    }
+
+    /** @test */
+    public function when_a_template_does_not_get_modified_the_questions_that_are_linked_to_the_map_will_not_be_changed_while_updating_a_map()
+    {
+        $this->signIn(['editor' => true]);
+
+        $data = factory(Map::class)->raw();
+
+        $map = $this->createMap();
+
+        $this->createQuestion(['published' => true, 'map_id' => $map->id], 5);
+        $this->createQuestion(['published' => false, 'map_id' => $map->id], 5);
+
+        $questions = $map->fresh()->questions;
+
+        $this->assertCount(10, $questions);
+
+        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
+
+        foreach ($questions as $question) {
+            $this->assertEquals($question->published, Question::find($question->id)->published);
+        }
     }
 }

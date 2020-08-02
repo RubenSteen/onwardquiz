@@ -15,29 +15,20 @@ use Illuminate\Support\Facades\Gate;
 class QuestionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new question for the specified map.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // abort_if(Gate::denies('index-question'), 403);
-        
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @return \Inertia\Response
      */
     public function create(Map $map)
     {
-        // abort_if(Gate::denies('create-question'), 403);
+        $this->authorize('create-question');
 
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
+        abort_if(! $map->template, 403, "The map '$map->name' needs a template");
 
-        $map = Map::with('image')->find($map->id);
+        $map = Map::with('template')->find($map->id);
 
         $data = [
             'id' => $map->id,
@@ -47,13 +38,13 @@ class QuestionController extends Controller
             'deleted_at' => $map->deleted_at,
             'created_at' => $map->created_at,
             'updated_at' => $map->updated_at,
-            'image' => [
-                'id' => $map->image->id,
-                'name' => $map->image->name,
-                'file_name' => $map->image->file_name,
-                'location' => $map->image->getAssetFolderWithFile(),
-                'created_at' => $map->image->created_at,
-                'updated_at' => $map->image->updated_at,
+            'template' => [
+                'id' => $map->template->id,
+                'name' => $map->template->name,
+                'file_name' => $map->template->file_name,
+                'location' => $map->template->getAssetFolderWithFile(),
+                'created_at' => $map->template->created_at,
+                'updated_at' => $map->template->updated_at,
             ],
         ];
 
@@ -63,16 +54,19 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created question in storage for the specified map.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request, Map $map)
     {
-        // abort_if(Gate::denies('create-question'), 403);
+        $this->authorize('create-question');
 
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
+        abort_if(! $map->template, 403, "The map '$map->name' needs a template");
         
         $validatedData = \Validator::make($request->all(), QuestionCreate::getRules($map, 'map_id', new Question()))->validate();
 
@@ -94,30 +88,21 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Check if the specified question is linked to the specified map.
+     * Show the form for editing the specified question for the specified map.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // abort_if(Gate::denies('view-question'), 403); // OR/AND // abort_if(Gate::denies('viewAny-question'), 403);
-
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Map  $map
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @param  \App\Question $question
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @return \Inertia\Response
      */
     public function edit(Map $map, Question $question)
     {
-        // abort_if(Gate::denies('update-question'), 403);
+        $this->authorize('update-question');
 
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
+        abort_if(! $map->template, 403, "The map '$map->name' needs a template");
+
         $data = [
             'id' => $question->id,
             'callout' => $question->callout,
@@ -141,13 +126,13 @@ class QuestionController extends Controller
                 'deleted_at' => $map->deleted_at,
                 'created_at' => $map->created_at,
                 'updated_at' => $map->updated_at,
-                'image' => [
-                    'id' => $map->image->id,
-                    'name' => $map->image->name,
-                    'file_name' => $map->image->file_name,
-                    'location' => $map->image->getAssetFolderWithFile(),
-                    'created_at' => $map->image->created_at,
-                    'updated_at' => $map->image->updated_at,
+                'template' => [
+                    'id' => $map->template->id,
+                    'name' => $map->template->name,
+                    'file_name' => $map->template->file_name,
+                    'location' => $map->template->getAssetFolderWithFile(),
+                    'created_at' => $map->template->created_at,
+                    'updated_at' => $map->template->updated_at,
                 ],
             ],
         ];
@@ -178,18 +163,18 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Check if the specified question is linked to the specified map.
+     * Update the specified question in storage for the specified map.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Map  $map
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @param  \App\Question $question
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Map $map, Question $question)
     {
-        // abort_if(Gate::denies('update-question'), 403);
-
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
+        $this->authorize('update-question');
 
         $request->merge(['published' => $request->published == 'true' ? true : false]);
         
@@ -219,32 +204,43 @@ class QuestionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Check if the specified question is linked to the specified map.
+     * Remove the specified question from storage for the specified map.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @param  \App\Question $question
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Map $map, Question $question)
     {
-        // abort_if(Gate::denies('delete-question'), 403); // OR/AND // abort_if(Gate::denies('forceDelete-question'), 403);
+        $this->authorize('delete-question'); // OR/AND // $this->authorize('forceDelete-question');
     }
 
     /**
-     * Restore the specified resource from storage.
+     * Check if the specified question is linked to the specified map.
+     * Restore the specified question from storage for the specified map.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Map $map
+     * @param  \App\Question $question
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore(Map $map, Question $question)
     {
-        // abort_if(Gate::denies('restore-question'), 403);
-
-        abort_if(! $map->image, 403, "The map '$map->name' needs a template");
+        $this->authorize('restore-question');
     }
 
     // Anything else than default methods is below here
 
-    public function imageValidation($data, $editing = false)
+    /**
+     * Return the image validation rules
+     *
+     * @param $data
+     * @param false $editing
+     * @return mixed
+     */
+    private function imageValidation($data, $editing = false)
     {
         $rules = [
             'newOrEditPicture.difficulty' => 'required|integer',
@@ -260,17 +256,18 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store a newly created image in the uploads table.
-     * Then attach it to the question picture.
+     * Check if the specified question is linked to the specified map.
+     * Store a newly created question picture in storage for the specified question.
+     * Then upload the image and save it in the database linked to the question picture.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function storeImage(Request $request, Map $map, Question $question)
+    public function storePicture(Request $request, Map $map, Question $question)
     {
-        // abort_if(Gate::denies('create-question'), 403);
+        $this->authorize('create-question-picture');
         
         $rawData = [
             'newOrEditPicture' => array_merge($request->newOrEditPicture, ['active' => $request->newOrEditPicture['active'] == 'true' ? true : false])
@@ -297,8 +294,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Edit image in the uploads table if needed.
-     * Then edit the question picture if needed.
+     * Check if the specified question is linked to the specified map.
+     * Update the specified question picture in storage for the specified question.
+     * The image cannot be edited, only the question picture data.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
@@ -306,9 +304,9 @@ class QuestionController extends Controller
      * @param  \App\QuestionPicture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function editImage(Request $request, Map $map, Question $question, QuestionPicture $picture)
+    public function updatePicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
     {
-        // abort_if(Gate::denies('create-question'), 403);
+        $this->authorize('update-question-picture');
         
         $rawData = [
             'newOrEditPicture' => array_merge($request->newOrEditPicture, ['active' => $request->newOrEditPicture['active'] == 'true' ? true : false])
@@ -329,8 +327,8 @@ class QuestionController extends Controller
     }
 
     /**
-     * Edit image in the uploads table if needed.
-     * Then edit the question picture if needed.
+     * Check if the specified question is linked to the specified map.
+     * Remove the specified question picture in storage for the specified question.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
@@ -338,12 +336,32 @@ class QuestionController extends Controller
      * @param  \App\QuestionPicture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function deleteImage(Request $request, Map $map, Question $question, QuestionPicture $picture)
+    public function destroyPicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
     {
-        // abort_if(Gate::denies('create-question'), 403);
+        $this->authorize('delete-question-picture');  // OR/AND // $this->authorize('forceDelete-question-picture');
 
         $picture->delete();
 
         return redirect()->back()->with('error', 'Question picture was deleted!');
+    }
+
+    /**
+     * Check if the specified question is linked to the specified map.
+     * Restore the specified question picture in storage for the specified question.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Map  $map
+     * @param  \App\Question  $question
+     * @param  \App\QuestionPicture  $picture
+     * @return \Illuminate\Http\Response
+     */
+    public function restorePicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
+    {
+        $this->authorize('restore-question-picture');
+
+//        $map = tap(Map::withTrashed()->find($map))->restore();
+//
+//        return redirect()->back()->with('error', 'Question picture was deleted!');
+
     }
 }
