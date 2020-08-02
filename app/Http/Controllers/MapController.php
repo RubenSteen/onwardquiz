@@ -8,15 +8,15 @@ use Inertia\Inertia;
 use App\Http\Requests\Map\MapCreate;
 use App\Http\Requests\Map\MapUpdate;
 use DB;
-use Illuminate\Support\Facades\Gate;
 
 class MapController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the maps.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
@@ -60,9 +60,10 @@ class MapController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new map.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
@@ -72,10 +73,11 @@ class MapController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created map in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
@@ -92,21 +94,11 @@ class MapController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the map.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $this->authorize('view-map');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $map_id
+     * @return \Inertia\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($map_id)
     {
@@ -147,11 +139,12 @@ class MapController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified map in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $map_id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $map_id)
     {
@@ -186,10 +179,11 @@ class MapController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified map from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Map $map)
     {
@@ -201,10 +195,11 @@ class MapController extends Controller
     }
 
     /**
-     * Restore the specified resource from storage.
+     * Restore the specified map from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function restore($map)
     {
