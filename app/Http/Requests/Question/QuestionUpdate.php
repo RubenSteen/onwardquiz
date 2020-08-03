@@ -40,8 +40,6 @@ class QuestionUpdate extends FormRequest
     public static function getRules(Map $map, string $column, Question $question)
     {
         return array_merge(QuestionCreate::getRules($map, $column, $question), [
-            // 'closeby_questions.*' => 'sometimes|integer',
-            // 'similar_questions.*' => 'sometimes|integer',
             'published' => 'required|boolean',
         ]);
     }

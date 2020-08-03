@@ -170,13 +170,16 @@ class QuestionController extends Controller
      * @param  \App\Map $map
      * @param  \App\Question $question
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Map $map, Question $question)
     {
         $this->authorize('update-question');
 
-        $request->merge(['published' => $request->published == 'true' ? true : false]);
+        abort_if(! $map->template, 403, "The map '$map->name' needs a template");
+
+        // $request->merge(['published' => $request->published == 'true' ? true : false]);
         
         $validatedData = \Validator::make($request->all(), QuestionUpdate::getRules($map, 'map_id', $question))->validate();
 

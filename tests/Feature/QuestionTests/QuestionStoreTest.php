@@ -33,8 +33,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw());
-
         $data = factory(Question::class)->raw(['map_id' => null]);
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
@@ -52,8 +50,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
-
         $data = factory(Question::class)->raw();
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
@@ -69,7 +65,7 @@ class QuestionStoreTest extends TestCase
     {
         $this->signIn(['editor' => true]);
 
-        $map = $this->createMap();
+        $map = $this->createMap([], 1, false);
 
         $data = factory(Question::class)->raw();
 
@@ -88,8 +84,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
-
         $data = factory(Question::class)->raw();
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
@@ -106,8 +100,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
-
         $data = factory(Question::class)->raw(['callout' => '']);
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
@@ -123,6 +115,7 @@ class QuestionStoreTest extends TestCase
      * Lets say you have a map called Netherlands
      * And you have a callout called Amsterdam
      * Then you cannot add a callout called Amsterdam under the map Netherlands again
+     * Since it has the same parent
      */
     /** @test */
     public function callout_is_unique_in_the_parent_relation_of_map_while_storing_a_question()
@@ -132,8 +125,6 @@ class QuestionStoreTest extends TestCase
         $callout = 'Not unique callout';
 
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
 
         $this->createQuestion(['callout' => $callout, 'map_id' => $map->id]);
 
@@ -151,8 +142,8 @@ class QuestionStoreTest extends TestCase
 
     /*
      * Lets say you have a map called Netherlands and Holland
-     * And you have a callout called Amsterdam for both maps
-     * Since the parents are not the same you can add the callout twice.
+     * And you want a callout called Amsterdam for both maps
+     * Since the parents are not the same you can.
      */
     /** @test */
     public function the_same_callout_can_be_created_for_different_maps_while_storing_a_question()
@@ -165,8 +156,6 @@ class QuestionStoreTest extends TestCase
         $this->createQuestion(['callout' => $callout, 'map_id' => $mapWithQuestion->id]);
 
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
 
         $data = factory(Question::class)->raw(['callout' => $callout]);
 
@@ -183,8 +172,6 @@ class QuestionStoreTest extends TestCase
         $this->signIn(['editor' => true]);
 
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
 
         $data = factory(Question::class)->raw();
 
@@ -203,8 +190,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
-
         $data = factory(Question::class)->raw();
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
@@ -221,8 +206,6 @@ class QuestionStoreTest extends TestCase
         $this->signIn(['editor' => true]);
 
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
 
         $data = factory(Question::class)->raw();
 
@@ -243,8 +226,6 @@ class QuestionStoreTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw(['map_id' => null]));
-
         $data = factory(Question::class)->raw();
 
         $data['template'] = UploadedFile::fake()->image('template.jpg')->size(($this->question_max_template_size + 1));
@@ -256,30 +237,4 @@ class QuestionStoreTest extends TestCase
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
     }
-
-//    /** @test */
-//    public function name_is_required_while_storing_a_question()
-//    {
-//        $this->signIn(['editor' => true]);
-//
-//        $data = factory(Map::class)->raw(['name' => '']);
-//
-//        $this->post(route('map.store'), $data)->assertSessionHasErrors();
-//
-//        $this->assertEquals(session('errors')->get('name')[0], "The name field is required.");
-//    }
-//
-//    /** @test */
-//    public function name_is_unique_while_storing_a_question()
-//    {
-//        $this->signIn(['editor' => true]);
-//
-//        // Data that will be send
-//        $data = factory(Map::class)->raw(['name' => 'testing']);
-//
-//        $this->post(route('map.store'), $data)->isSuccessful();
-//        $this->post(route('map.store'), $data)->assertSessionHasErrors();
-//
-//        $this->assertEquals(session('errors')->get('name')[0], "The name has already been taken.");
-//    }
 }

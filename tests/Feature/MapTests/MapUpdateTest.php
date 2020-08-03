@@ -185,7 +185,7 @@ class MapUpdateTest extends TestCase
 
         $data = array_merge(factory(Map::class)->raw(), ['template' => '']);
 
-        $map = $this->createMap();
+        $map = $this->createMap([], 1, false);
 
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
@@ -237,7 +237,6 @@ class MapUpdateTest extends TestCase
 
         $map = $this->createMap();
 
-        $this->patch(route('map.update', $map->id), $data)->isSuccessful();
         $this->patch(route('map.update', $map->id), $data)->isSuccessful();
 
         $this->assertEquals(1, $map->template()->count());

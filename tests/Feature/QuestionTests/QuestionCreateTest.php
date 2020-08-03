@@ -15,7 +15,7 @@ class QuestionCreateTest extends TestCase
     {
         $this->signIn(['super_admin' => false, 'editor' => false]);
 
-        $map = $this->createMap()->template()->create(factory(Upload::class)->raw());
+        $map = $this->createMap();
 
         $this->get(route('question.create', $map))->assertForbidden();
     }
@@ -26,8 +26,6 @@ class QuestionCreateTest extends TestCase
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw());
 
         $data = $this->get(route('question.create', $map))->assertStatus(200)->props();
 
@@ -41,8 +39,6 @@ class QuestionCreateTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw());
-
         $data = $this->get(route('question.create', $map))->assertStatus(200)->props();
 
         $this->assertEquals($data['map']['name'], $map->name);
@@ -53,7 +49,7 @@ class QuestionCreateTest extends TestCase
     {
         $this->signIn(['editor' => true]);
 
-        $map = $this->createMap();
+        $map = $this->createMap([], 1, false);
 
         $this->get(route('question.create', $map))->assertStatus(403);
     }

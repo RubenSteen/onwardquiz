@@ -17,13 +17,25 @@ class QuestionEditTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw());
+        $question = $this->createQuestion(['map_id' => $map->id]);
+
+        $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))->assertForbidden();
+    }
+
+    /** @test */
+    public function a_editor_can_view_the_edit_page()
+    {
+        $this->signIn(['super_admin' => false, 'editor' => true]);
+
+        $map = $this->createMap();
 
         $question = $this->createQuestion(['map_id' => $map->id]);
 
-        $question->template()->create(factory(Upload::class)->raw());
+        $data = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))
+            ->assertStatus(200)
+            ->props();
 
-        $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))->assertForbidden();
+        $this->assertEquals($data['question']['callout'], $question->callout);
     }
 
     /** @test */
@@ -33,11 +45,7 @@ class QuestionEditTest extends TestCase
 
         $map = $this->createMap();
 
-        $map->template()->create(factory(Upload::class)->raw());
-
         $question = $this->createQuestion(['map_id' => $map->id]);
-
-        $question->template()->create(factory(Upload::class)->raw());
 
         $data = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))
             ->assertStatus(200)
@@ -51,11 +59,9 @@ class QuestionEditTest extends TestCase
     {
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $map = $this->createMap();
+        $map = $this->createMap([], 1, false);
 
         $question = $this->createQuestion(['map_id' => $map->id]);
-
-        $question->template()->create(factory(Upload::class)->raw());
 
         $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))->assertStatus(403);
     }

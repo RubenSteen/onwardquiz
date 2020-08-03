@@ -57,10 +57,10 @@ class MapDeleteTest extends TestCase
     {
         $map = $this->createMap();
 
-        $map->questions()->create(factory(Question::class)->raw(['map_id' => $map->id]));
+        $this->createQuestion(['map_id' => $map->id], 10);
 
         $this->assertCount(1, Map::all());
-        $this->assertCount(1, Question::all());
+        $this->assertCount(10, Question::all());
 
         $this->signIn(['editor' => true]);
 
@@ -74,8 +74,6 @@ class MapDeleteTest extends TestCase
     public function template_gets_deleted_when_a_map_is_deleted()
     {
         $map = $this->createMap();
-
-        $map->template()->create(factory(Upload::class)->raw());
 
         $this->assertCount(1, Map::all());
         $this->assertCount(1, Upload::all());

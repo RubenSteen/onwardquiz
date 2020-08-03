@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Map;
 use App\Question;
+use App\Upload;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
@@ -70,25 +71,37 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
-    protected function createMap($overrides = [], $amount = 1)
+    protected function createMap($overrides = [], $amount = 1, $createTemplate = true, $templateOverrides = [])
     {
-        $data = factory(Map::class, $amount)->create($overrides);
+        $maps = factory(Map::class, $amount)->create($overrides);
 
-        if ($amount > 1) {
-            return $data;
+        if ($createTemplate === true) {
+            foreach ($maps as $map) {
+                $map->template()->create(factory(Upload::class)->raw($templateOverrides));
+            }
         }
 
-        return $data->first();
+        if ($amount > 1) {
+            return $maps;
+        }
+
+        return $maps->first();
     }
 
-    protected function createQuestion($overrides = [], $amount = 1)
+    protected function createQuestion($overrides = [], $amount = 1, $createTemplate = true, $templateOverrides = [])
     {
-        $data = factory(Question::class, $amount)->create($overrides);
+        $questions = factory(Question::class, $amount)->create($overrides);
 
-        if ($amount > 1) {
-            return $data;
+        if ($createTemplate === true) {
+            foreach ($questions as $question) {
+                $question->template()->create(factory(Upload::class)->raw($templateOverrides));
+            }
         }
 
-        return $data->first();
+        if ($amount > 1) {
+            return $questions;
+        }
+
+        return $questions->first();
     }
 }
