@@ -233,9 +233,19 @@ class QuestionController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function restore(Map $map, Question $question)
+    public function restore(Map $map, $question_id)
     {
         $this->authorize('restore-question');
+
+        if ($map->questions()->onlyTrashed()->where('id', $question_id)->count() !== 1) {
+            return redirect()->route('map.edit', $map->id)->with('error', 'No question was found to restore');
+        }
+
+        $question = $map->questions()->onlyTrashed()->where('id', $question_id)->first();
+
+        $question->restore();
+
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question was restored!');
     }
 
     // Anything else than default methods is below here

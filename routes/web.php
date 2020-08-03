@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     Route::get('map/{map:id}/question/{question:id}/edit', ['as' => 'question.edit',    'uses' => 'QuestionController@edit']);
     Route::patch('map/{map:id}/question/{question:id}', ['as' => 'question.update', 'uses' => 'QuestionController@update']);
     Route::delete('map/{map:id}/question/{question:id}', ['as' => 'question.destroy', 'uses' => 'QuestionController@destroy']);
+    Route::put('map/{map:id}/question/{question_id}', ['as' => 'question.restore', 'uses' => 'QuestionController@restore']);
     Route::post('map/{map:id}/question/{question:id}/picture', ['as' => 'question.store.picture',   'uses' => 'QuestionController@storePicture']);
     Route::post('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.update.picture',   'uses' => 'QuestionController@updatePicture']);
     Route::delete('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.delete.destroy',   'uses' => 'QuestionController@destroyPicture']);

@@ -54,6 +54,36 @@ class QuestionObserver
     }
 
     /**
+     * Handle the map "restoring" event.
+     *
+     * @param  \App\Question  $question
+     * @return void
+     */
+    public function restoring(Question $question)
+    {
+        $max_seconds_between_timestamps = 5;
+
+        $max_restore_time = $question->deleted_at->addSeconds($max_seconds_between_timestamps)->toDateTimeString();
+
+        $template = $question->template()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        $pictures = $question->pictures()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        // Only restore ONE and the NEWEST template that is within x seconds of the map->deleted_at timestamp!
+        if($template->count() > 0) {
+            $template->first()
+                ->restore();
+        }
+
+        // Only restore questions that are within x seconds of the map->deleted_at timestamp!
+        if($pictures->count() > 0) {
+            $pictures->each(function ($instance) {
+                $instance->restore();
+            });
+        }
+    }
+
+    /**
      * Handle the question "restored" event.
      *
      * @param  \App\Question  $question

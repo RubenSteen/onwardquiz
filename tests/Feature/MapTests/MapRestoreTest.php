@@ -89,12 +89,7 @@ class MapRestoreTest extends TestCase
     /** @test */
     public function will_not_throw_a_status_500_if_there_are_no_questions_to_restore_with_the_specified_map_when_a_map_is_restored()
     {
-        $currentTime = Carbon::now();
-        $addSeconds = $this->max_time_before_out_of_range_for_the_restore_in_seconds;
-
-        $timeMap = Carbon::createFromTimestamp($currentTime->timestamp);
-
-        $map = $this->createMap(['deleted_at' => $timeMap]);
+        $map = $this->createMap(['deleted_at' => Carbon::now()]);
 
         $this->assertCount(0, Map::all());
         $this->assertCount(0, Question::withTrashed()->get());
@@ -136,17 +131,17 @@ class MapRestoreTest extends TestCase
     }
 
     /** @test */
-    public function no_template_will_get_restored_if_they_question_deleted_at_timestamp_is_not_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
+    public function no_template_will_get_restored_if_the_template_deleted_at_timestamp_is_not_within_x_seconds_of_map_deleted_at_timestamp_when_a_map_is_restored()
     {
         $currentTime = Carbon::now();
         $addSeconds = $this->max_time_before_out_of_range_for_the_restore_in_seconds;
 
         $timeMap = Carbon::createFromTimestamp($currentTime->timestamp);
-        $timeQuestion = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds + 1)); // Has been deleted but is outside the max deleted_at time
+        $timeTemplate = Carbon::createFromTimestamp($currentTime->timestamp)->addSeconds(($addSeconds + 1)); // Has been deleted but is outside the max deleted_at time
 
         $map = $this->createMap(['deleted_at' => $timeMap], 1, false);
 
-        factory(Upload::class)->create(['deleted_at' => $timeQuestion, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map']);
+        factory(Upload::class)->create(['deleted_at' => $timeTemplate, 'uploadable_id' => $map->id, 'uploadable_type' => 'App\Map']);
 
         $this->assertCount(0, Map::all());
         $this->assertCount(0, Upload::all());
