@@ -2,8 +2,10 @@
 
 namespace Tests\Feature\QuestionTests;
 
+use App\Map;
 use App\Question;
 use App\Upload;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
@@ -74,6 +76,25 @@ class QuestionUpdateTest extends TestCase
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertStatus(403);
 
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => 'Updated name']);
+    }
+
+    /** @test */
+    public function cannot_update_a_question_when_the_map_is_not_the_given_map()
+    {
+        $this->withoutExceptionHandling();
+
+        $question = $this->createQuestion(); // Parent map is ID 1 and the question is linked to it.
+
+        $fakeMap = $this->createMap(); // fakeMap is ID 2
+
+        $this->assertCount(2, Map::all());
+        $this->assertCount(1, Question::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->expectException(ModelNotFoundException::class);
+
+        $this->get(route('question.edit', ['map' => $fakeMap->id, 'question' => $question->id]));
     }
 
     /** @test */

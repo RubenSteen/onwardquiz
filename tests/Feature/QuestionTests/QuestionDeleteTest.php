@@ -77,9 +77,6 @@ class QuestionDeleteTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
 
         $this->delete(route('question.destroy', ['map' => $fakeMap->id, 'question' => $question->id]));
-
-        $this->assertCount(1, Question::withTrashed()->get());
-        $this->assertEquals($question->fresh()->deleted_at, null);
     }
 
     /** @test */

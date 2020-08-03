@@ -2,7 +2,10 @@
 
 namespace Tests\Feature\QuestionTests;
 
+use App\Map;
+use App\Question;
 use App\Upload;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -64,5 +67,24 @@ class QuestionEditTest extends TestCase
         $question = $this->createQuestion(['map_id' => $map->id]);
 
         $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))->assertStatus(403);
+    }
+
+    /** @test */
+    public function cannot_edit_a_question_when_the_map_is_not_the_given_map()
+    {
+        $this->withoutExceptionHandling();
+
+        $question = $this->createQuestion(); // Parent map is ID 1 and the question is linked to it.
+
+        $fakeMap = $this->createMap(); // fakeMap is ID 2
+
+        $this->assertCount(2, Map::all());
+        $this->assertCount(1, Question::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->expectException(ModelNotFoundException::class);
+
+        $this->get(route('question.edit', ['map' => $fakeMap->id, 'question' => $question->id]));
     }
 }
