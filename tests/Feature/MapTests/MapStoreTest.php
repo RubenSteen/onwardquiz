@@ -23,7 +23,8 @@ class MapStoreTest extends TestCase
     {
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->post(route('map.store'), factory(Map::class)->raw())->isSuccessful();
+        $this->post(route('map.store'), factory(Map::class)->raw())
+            ->assertRedirect(route('map.edit', Map::first()->id));
 
         $this->assertCount(1, Map::all());
     }
@@ -33,7 +34,8 @@ class MapStoreTest extends TestCase
     {
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->post(route('map.store'), factory(Map::class)->raw())->isSuccessful();
+        $this->post(route('map.store'), factory(Map::class)->raw())
+            ->assertRedirect(route('map.edit', Map::first()->id));
 
         $this->assertCount(1, Map::all());
     }

@@ -34,7 +34,7 @@ class MapRestoreTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->put(route('map.restore', $map->id))->isSuccessful();
+        $this->put(route('map.restore', $map->id))->assertRedirect(route('map.edit', $map->id));
 
         $this->assertCount(1, Map::all());
     }
@@ -48,7 +48,7 @@ class MapRestoreTest extends TestCase
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->put(route('map.restore', $map->id))->isSuccessful();
+        $this->put(route('map.restore', $map->id))->assertRedirect(route('map.edit', $map->id));
 
         $this->assertCount(1, Map::all());
     }

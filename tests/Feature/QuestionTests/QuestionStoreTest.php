@@ -37,7 +37,8 @@ class QuestionStoreTest extends TestCase
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
 
-        $this->post(route('question.store', $map->id), $data)->isSuccessful();
+        $this->post(route('question.store', $map->id), $data)
+            ->assertRedirect(route('question.edit', ['map' => $map->id, 'question' => Question::first()->id]));
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $data['callout']]);
         $this->assertCount(1, $map->fresh()->questions);
@@ -54,7 +55,8 @@ class QuestionStoreTest extends TestCase
 
         $data['template'] = UploadedFile::fake()->image('avatar.jpg')->size($this->question_max_template_size);
 
-        $this->post(route('question.store', $map->id), $data)->isSuccessful();
+        $this->post(route('question.store', $map->id), $data)
+            ->assertRedirect(route('question.edit', ['map' => $map->id, 'question' => Question::first()->id]));
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $data['callout']]);
         $this->assertCount(1, $map->fresh()->questions);

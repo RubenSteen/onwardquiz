@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Map;
 use App\Question;
+use App\QuestionPicture;
 use App\Upload;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
@@ -103,5 +104,22 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $questions->first();
+    }
+
+    protected function createQuestionPicture($overrides = [], $amount = 1, $createTemplate = true, $templateOverrides = [])
+    {
+        $questionPictures = factory(QuestionPicture::class, $amount)->create($overrides);
+
+        if ($createTemplate === true) {
+            foreach ($questionPictures as $picture) {
+                $picture->image()->create(factory(Upload::class)->raw($templateOverrides));
+            }
+        }
+
+        if ($amount > 1) {
+            return $questionPictures;
+        }
+
+        return $questionPictures->first();
     }
 }

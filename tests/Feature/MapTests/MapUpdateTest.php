@@ -31,7 +31,8 @@ class MapUpdateTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']))
+            ->assertRedirect(route('map.edit', $map->id));
 
         $this->assertDatabaseMissing((new Map())->getTable(), ['name' => $map->name]);
     }
@@ -43,7 +44,8 @@ class MapUpdateTest extends TestCase
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']));
+        $this->patch(route('map.update', $map->id), factory(Map::class)->raw(['name' => 'Some Other name']))
+            ->assertRedirect(route('map.edit', $map->id));
 
         $this->assertDatabaseMissing((new Map())->getTable(), ['name' => $map->name]);
     }

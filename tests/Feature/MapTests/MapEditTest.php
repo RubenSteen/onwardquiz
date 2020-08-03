@@ -27,7 +27,11 @@ class MapEditTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->get(route('map.edit', $map->id))->assertStatus(200);
+        $response = $this->get(route('map.edit', $map->id));
+
+        $this->assertEquals($response->props()['map']['name'], $map->name);
+
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -37,6 +41,10 @@ class MapEditTest extends TestCase
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->get(route('map.edit', $map->id))->assertStatus(200);
+        $response = $this->get(route('map.edit', $map->id));
+
+        $this->assertEquals($response->props()['map']['name'], $map->name);
+
+        $response->assertStatus(200);
     }
 }

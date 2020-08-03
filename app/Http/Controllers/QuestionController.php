@@ -203,7 +203,7 @@ class QuestionController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'Question was successfully updated!');
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question was successfully updated!');
     }
 
     /**
@@ -218,6 +218,10 @@ class QuestionController extends Controller
     public function destroy(Map $map, Question $question)
     {
         $this->authorize('delete-question'); // OR/AND // $this->authorize('forceDelete-question');
+
+        $question->delete();
+
+        return redirect()->route('map.edit', $map->id)->with('success', 'Question was deleted!');
     }
 
     /**

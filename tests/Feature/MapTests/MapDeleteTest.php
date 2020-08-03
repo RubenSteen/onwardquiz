@@ -33,7 +33,8 @@ class MapDeleteTest extends TestCase
 
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
-        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+        $this->delete(route('map.destroy', $map->id))
+            ->assertRedirect(route('map.index'));
 
         $this->assertCount(0, Map::all());
     }
@@ -47,7 +48,8 @@ class MapDeleteTest extends TestCase
 
         $this->signIn(['super_admin' => false, 'editor' => true]);
 
-        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+        $this->delete(route('map.destroy', $map->id))
+            ->assertRedirect(route('map.index'));
 
         $this->assertCount(0, Map::all());
     }
@@ -71,12 +73,44 @@ class MapDeleteTest extends TestCase
     }
 
     /** @test */
+    public function does_not_throw_a_server_error_when_no_questions_exist_when_a_map_is_deleted()
+    {
+        $map = $this->createMap();
+
+        $this->assertCount(1, Map::all());
+        $this->assertCount(0, Question::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+
+        $this->assertCount(0, Map::all());
+        $this->assertCount(0, Question::all());
+    }
+
+    /** @test */
     public function template_gets_deleted_when_a_map_is_deleted()
     {
         $map = $this->createMap();
 
         $this->assertCount(1, Map::all());
         $this->assertCount(1, Upload::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->delete(route('map.destroy', $map->id))->isSuccessful();
+
+        $this->assertCount(0, Map::all());
+        $this->assertCount(0, Upload::all());
+    }
+
+    /** @test */
+    public function does_not_throw_a_server_error_when_no_template_exist_when_a_map_is_deleted()
+    {
+        $map = $this->createMap([], 1, false);
+
+        $this->assertCount(1, Map::all());
+        $this->assertCount(0, Upload::all());
 
         $this->signIn(['editor' => true]);
 

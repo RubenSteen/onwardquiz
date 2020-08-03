@@ -182,7 +182,7 @@ class MapController extends Controller
             $map->update($validatedData);
         }
 
-        return redirect()->back()->with('success', 'Map was successfully updated!');
+        return redirect()->route('map.edit', $map->id)->with('success', 'Map was successfully updated!');
     }
 
     /**

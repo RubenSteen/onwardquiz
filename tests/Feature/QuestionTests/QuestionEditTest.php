@@ -31,11 +31,11 @@ class QuestionEditTest extends TestCase
 
         $question = $this->createQuestion(['map_id' => $map->id]);
 
-        $data = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))
-            ->assertStatus(200)
-            ->props();
+        $response = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]));
 
-        $this->assertEquals($data['question']['callout'], $question->callout);
+        $this->assertEquals($response->props()['question']['callout'], $question->callout);
+
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -47,11 +47,11 @@ class QuestionEditTest extends TestCase
 
         $question = $this->createQuestion(['map_id' => $map->id]);
 
-        $data = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]))
-            ->assertStatus(200)
-            ->props();
+        $response = $this->get(route('question.edit', ['map' => $map->id, 'question' => $question->id]));
 
-        $this->assertEquals($data['question']['callout'], $question->callout);
+        $this->assertEquals($response->props()['question']['callout'], $question->callout);
+
+        $response->assertStatus(200);
     }
 
     /** @test */

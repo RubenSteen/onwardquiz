@@ -17,13 +17,11 @@ class QuestionUpdateTest extends TestCase
     {
         $this->signIn(['super_admin' => false, 'editor' => false]);
 
-        $map = $this->createMap();
-
-        $question = $this->createQuestion(['map_id' => $map->id]);
+        $question = $this->createQuestion();
 
         $data = factory(Question::class)->raw(['map_id' => null, 'callout' => 'Updated name']);
 
-        $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertForbidden();
+        $this->patch(route('question.update', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertForbidden();
     }
 
     private $question_max_template_size = 15000;
@@ -39,7 +37,8 @@ class QuestionUpdateTest extends TestCase
 
         $data = factory(Question::class)->raw(['map_id' => null, 'callout' => 'Updated name']);
 
-        $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data);
+        $this->patch(route('question.update', ['map' => $question->map->id, 'question' => $question->id]), $data)
+            ->assertRedirect(route('question.edit', ['map' => $question->map->id, 'question' => $question->id]));
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => 'Updated name']);
     }
@@ -55,7 +54,8 @@ class QuestionUpdateTest extends TestCase
 
         $data = factory(Question::class)->raw(['map_id' => null, 'callout' => 'Updated name']);
 
-        $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data);
+        $this->patch(route('question.update', ['map' => $question->map->id, 'question' => $question->id]), $data)
+            ->assertRedirect(route('question.edit', ['map' => $question->map->id, 'question' => $question->id]));
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => 'Updated name']);
     }
