@@ -112,7 +112,7 @@ class HttpSetup extends TestCase
                 'url' => 'map/{map}/question/{question}/picture',
             ],
             [
-                'method' => 'POST',
+                'method' => 'PATCH',
                 'url' => 'map/{map}/question/{question}/{picture}/picture',
             ],
             [
@@ -150,6 +150,10 @@ class HttpSetup extends TestCase
             [
                 'method' => 'PUT',
                 'url' => 'map/{map}/question/{question_id}',
+            ],
+            [
+                'method' => 'PUT',
+                'url' => 'map/{map}/question/{question}/{picture_id}/picture',
             ],
         ];
     }

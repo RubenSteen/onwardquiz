@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
+use App\Http\Requests\QuestionPicture\QuestionPictureUpdate;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Map;
 use App\QuestionPicture;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Http\Requests\Question\QuestionCreate;
 use App\Http\Requests\Question\QuestionUpdate;
@@ -250,27 +253,27 @@ class QuestionController extends Controller
 
     // Anything else than default methods is below here
 
-    /**
-     * Return the image validation rules
-     *
-     * @param $data
-     * @param false $editing
-     * @return mixed
-     */
-    private function imageValidation($data, $editing = false)
-    {
-        $rules = [
-            'newOrEditPicture.difficulty' => 'required|integer',
-            'newOrEditPicture.active' => 'required|boolean',
-            'newOrEditPicture.picture' => 'required|image|max:15000',
-        ];
+    // /**
+    //  * Return the picture validation rules
+    //  *
+    //  * @param $data
+    //  * @param false $editing
+    //  * @return mixed
+    //  */
+    // private function pictureValidation($data, $editing = false)
+    // {
+    //     $rules = [
+    //         'picture.difficulty' => 'required|integer|min:1|max:5',
+    //         'picture.active' => 'required|boolean',
+    //         'picture.image' => 'required|image|max:15000',
+    //     ];
 
-        if ($editing === true) {
-            unset($rules['newOrEditPicture.picture']);
-        }
+    //     if ($editing === true) {
+    //         unset($rules['picture.image']);
+    //     }
 
-        return \Validator::make($data, $rules)->validate();
-    }
+    //     return Validator::make($data, $rules)->validate();
+    // }
 
     /**
      * Check if the specified question is linked to the specified map.
@@ -286,28 +289,23 @@ class QuestionController extends Controller
     {
         $this->authorize('create-question-picture');
         
-        $rawData = [
-            'newOrEditPicture' => array_merge($request->newOrEditPicture, ['active' => $request->newOrEditPicture['active'] == 'true' ? true : false])
-        ];
-        
-        $validatedData = $this->imageValidation($rawData);
+//        $validatedData = $this->pictureValidation($request->all());
 
-        $validatedData = $validatedData['newOrEditPicture'];
+        $validatedData = Validator::make($request->all(), QuestionPictureCreate::getRules(), QuestionPictureCreate::getMessages(), QuestionPictureCreate::getAttributes())->validate();
 
         DB::beginTransaction();
 
-        $newOrEditPicture = $question->pictures()->create($validatedData);
+        $newPicture = $question->pictures()->create($validatedData['picture']);
 
         // Save the file to the database with this helper.
-        $newUpload = save_upload_to_database_HELPER($validatedData['picture'], $newOrEditPicture->image());
+        $newUpload = save_upload_to_database_HELPER($validatedData['picture']['image'], $newPicture->image());
 
         DB::commit();
 
         // When the data is saved with success and commited to the database. then move the file...
-        move_upload_to_storage_HELPER($validatedData['picture'], $newUpload->fresh());
+        move_upload_to_storage_HELPER($validatedData['picture']['image'], $newUpload->fresh());
 
-
-        return redirect()->back()->with('success', 'Question picture was successfully added!');
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was successfully added!');
     }
 
     /**
@@ -324,42 +322,30 @@ class QuestionController extends Controller
     public function updatePicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
     {
         $this->authorize('update-question-picture');
-        
-        $rawData = [
-            'newOrEditPicture' => array_merge($request->newOrEditPicture, ['active' => $request->newOrEditPicture['active'] == 'true' ? true : false])
-        ];
 
-        $validatedData = $this->imageValidation($rawData, true);
+        $validatedData = Validator::make($request->all(), QuestionPictureUpdate::getRules($picture), QuestionPictureUpdate::getMessages(), QuestionPictureUpdate::getAttributes())->validate();
 
-        $validatedData = $validatedData['newOrEditPicture'];
+        $picture->update($validatedData['picture']);
 
-        DB::beginTransaction();
-
-        $picture->update($validatedData);
-
-        DB::commit();
-
-
-        return redirect()->back()->with('success', 'Question picture was successfully updated!');
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was successfully updated!');
     }
 
     /**
      * Check if the specified question is linked to the specified map.
      * Remove the specified question picture in storage for the specified question.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
      * @param  \App\Question  $question
      * @param  \App\QuestionPicture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function destroyPicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
+    public function destroyPicture(Map $map, Question $question, QuestionPicture $picture)
     {
         $this->authorize('delete-question-picture');  // OR/AND // $this->authorize('forceDelete-question-picture');
 
         $picture->delete();
 
-        return redirect()->back()->with('error', 'Question picture was deleted!');
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('error', 'Question picture was deleted!');
     }
 
     /**
@@ -372,13 +358,19 @@ class QuestionController extends Controller
      * @param  \App\QuestionPicture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function restorePicture(Request $request, Map $map, Question $question, QuestionPicture $picture)
+    public function restorePicture(Map $map, Question $question, $picture_id)
     {
         $this->authorize('restore-question-picture');
 
-//        $map = tap(Map::withTrashed()->find($map))->restore();
-//
-//        return redirect()->back()->with('error', 'Question picture was deleted!');
+        if ($question->pictures()->onlyTrashed()->where('id', $picture_id)->count() !== 1) {
+            return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('error', 'No question picture was found to restore');
+        }
+
+        $picture = $question->pictures()->onlyTrashed()->where('id', $picture_id)->first();
+
+        $picture->restore();
+
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was restored!');
 
     }
 }

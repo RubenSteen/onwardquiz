@@ -53,7 +53,9 @@ class QuestionPictureObserver
      */
     public function restored(QuestionPicture $picture)
     {
-        //
+        $picture->image()->onlyTrashed()->each(function ($instance) {
+            $instance->restore();
+        });
     }
 
     /**
