@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Http;
 
-use Tests\TestCase;
 use Tests\Feature\Http\HttpSetup;
+use Tests\TestCase;
 
 class AuthenticationTest extends HttpSetup
 {

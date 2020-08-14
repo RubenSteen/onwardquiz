@@ -26,13 +26,12 @@ if (App::environment('production', 'staging', 'testing')) {
     Route::post('login/devenv', ['as' => 'login',   'uses' => 'Auth\DevEnv\AuthController@login', 'middleware' => 'guest']);
 }
 
-
 Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     // A tiny bit of Javacript does a request every 5 minutes to trigger the last activity middleware, to update the user.
     Route::post('/activity-check', function () {
         return json_encode('You are alive!');
     });
-    Route::post('logout', [ 'as' => 'logout.post', 'uses' => 'Auth\AuthController@logout']);
+    Route::post('logout', ['as' => 'logout.post', 'uses' => 'Auth\AuthController@logout']);
 
     /*
     |--------------------------------------------------------------------------
@@ -84,8 +83,6 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     |
     */
     Route::get('profile', ['as' => 'user.profile',  'uses' => 'UserController@index']);
-
-
 
     /*
     |--------------------------------------------------------------------------

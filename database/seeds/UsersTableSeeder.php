@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
         $seedAmount = 1000;
 
         $teams = \App\Team::all();
-        
-        factory(App\User::class, $seedAmount)->create()->each(function ($user) use ($seedAmount, $teams) {
-            
+
+        factory(App\User::class, $seedAmount)->create()->each(function ($user) use ($teams) {
+
             // Make user 1 and 3 super admin
             if ($user->id === 1 || $user->id === 3) {
                 $user->update(['super_admin' => true]);
@@ -30,15 +30,13 @@ class UsersTableSeeder extends Seeder
                 }
             }
 
-
             // Make user 2 and 5 banned
             if ($user->id === 2 || $user->id === 5) {
                 $user->update(['banned' => true]);
             }
-           
-            
-            if (RAND(0, 100) > 30) {
-                $user->teams()->attach($teams->random(RAND(1, 50))->pluck('id'));
+
+            if (rand(0, 100) > 30) {
+                $user->teams()->attach($teams->random(rand(1, 50))->pluck('id'));
             }
         });
     }

@@ -4,7 +4,6 @@ namespace App\POPO;
 
 interface AuthenticateUserListener
 {
-
     /**
      * @param $user
      * @return App\User

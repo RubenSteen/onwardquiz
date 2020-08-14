@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Map;
-use Inertia\Inertia;
 use App\Http\Requests\Map\MapCreate;
 use App\Http\Requests\Map\MapUpdate;
+use App\Map;
 use DB;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MapController extends Controller
 {
-
     /**
      * Display a listing of the maps.
      *
@@ -25,7 +24,7 @@ class MapController extends Controller
         $maps = Map::with('template')->withCount('questions')->paginate();
 
         $mapsPagination = $maps->links();
-        
+
         $maps = $maps->map(function (Map $map) {
             $data = [
                 'id' => $map->id,
@@ -49,6 +48,7 @@ class MapController extends Controller
                 $humanReadableSize = format_bytes_HELPER($map->template->size);
                 $data['hasTemplate'] = $humanReadableSize;
             }
+
             return $data;
         });
 
@@ -67,7 +67,7 @@ class MapController extends Controller
     public function create()
     {
         $this->authorize('create-map');
-        
+
         return Inertia::render('Map/Create');
     }
 
@@ -81,9 +81,9 @@ class MapController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-map');
-        
+
         $validatedData = \Validator::make($request->all(), MapCreate::getRules())->validate();
-            
+
         $newMap = Map::create([
             'name' => $validatedData['name'],
             'published' => 0,
@@ -102,7 +102,7 @@ class MapController extends Controller
     public function edit($map_id)
     {
         $this->authorize('update-map');
-        
+
         $map = Map::with('template', 'questions')->find($map_id);
 
         $data = [
@@ -133,7 +133,7 @@ class MapController extends Controller
         });
 
         return Inertia::render('Map/Edit', [
-            'map' => $data
+            'map' => $data,
         ]);
     }
 
@@ -151,12 +151,12 @@ class MapController extends Controller
         $this->authorize('update-map');
 
         //$request->merge(['published' => $request->published == 'true' ? true : false]);
-        
+
         $validatedData = \Validator::make($request->all(), MapUpdate::getRules($map))->validate();
 
         if (isset($validatedData['template'])) {
             DB::beginTransaction();
-            
+
             // Method in extended controller
             $this->deleteAllOtherUploads($map);
 
@@ -165,7 +165,7 @@ class MapController extends Controller
             $questions = $map->questions()->withTrashed()->get();
 
             // Unpublish all the questions because the map template has changed
-            if($questions->count() > 0) {
+            if ($questions->count() > 0) {
                 $questions->each(function ($instance) {
                     $instance->update(['published' => false]);
                 });

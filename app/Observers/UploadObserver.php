@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class UploadObserver
 {
-
     /**
      * Handle the upload "creating" event.
      *

@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use DB;
+use Illuminate\Contracts\Validation\Rule;
 
 class UniqueInRelation implements Rule
 {
@@ -17,7 +17,7 @@ class UniqueInRelation implements Rule
      * Create a new rule instance.
      *
      * @param  Model  $parent
-     * @param  String $column
+     * @param  string $column
      * @param  Model  $relation
      * @return void
      */
@@ -45,7 +45,7 @@ class UniqueInRelation implements Rule
         if ($this->relation->id !== null) {
             $query = $query->where('id', '!=', $this->relation->id); // Makes sure to not include it self.
         }
-            
+
         return $query->where($attribute, $value) // Search for the given value on the attribute.
             ->doesntExist();
     }

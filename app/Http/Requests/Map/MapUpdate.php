@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Map;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Map\MapCreate;
 use App\Rules\MoreThan4PublishedQuestionsNeeded;
+use Illuminate\Foundation\Http\FormRequest;
 
 class MapUpdate extends FormRequest
 {
@@ -29,7 +29,7 @@ class MapUpdate extends FormRequest
         // Call the static method below
         return self::getRules();
     }
-    
+
     /**
      * Set the validation rules that apply to the request.
      * The reason for creating a static method is that it can be called from anywhere quite elegantly

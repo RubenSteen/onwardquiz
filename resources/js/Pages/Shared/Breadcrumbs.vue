@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <!-- <div>
             <nav class="sm:hidden">
@@ -33,13 +32,12 @@
             </nav>
         </div> -->
     </div>
-
 </template>
 
 <script>
-    export default {
-        // props: {
-        //   links: Array,
-        // },
-    }
+export default {
+    // props: {
+    //   links: Array,
+    // },
+};
 </script>

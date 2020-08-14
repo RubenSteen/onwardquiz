@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\QuestionTests;
 
+use App\Question;
 use App\Upload;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-use App\Question;
 
 class QuestionStoreTest extends TestCase
 {
@@ -108,7 +108,7 @@ class QuestionStoreTest extends TestCase
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('callout')[0],"The callout field is required.");
+        $this->assertEquals(session('errors')->get('callout')[0], 'The callout field is required.');
 
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
     }
@@ -119,6 +119,7 @@ class QuestionStoreTest extends TestCase
      * Then you cannot add a callout called Amsterdam under the map Netherlands again
      * Since it has the same parent
      */
+
     /** @test */
     public function callout_is_unique_in_the_parent_relation_of_map_while_storing_a_question()
     {
@@ -136,7 +137,7 @@ class QuestionStoreTest extends TestCase
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('callout')[0],"The callout has already been taken.");
+        $this->assertEquals(session('errors')->get('callout')[0], 'The callout has already been taken.');
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $data['callout']]);
         $this->assertDatabaseCount((new Question())->getTable(), 1); // Count is one since there already exists one record
@@ -147,6 +148,7 @@ class QuestionStoreTest extends TestCase
      * And you want a callout called Amsterdam for both maps
      * Since the parents are not the same you can.
      */
+
     /** @test */
     public function the_same_callout_can_be_created_for_different_maps_while_storing_a_question()
     {
@@ -196,7 +198,7 @@ class QuestionStoreTest extends TestCase
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template field is required.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template field is required.');
 
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
@@ -215,7 +217,7 @@ class QuestionStoreTest extends TestCase
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template must be an image.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template must be an image.');
 
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
@@ -234,7 +236,7 @@ class QuestionStoreTest extends TestCase
 
         $this->post(route('question.store', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template may not be greater than 15000 kilobytes.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template may not be greater than 15000 kilobytes.');
 
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);

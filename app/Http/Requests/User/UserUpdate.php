@@ -27,7 +27,7 @@ class UserUpdate extends FormRequest
         // Call the static method below
         return self::getRules();
     }
-    
+
     /**
      * Set the validation rules that apply to the request.
      * The reason for creating a static method is that it can be called from anywhere quite elegantly

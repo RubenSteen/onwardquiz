@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Map;
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
-use App\Map;
-use App\Question;
 
 class QuizController extends Controller
 {
@@ -56,7 +56,7 @@ class QuizController extends Controller
     // Anything else than default methods is below here
 
     /**
-     * DGet a random question for the specific map
+     * DGet a random question for the specific map.
      *
      * @param  \App\Map  $map
      */

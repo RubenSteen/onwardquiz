@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\MapTests;
 
+use App\Map;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Map;
 
 class MapEditTest extends TestCase
 {

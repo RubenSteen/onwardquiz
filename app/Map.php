@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Map extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
-        'name', 'description', 'published'
+        'name', 'description', 'published',
     ];
 
     protected $casts = [

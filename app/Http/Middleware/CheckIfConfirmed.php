@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class CheckIfConfirmed
 {
@@ -20,8 +20,8 @@ class CheckIfConfirmed
             Auth::logout();
 
             return redirect('/')->with('warning', [
-                'title' => "Account confirmation",
-                'message' => "Your account has not yet been confirmed. Please contact @cruorzy#1337 on discord...",
+                'title' => 'Account confirmation',
+                'message' => 'Your account has not yet been confirmed. Please contact @cruorzy#1337 on discord...',
             ]);
         }
 

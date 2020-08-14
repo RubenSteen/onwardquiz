@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\MapTests;
 
+use App\Map;
 use App\Question;
 use App\Upload;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Map;
 
 class MapRestoreTest extends TestCase
 {

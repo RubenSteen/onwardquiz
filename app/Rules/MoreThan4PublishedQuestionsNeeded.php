@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use DB;
+use Illuminate\Contracts\Validation\Rule;
 
 class MoreThan4PublishedQuestionsNeeded implements Rule
 {
@@ -38,7 +38,7 @@ class MoreThan4PublishedQuestionsNeeded implements Rule
         if ($this->map->questions->where('published', true)->count() >= 4) {
             return true;
         }
-        
+
         return false;
     }
 

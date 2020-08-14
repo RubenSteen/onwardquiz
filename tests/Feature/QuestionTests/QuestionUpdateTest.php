@@ -110,7 +110,7 @@ class QuestionUpdateTest extends TestCase
 
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('published')[0], "The published field is required.");
+        $this->assertEquals(session('errors')->get('published')[0], 'The published field is required.');
 
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
     }
@@ -128,7 +128,7 @@ class QuestionUpdateTest extends TestCase
 
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('callout')[0],"The callout field is required.");
+        $this->assertEquals(session('errors')->get('callout')[0], 'The callout field is required.');
 
         $this->assertDatabaseMissing((new Question)->getTable(), ['callout' => $data['callout']]);
     }
@@ -138,6 +138,7 @@ class QuestionUpdateTest extends TestCase
      * And you have a callout called Amsterdam
      * Then you cannot update a callout to Amsterdam under the same map Netherlands
      */
+
     /** @test */
     public function callout_is_unique_in_the_parent_relation_of_map_while_updating_a_question()
     {
@@ -155,7 +156,7 @@ class QuestionUpdateTest extends TestCase
 
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('callout')[0],"The callout has already been taken.");
+        $this->assertEquals(session('errors')->get('callout')[0], 'The callout has already been taken.');
 
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $data['callout']]);
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $question->callout]); // Did not update
@@ -167,6 +168,7 @@ class QuestionUpdateTest extends TestCase
      * And you want a callout called Amsterdam for both maps
      * Since the parents are not the same you can.
      */
+
     /** @test */
     public function the_same_callout_can_be_created_for_different_maps_while_updating_a_question()
     {
@@ -242,7 +244,7 @@ class QuestionUpdateTest extends TestCase
 
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template must be an image.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template must be an image.');
 
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $question->callout]);
@@ -263,7 +265,7 @@ class QuestionUpdateTest extends TestCase
 
         $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template may not be greater than 15000 kilobytes.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template may not be greater than 15000 kilobytes.');
 
         $this->assertDatabaseMissing((new Upload)->getTable(), ['uploadable_type' => 'App\Question']);
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $question->callout]);

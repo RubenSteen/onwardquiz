@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class UserSetLastActivity
 {
@@ -17,6 +17,7 @@ class UserSetLastActivity
     public function handle($request, Closure $next)
     {
         Auth::user()->updateLastActivity();
+
         return $next($request);
     }
 }

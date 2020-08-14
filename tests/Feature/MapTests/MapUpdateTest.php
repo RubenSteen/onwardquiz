@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\MapTests;
 
+use App\Map;
 use App\Question;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-use App\Map;
 
 class MapUpdateTest extends TestCase
 {
@@ -64,7 +64,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0], "The name field is required.");
+        $this->assertEquals(session('errors')->get('name')[0], 'The name field is required.');
     }
 
     /** @test */
@@ -82,7 +82,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $updateMap->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0], "The name has already been taken.");
+        $this->assertEquals(session('errors')->get('name')[0], 'The name has already been taken.');
     }
 
     /** @test */
@@ -99,7 +99,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('published')[0], "The published field is required.");
+        $this->assertEquals(session('errors')->get('published')[0], 'The published field is required.');
     }
 
     private $min_questions_published = 4;
@@ -123,7 +123,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $map->id), factory(Map::class)->raw($data))->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('published')[0],"Cannot be published, the map requires to have a minimum of 4 questions published");
+        $this->assertEquals(session('errors')->get('published')[0], 'Cannot be published, the map requires to have a minimum of 4 questions published');
     }
 
     /** @test */
@@ -206,7 +206,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template must be an image.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template must be an image.');
     }
 
     private $map_max_template_size = 15000;
@@ -259,7 +259,7 @@ class MapUpdateTest extends TestCase
 
         $this->patch(route('map.update', $map->id), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('template')[0],"The template may not be greater than 15000 kilobytes.");
+        $this->assertEquals(session('errors')->get('template')[0], 'The template may not be greater than 15000 kilobytes.');
     }
 
     /** @test */

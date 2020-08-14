@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Map;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use App\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MapPolicy
 {
