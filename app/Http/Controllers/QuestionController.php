@@ -251,30 +251,6 @@ class QuestionController extends Controller
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question was restored!');
     }
 
-    // Anything else than default methods is below here
-
-    // /**
-    //  * Return the picture validation rules
-    //  *
-    //  * @param $data
-    //  * @param false $editing
-    //  * @return mixed
-    //  */
-    // private function pictureValidation($data, $editing = false)
-    // {
-    //     $rules = [
-    //         'picture.difficulty' => 'required|integer|min:1|max:5',
-    //         'picture.active' => 'required|boolean',
-    //         'picture.image' => 'required|image|max:15000',
-    //     ];
-
-    //     if ($editing === true) {
-    //         unset($rules['picture.image']);
-    //     }
-
-    //     return Validator::make($data, $rules)->validate();
-    // }
-
     /**
      * Check if the specified question is linked to the specified map.
      * Store a newly created question picture in storage for the specified question.
