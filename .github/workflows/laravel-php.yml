@@ -29,6 +29,11 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --no-suggest
 
+    - name: Execute Security Checker (composer) via SensioLabs
+      run: |
+        composer require sensiolabs/security-checker --dev
+        vendor/bin/security-checker security:check composer.lock
+
     - name: Generate key
       run: php artisan key:generate
     
@@ -39,19 +44,9 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-        php artisan migrate
-    
-    - name: Execute Security Checker (composer) via SensioLabs
-      run: vendor/bin/security-checker security:check composer.lock
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
-
-#    - name: Execute phpcs (PSR Quality tests) via PHP_CodeSniffer
-#      run: vendor/bin/phpcs # To autmaticly fix them use vendor/bin/phpcbf
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
