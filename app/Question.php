@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Question extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
-        'callout', 'published'
+        'callout', 'published',
     ];
 
     protected $casts = [
@@ -28,7 +28,7 @@ class Question extends Model
     {
         return $this->belongsTo('App\Map');
     }
-    
+
     public function template()
     {
         return $this->morphOne('App\Upload', 'uploadable');

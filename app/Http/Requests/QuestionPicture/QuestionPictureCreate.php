@@ -29,7 +29,7 @@ class QuestionPictureCreate extends FormRequest
     }
 
     /**
-     * Custom message for validation
+     * Custom message for validation.
      *
      * @return array
      */
@@ -40,7 +40,7 @@ class QuestionPictureCreate extends FormRequest
     }
 
     /**
-     * Custom message for validation
+     * Custom message for validation.
      *
      * @return array
      */
@@ -49,7 +49,7 @@ class QuestionPictureCreate extends FormRequest
         // Call the static method below
         return self::getAttributes();
     }
-    
+
     /**
      * Set the validation rules that apply to the request.
      * The reason for creating a static method is that it can be called from anywhere quite elegantly
@@ -74,7 +74,7 @@ class QuestionPictureCreate extends FormRequest
     public static function getMessages()
     {
         return [
-            'picture.image.image' => 'The uploaded file must be an image.'
+            'picture.image.image' => 'The uploaded file must be an image.',
         ];
     }
 

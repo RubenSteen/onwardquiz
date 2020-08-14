@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\QuestionPicture;
 
+use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
 use App\QuestionPicture;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
 
 class QuestionPictureUpdate extends FormRequest
 {
@@ -31,7 +31,7 @@ class QuestionPictureUpdate extends FormRequest
     }
 
     /**
-     * Custom message for validation
+     * Custom message for validation.
      *
      * @return array
      */
@@ -42,7 +42,7 @@ class QuestionPictureUpdate extends FormRequest
     }
 
     /**
-     * Custom message for validation
+     * Custom message for validation.
      *
      * @return array
      */

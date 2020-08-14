@@ -12,6 +12,7 @@ class UserRepository
     {
         if ($user = User::where('discord_id', $userData->id)->first()) {
             $this->updateExistingUser($user, $userData);
+
             return $user;
         } else {
             return User::create([
@@ -23,8 +24,8 @@ class UserRepository
                 'email' => $userData->email,
                 'avatar' => $userData->user['avatar'],
                 'last_discord_sync' => Carbon::now(),
-                'super_admin' => ($userData->id == "110752556312965120") ? true : false,
-                'confirmed' => ($userData->id == "110752556312965120") ? true : false,
+                'super_admin' => ($userData->id == '110752556312965120') ? true : false,
+                'confirmed' => ($userData->id == '110752556312965120') ? true : false,
             ]);
         }
     }
@@ -40,7 +41,6 @@ class UserRepository
                 }
             }
         }
-        
 
         return $user->update([
             'token' => $userData->token,

@@ -99,7 +99,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0], "The difficulty field is required.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty field is required.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -117,7 +117,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0],"The difficulty must be a number.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be a number.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -135,7 +135,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0],"The difficulty must be between 1 and 5.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be between 1 and 5.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -153,7 +153,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.active')[0],"The active field is required.");
+        $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field is required.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['active' => $data['picture']['active']]);
     }
@@ -171,7 +171,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.active')[0],"The active field must be true or false.");
+        $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field must be true or false.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['active' => $data['picture']['active']]);
     }
@@ -203,7 +203,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.image')[0],"The image field is required.");
+        $this->assertEquals(session('errors')->get('picture.image')[0], 'The image field is required.');
 
         $this->assertDatabaseCount((new Upload)->getTable(), 0);
     }
@@ -221,7 +221,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.image')[0],"The uploaded file must be an image.");
+        $this->assertEquals(session('errors')->get('picture.image')[0], 'The uploaded file must be an image.');
 
         $this->assertDatabaseCount((new Upload)->getTable(), 0);
     }
@@ -239,7 +239,7 @@ class QuestionPictureStoreTest extends TestCase
 
         $this->post(route('question.store.picture', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.image')[0],"The image may not be greater than 15000 kilobytes.");
+        $this->assertEquals(session('errors')->get('picture.image')[0], 'The image may not be greater than 15000 kilobytes.');
 
         $this->assertDatabaseCount((new Upload)->getTable(), 0);
     }

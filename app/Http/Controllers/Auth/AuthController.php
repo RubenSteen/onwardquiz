@@ -39,6 +39,7 @@ class AuthController extends Controller implements AuthenticateUserListener
     public function logout()
     {
         \Auth::logout();
+
         return $this->userHasLoggedOut();
     }
 }

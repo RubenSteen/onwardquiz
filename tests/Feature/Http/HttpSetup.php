@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Tests\Feature\Http;
 
 use Tests\TestCase;
 
 class HttpSetup extends TestCase
 {
-
     public $excludeRoutes = [
         '_debugbar/open',
         '_debugbar/cache/{key}/{tags?}',
@@ -167,7 +165,6 @@ class HttpSetup extends TestCase
 
         foreach ($routeCollection as $method => $routes) {
             foreach ($routes as $url => $data) {
-
                 if (in_array($url, $this->excludeRoutes)) {
                     continue;
                 }
@@ -192,14 +189,13 @@ class HttpSetup extends TestCase
         $seenRoutes = [];
 
         foreach (\Route::getRoutes() as $routeCollection) {
-
             foreach ($routeCollection->methods as $method) {
                 if ($method === 'HEAD') {
                     continue;
                 }
 
                 // Create methods collection
-                if (!array_key_exists($method, $seenRoutes)) {
+                if (! array_key_exists($method, $seenRoutes)) {
                     $seenRoutes[$method] = [];
                 }
 
@@ -209,7 +205,6 @@ class HttpSetup extends TestCase
 
                 $seenRoutes[$method][$routeCollection->uri] = $routeCollection->action;
             }
-
         }
 
         return $seenRoutes;
@@ -217,7 +212,7 @@ class HttpSetup extends TestCase
 
     protected function search($array, $key, $value)
     {
-        $results = array();
+        $results = [];
 
         if (is_array($array)) {
             if (isset($array[$key]) && $array[$key] == $value) {
@@ -231,5 +226,4 @@ class HttpSetup extends TestCase
 
         return $results;
     }
-
 }

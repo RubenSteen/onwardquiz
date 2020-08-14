@@ -41,7 +41,7 @@ class MapObserver
             return $this->forceDeleted($map);
         }
 
-        $map->questions()->each(function ($instance) use ($map) {
+        $map->questions()->each(function ($instance) {
             $instance->delete();
         });
 
@@ -67,13 +67,13 @@ class MapObserver
         $questions = $map->questions()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
 
         // Only restore ONE and the NEWEST template that is within x seconds of the map->deleted_at timestamp!
-        if($template->count() > 0) {
+        if ($template->count() > 0) {
             $template->first()
                 ->restore();
         }
 
         // Only restore questions that are within x seconds of the map->deleted_at timestamp!
-        if($questions->count() > 0) {
+        if ($questions->count() > 0) {
             $questions->each(function ($instance) {
                 $instance->restore();
             });
@@ -88,7 +88,6 @@ class MapObserver
      */
     public function restored(Map $map)
     {
-
     }
 
     /**

@@ -70,13 +70,13 @@ class QuestionObserver
         $pictures = $question->pictures()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
 
         // Only restore ONE and the NEWEST template that is within x seconds of the map->deleted_at timestamp!
-        if($template->count() > 0) {
+        if ($template->count() > 0) {
             $template->first()
                 ->restore();
         }
 
         // Only restore questions that are within x seconds of the map->deleted_at timestamp!
-        if($pictures->count() > 0) {
+        if ($pictures->count() > 0) {
             $pictures->each(function ($instance) {
                 $instance->restore();
             });

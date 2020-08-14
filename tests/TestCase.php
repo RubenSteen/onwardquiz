@@ -6,11 +6,11 @@ use App\Map;
 use App\Question;
 use App\QuestionPicture;
 use App\Upload;
+use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
-use Illuminate\Support\Arr;
-use App\User;
 
 abstract class TestCase extends BaseTestCase
 {

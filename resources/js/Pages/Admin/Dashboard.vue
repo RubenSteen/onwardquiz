@@ -1,31 +1,24 @@
 <template>
-  <layout title="Maps" v-on:breadcrumbs="hideBreadcrumbs()">
-  
-    <!-- Replace with your content -->
-    <div class="py-4">
-
-
-      
-    </div>
-    <!-- /End replace -->
-
-
-  </layout>
+    <layout title="Maps" v-on:breadcrumbs="hideBreadcrumbs()">
+        <!-- Replace with your content -->
+        <div class="py-4"></div>
+        <!-- /End replace -->
+    </layout>
 </template>
 
 <script>
-  import Layout from '../Shared/Layout'
-  import Pagination from '../Shared/Pagination'
+import Layout from '../Shared/Layout';
+import Pagination from '../Shared/Pagination';
 
-  export default {
+export default {
     components: {
-      Layout,
-      Pagination,
+        Layout,
+        Pagination,
     },
     data() {
-      return {
-        sidebarOpen: false,
-      }
+        return {
+            sidebarOpen: false,
+        };
     }, // End Data
-  }
+};
 </script>

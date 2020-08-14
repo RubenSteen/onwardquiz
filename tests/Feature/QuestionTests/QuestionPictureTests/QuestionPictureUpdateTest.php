@@ -110,7 +110,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0], "The difficulty field is required.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty field is required.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -126,7 +126,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0],"The difficulty must be a number.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be a number.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -142,7 +142,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.difficulty')[0],"The difficulty must be between 1 and 5.");
+        $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be between 1 and 5.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
     }
@@ -158,7 +158,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.active')[0],"The active field is required.");
+        $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field is required.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['active' => $data['picture']['active']]);
     }
@@ -174,7 +174,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('picture.active')[0],"The active field must be true or false.");
+        $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field must be true or false.');
 
         $this->assertDatabaseMissing((new QuestionPicture)->getTable(), ['active' => $data['picture']['active']]);
     }

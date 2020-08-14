@@ -17,7 +17,7 @@ class Upload extends Model
     }
 
     protected $fillable = [
-        'name', 'extension', 'size', 'mime_type', 'file_name'
+        'name', 'extension', 'size', 'mime_type', 'file_name',
     ];
 
     public function uploadable()
@@ -36,7 +36,7 @@ class Upload extends Model
     // @String : "app/public/uploads/2020/03/11/file.jpg"
     public function getFolderWithFile()
     {
-        return $this->getFolder() . $this->file_name;
+        return $this->getFolder().$this->file_name;
     }
 
     // Outputs the folder that can be used in a URL
@@ -50,21 +50,21 @@ class Upload extends Model
     // @String : "storage/uploads/2020/03/11/file.jpg"
     public function getPublicURLFolderWithFile()
     {
-        return $this->getPublicURLFolder() . $this->file_name;
+        return $this->getPublicURLFolder().$this->file_name;
     }
-    
+
     // Return in URL format.
     // @String : "http://domain.com/storage/uploads/2020/03/11/"
     public function getAssetFolder()
     {
-        return asset($this->getPublicURLFolder()) . "/";
+        return asset($this->getPublicURLFolder()).'/';
     }
 
     // Return in URL format.
     // @String : "http://domain.com/storage/uploads/2020/03/11/file.jpg"
     public function getAssetFolderWithFile()
     {
-        return $this->getAssetFolder() . $this->file_name;
+        return $this->getAssetFolder().$this->file_name;
     }
 
     // Returns the structure that uploads gets saved to

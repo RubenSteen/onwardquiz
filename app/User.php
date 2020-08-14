@@ -19,7 +19,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_discord_sync' => 'datetime',
@@ -32,7 +31,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Team', 'team_user');
     }
-    
+
     public function updateLastActivity()
     {
         $this->last_activity = \Carbon\Carbon::now();
@@ -65,6 +64,7 @@ class User extends Authenticatable
         if ($this->avatar === null) {
             return null;
         }
+
         return "https://cdn.discordapp.com/avatars/$this->discord_id/$this->avatar.png";
     }
 

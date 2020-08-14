@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\MapTests;
 
+use App\Map;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Map;
 
 class MapStoreTest extends TestCase
 {
@@ -49,7 +49,7 @@ class MapStoreTest extends TestCase
 
         $this->post(route('map.store'), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0], "The name field is required.");
+        $this->assertEquals(session('errors')->get('name')[0], 'The name field is required.');
     }
 
     /** @test */
@@ -63,6 +63,6 @@ class MapStoreTest extends TestCase
         $this->post(route('map.store'), $data)->isSuccessful();
         $this->post(route('map.store'), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('name')[0], "The name has already been taken.");
+        $this->assertEquals(session('errors')->get('name')[0], 'The name has already been taken.');
     }
 }

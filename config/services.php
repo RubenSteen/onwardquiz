@@ -33,7 +33,7 @@ return [
     'discord' => [
         'client_id' => env('DISCORD_CLIENT_ID'),         // Your Discord Client ID
         'client_secret' => env('DISCORD_CLIENT_SECRET'), // Your Discord Client Secret
-        'redirect' => env('DISCORD_CLIENT_REDIRECT', config('app.url') . '/login/discord'),
+        'redirect' => env('DISCORD_CLIENT_REDIRECT', config('app.url').'/login/discord'),
     ],
 
 ];

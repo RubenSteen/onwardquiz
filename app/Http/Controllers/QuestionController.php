@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
-use App\Http\Requests\QuestionPicture\QuestionPictureUpdate;
-use Illuminate\Http\Request;
-use App\Question;
-use App\Map;
-use App\QuestionPicture;
-use Illuminate\Support\Facades\Validator;
-use Inertia\Inertia;
 use App\Http\Requests\Question\QuestionCreate;
 use App\Http\Requests\Question\QuestionUpdate;
+use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
+use App\Http\Requests\QuestionPicture\QuestionPictureUpdate;
+use App\Map;
+use App\Question;
+use App\QuestionPicture;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 
 class QuestionController extends Controller
 {
@@ -52,7 +52,7 @@ class QuestionController extends Controller
         ];
 
         return Inertia::render('Question/Create', [
-            'map' => $data
+            'map' => $data,
         ]);
     }
 
@@ -70,7 +70,7 @@ class QuestionController extends Controller
         $this->authorize('create-question');
 
         abort_if(! $map->template, 403, "The map '$map->name' needs a template");
-        
+
         $validatedData = \Validator::make($request->all(), QuestionCreate::getRules($map, 'map_id', new Question()))->validate();
 
         $validatedData['published'] = false;
@@ -161,7 +161,7 @@ class QuestionController extends Controller
         }
 
         return Inertia::render('Question/Edit', [
-            'question' => $data
+            'question' => $data,
         ]);
     }
 
@@ -183,7 +183,7 @@ class QuestionController extends Controller
         abort_if(! $map->template, 403, "The map '$map->name' needs a template");
 
         // $request->merge(['published' => $request->published == 'true' ? true : false]);
-        
+
         $validatedData = \Validator::make($request->all(), QuestionUpdate::getRules($map, 'map_id', $question))->validate();
 
         if (isset($validatedData['template'])) {
@@ -204,7 +204,6 @@ class QuestionController extends Controller
         } else {
             $question->update($validatedData);
         }
-
 
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question was successfully updated!');
     }
@@ -264,7 +263,7 @@ class QuestionController extends Controller
     public function storePicture(Request $request, Map $map, Question $question)
     {
         $this->authorize('create-question-picture');
-        
+
 //        $validatedData = $this->pictureValidation($request->all());
 
         $validatedData = Validator::make($request->all(), QuestionPictureCreate::getRules(), QuestionPictureCreate::getMessages(), QuestionPictureCreate::getAttributes())->validate();
@@ -347,6 +346,5 @@ class QuestionController extends Controller
         $picture->restore();
 
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was restored!');
-
     }
 }
