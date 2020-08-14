@@ -1,25 +1,20 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  purge: {
-    content: [
-      './resources/**/*.js',
-      './resources/**/*.vue',
-      './resources/**/*.scss',
-      './resources/**/*.blade.php',
-    ],
-  },
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      },
+    purge: {
+        content: ['./resources/**/*.js', './resources/**/*.vue', './resources/**/*.scss', './resources/**/*.blade.php'],
     },
-  },
-  variants: {},
-  plugins: [
-    require('@tailwindcss/ui')({
-      layout: 'sidebar',
-    })
-  ],
-}
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+            },
+        },
+    },
+    variants: {},
+    plugins: [
+        require('@tailwindcss/ui')({
+            layout: 'sidebar',
+        }),
+    ],
+};

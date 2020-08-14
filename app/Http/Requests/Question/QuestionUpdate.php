@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Question;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Question\QuestionCreate;
 use App\Map;
 use App\Question;
+use Illuminate\Foundation\Http\FormRequest;
 
 class QuestionUpdate extends FormRequest
 {
@@ -30,7 +30,7 @@ class QuestionUpdate extends FormRequest
         // Call the static method below
         return self::getRules();
     }
-    
+
     /**
      * Set the validation rules that apply to the request.
      * The reason for creating a static method is that it can be called from anywhere quite elegantly
@@ -40,8 +40,6 @@ class QuestionUpdate extends FormRequest
     public static function getRules(Map $map, string $column, Question $question)
     {
         return array_merge(QuestionCreate::getRules($map, $column, $question), [
-            // 'closeby_questions.*' => 'sometimes|integer',
-            // 'similar_questions.*' => 'sometimes|integer',
             'published' => 'required|boolean',
         ]);
     }

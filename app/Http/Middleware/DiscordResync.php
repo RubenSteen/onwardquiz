@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Auth;
 use App\Jobs\SyncDiscord;
+use Auth;
+use Closure;
 
 class DiscordResync
 {
@@ -22,7 +22,7 @@ class DiscordResync
                 SyncDiscord::dispatch(Auth::user());
             } else {
                 Auth::user()->update([
-                    'last_discord_sync' => \Carbon\Carbon::now()
+                    'last_discord_sync' => \Carbon\Carbon::now(),
                 ]);
             }
         }

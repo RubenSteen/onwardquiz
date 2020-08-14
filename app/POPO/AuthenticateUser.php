@@ -29,7 +29,6 @@ class AuthenticateUser
      * @param Socialite $socialite
      * @param Authenticator $auth
      */
-
     public function __construct(UserRepository $users, Socialite $socialite, Authenticator $auth)
     {
         $this->users = $users;
@@ -38,7 +37,7 @@ class AuthenticateUser
     }
 
     /**
-     * @param boolean $hasCode
+     * @param bool $hasCode
      * @param AuthenticateUserListener $listener
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -62,7 +61,7 @@ class AuthenticateUser
     {
         return $this->socialite->driver('discord')->redirect();
     }
-    
+
     /**
      * @return \Laravel\Socialite\Contracts\User
      */

@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\User\UserUpdate;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
-use App\Http\Requests\User\UserUpdate;
 
-class UserController extends BackendController
+class UserController extends AdminController
 {
     public function index()
     {
         abort_if(strtolower(\Auth::user()->getFullUsername()) !== 'cruorzy#1337', 403);
         // abort_if(Gate::denies('index-user'), 403);
-        
-        $users = User::withCount('teams')->paginate(15);
+
+        $users = User::paginate(15);
 
         $usersPagination = $users->links();
-        
+
         $users = $users->map(function (User $user) {
             $data = [
                 'id' => $user->id,
@@ -34,6 +34,7 @@ class UserController extends BackendController
                 'isBanned' => $user->isBanned(),
                 'isConfirmed' => $user->isConfirmed(),
             ];
+
             return $data;
         });
 
@@ -90,7 +91,7 @@ class UserController extends BackendController
         // abort_if(Gate::denies('update-user'), 403);
 
         $user = User::withCount('teams')->find($user_id);
-        
+
         $user = [
             'id' => $user->id,
             'discord_id' => $user->discord_id,
@@ -106,7 +107,7 @@ class UserController extends BackendController
                     'id' => $team->id,
                     'name' => $team->name,
                 ];
-            })
+            }),
         ];
 
         return Inertia::render('User/Admin/Show-Edit', [
@@ -130,7 +131,7 @@ class UserController extends BackendController
         $request->merge(['confirmed' => $request->confirmed == 'true' ? true : false]);
         $request->merge(['super_admin' => $request->super_admin == 'true' ? true : false]);
         $request->merge(['editor' => $request->editor == 'true' ? true : false]);
-        
+
         $validatedData = \Validator::make($request->all(), UserUpdate::getRules())->validate();
 
         $user->update($validatedData);

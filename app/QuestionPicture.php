@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class QuestionPicture extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
-        'difficulty', 'active'
+        'difficulty', 'active',
+    ];
+
+    protected $casts = [
+        'active' => 'boolean',
     ];
 
     public static function boot()

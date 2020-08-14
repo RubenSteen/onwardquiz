@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class AbortIfBanned
 {
@@ -20,8 +20,8 @@ class AbortIfBanned
             Auth::logout();
 
             return redirect('/')->with('warning', [
-                'title' => "Account suspension",
-                'message' => "Your account has been suspended. Please contact @cruorzy#1337 on discord for futher details...",
+                'title' => 'Account suspension',
+                'message' => 'Your account has been suspended. Please contact @cruorzy#1337 on discord for futher details...',
             ]);
         }
 

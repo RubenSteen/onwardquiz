@@ -15,22 +15,55 @@
 |
 */
 
-Route::get('/', ['as' => 'home',    'uses' => 'QuizController@landing']);
+Route::get('/', function () {
+    return Inertia\Inertia::render('Landing');
+})->name('home');
 
-
-if (App::environment('production', 'staging')) {
+if (App::environment('production', 'staging', 'testing')) {
     Route::get('login/discord', 'Auth\AuthController@login')->name('login')->middleware('guest');
 } else {
     Route::get('login/devenv', ['as' => 'login',    'uses' => 'Auth\DevEnv\AuthController@showLogin', 'middleware' => 'guest']);
     Route::post('login/devenv', ['as' => 'login',   'uses' => 'Auth\DevEnv\AuthController@login', 'middleware' => 'guest']);
 }
 
-
 Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     // A tiny bit of Javacript does a request every 5 minutes to trigger the last activity middleware, to update the user.
-    Route::post('/activity-check', ['uses' => 'QuizController@activityCheck']);
-    
-    Route::post('logout', [ 'as' => 'logout.post', 'uses' => 'Auth\AuthController@logout']);
+    Route::post('/activity-check', function () {
+        return json_encode('You are alive!');
+    });
+    Route::post('logout', ['as' => 'logout.post', 'uses' => 'Auth\AuthController@logout']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Map Routes
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('maps', ['as' => 'map.index',    'uses' => 'MapController@index']);
+    Route::get('map/create', ['as' => 'map.create', 'uses' => 'MapController@create']);
+    Route::post('map', ['as' => 'map.store',    'uses' => 'MapController@store']);
+    Route::get('map/{map_id}/edit', ['as' => 'map.edit',    'uses' => 'MapController@edit']);
+    Route::patch('map/{map}', ['as' => 'map.update', 'uses' => 'MapController@update']);
+    Route::delete('map/{map}', ['as' => 'map.destroy', 'uses' => 'MapController@destroy']);
+    Route::put('map/{map_id}', ['as' => 'map.restore', 'uses' => 'MapController@restore']);
+    Route::post('map/{map_id}/image-validation', ['as' => 'map.image-validation',   'uses' => 'MapController@imageValidation']);
+
+    /*
+    | Map Question Routes
+    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::get('map/{map:id}/question/create', ['as' => 'question.create',  'uses' => 'QuestionController@create']);
+    Route::post('map/{map:id}/question', ['as' => 'question.store', 'uses' => 'QuestionController@store']);
+    Route::get('map/{map:id}/question/{question:id}/edit', ['as' => 'question.edit',    'uses' => 'QuestionController@edit']);
+    Route::patch('map/{map:id}/question/{question:id}', ['as' => 'question.update', 'uses' => 'QuestionController@update']);
+    Route::delete('map/{map:id}/question/{question:id}', ['as' => 'question.destroy', 'uses' => 'QuestionController@destroy']);
+    Route::put('map/{map:id}/question/{question_id}', ['as' => 'question.restore', 'uses' => 'QuestionController@restore']);
+    Route::post('map/{map:id}/question/{question:id}/picture', ['as' => 'question.store.picture',   'uses' => 'QuestionController@storePicture']);
+    Route::patch('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.update.picture',   'uses' => 'QuestionController@updatePicture']);
+    Route::delete('map/{map:id}/question/{question:id}/{picture:id}/picture', ['as' => 'question.delete.picture',   'uses' => 'QuestionController@destroyPicture']);
+    Route::put('map/{map:id}/question/{question:id}/{picture_id}/picture', ['as' => 'question.restore.picture',   'uses' => 'QuestionController@restorePicture']);
 
     /*
     |--------------------------------------------------------------------------
@@ -51,8 +84,6 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     */
     Route::get('profile', ['as' => 'user.profile',  'uses' => 'UserController@index']);
 
-
-
     /*
     |--------------------------------------------------------------------------
     | Super Admin Routes
@@ -62,36 +93,7 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
     |
     */
     Route::group(['middleware' => ['superadmin'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function ($router) {
-        Route::get('', ['as' => 'admin.index',  'uses' => 'AdminController@index']);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Map Routes
-        |--------------------------------------------------------------------------
-        |
-        */
-        Route::get('maps', ['as' => 'map.index',    'uses' => 'MapController@index']);
-        Route::get('map/create', ['as' => 'map.create', 'uses' => 'MapController@create']);
-        Route::post('map', ['as' => 'map.store',    'uses' => 'MapController@store']);
-        Route::get('map/{map_id}/edit', ['as' => 'map.edit',    'uses' => 'MapController@edit']);
-        Route::patch('map/{map_id}', ['as' => 'map.update', 'uses' => 'MapController@update']);
-        Route::delete('map/{map}', ['as' => 'map.destroy', 'uses' => 'MapController@destroy']);
-        Route::post('map/{map_id}/image-validation', ['as' => 'map.image-validation',   'uses' => 'MapController@imageValidation']);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Map Question Routes
-        |--------------------------------------------------------------------------
-        |
-        */
-        Route::get('map/{map:id}/question/create', ['as' => 'question.create',  'uses' => 'QuestionController@create']);
-        Route::post('map/{map:id}/question', ['as' => 'question.store', 'uses' => 'QuestionController@store']);
-        Route::get('map/{map:id}/question/{question:id}/edit', ['as' => 'question.edit',    'uses' => 'QuestionController@edit']);
-        Route::patch('map/{map:id}/question/{question:id}', ['as' => 'question.update', 'uses' => 'QuestionController@update']);
-        Route::post('map/{map:id}/question/{question:id}/image', ['as' => 'question.store.image',   'uses' => 'QuestionController@storeImage']);
-        Route::post('map/{map:id}/question/{question:id}/{picture:id}/image', ['as' => 'question.edit.image',   'uses' => 'QuestionController@editImage']);
-        Route::delete('map/{map:id}/question/{question:id}/{picture:id}/image', ['as' => 'question.delete.image',   'uses' => 'QuestionController@deleteImage']);
-
+        Route::get('', ['as' => 'admin.dashboard',  'uses' => 'AdminController@dashboard']);
         /*
         |--------------------------------------------------------------------------
         | User Routes
@@ -101,13 +103,5 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
         Route::get('users', ['as' => 'user.index',  'uses' => 'UserController@index']);
         Route::get('user/{user_id}/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
         Route::patch('user/{user:id}', ['as' => 'user.update',  'uses' => 'UserController@update']);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Team Routes
-        |--------------------------------------------------------------------------
-        |
-        */
-        Route::get('teams', ['as' => 'team.index',  'uses' => 'TeamController@index']);
     });
 });

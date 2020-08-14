@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +25,9 @@ $factory->define(User::class, function (Faker $faker) {
         'locale' => $faker->locale,
         'discriminator' => rand(1000, 9999),
         'last_discord_sync' => \Carbon\Carbon::now(),
+        'confirmed' => true,
+        'banned' => false,
+        'super_admin' => false,
+        'editor' => false,
     ];
 });

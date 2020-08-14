@@ -27,7 +27,7 @@ class MapCreate extends FormRequest
         // Call the static method below
         return self::getRules();
     }
-    
+
     /**
      * Set the validation rules that apply to the request.
      * The reason for creating a static method is that it can be called from anywhere quite elegantly
@@ -42,7 +42,7 @@ class MapCreate extends FormRequest
 
         // when MapUpdate calls this method we do not want to change the name so we need a exception on the unique validation
         if (! is_null($id)) {
-            $rules['name'] = 'required|unique:maps,name,' . $id;
+            $rules['name'] = 'required|unique:maps,name,'.$id;
         }
 
         return $rules;

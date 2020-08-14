@@ -26,10 +26,10 @@ class QuestionObserver
      */
     public function updated(Question $question)
     {
-        if ($question->map->questions->where('published', true)->count() < 4 && $question->map->published == true) {
-            $question->map->update(['published' => false]);
-            Session::flash('warning', "{$question->map->name} has been unpublished due it not having the right amount of questions published");
-        }
+//        if ($question->map->questions->where('published', true)->count() < 4 && $question->map->published == true) {
+//            $question->map->update(['published' => false]);
+//            Session::flash('warning', "{$question->map->name} has been unpublished due it not having the right amount of questions published");
+//        }
     }
 
     /**
@@ -51,6 +51,36 @@ class QuestionObserver
         $question->template()->each(function ($instance) {
             $instance->delete();
         });
+    }
+
+    /**
+     * Handle the map "restoring" event.
+     *
+     * @param  \App\Question  $question
+     * @return void
+     */
+    public function restoring(Question $question)
+    {
+        $max_seconds_between_timestamps = 5;
+
+        $max_restore_time = $question->deleted_at->addSeconds($max_seconds_between_timestamps)->toDateTimeString();
+
+        $template = $question->template()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        $pictures = $question->pictures()->onlyTrashed()->orderByDesc('deleted_at')->where('deleted_at', '<=', $max_restore_time);
+
+        // Only restore ONE and the NEWEST template that is within x seconds of the map->deleted_at timestamp!
+        if ($template->count() > 0) {
+            $template->first()
+                ->restore();
+        }
+
+        // Only restore questions that are within x seconds of the map->deleted_at timestamp!
+        if ($pictures->count() > 0) {
+            $pictures->each(function ($instance) {
+                $instance->restore();
+            });
+        }
     }
 
     /**

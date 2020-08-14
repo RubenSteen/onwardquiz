@@ -21,7 +21,7 @@ class CreateUploadsTable extends Migration
             $table->string('extension');
             $table->string('size');
             $table->string('mime_type');
-            $table->string('file_name')->unique();
+            $table->string('file_name');
             $table->softDeletes();
             $table->timestamps();
         });
