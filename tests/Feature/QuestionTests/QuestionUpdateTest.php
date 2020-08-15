@@ -272,7 +272,7 @@ class QuestionUpdateTest extends TestCase
     }
 
     /** @test */
-    public function delete_old_template_when_a_user_updates_a_new_template_while_updating_a_map()
+    public function delete_old_template_when_a_user_updates_a_new_template_while_updating_a_question()
     {
         $this->signIn(['editor' => true]);
 
@@ -291,5 +291,39 @@ class QuestionUpdateTest extends TestCase
         $this->assertDatabaseHas((new Question)->getTable(), ['callout' => $data['callout']]);
         $this->assertDatabaseHas((new Upload)->getTable(), ['uploadable_type' => 'App\Question', 'name' => 'new.jpg', 'deleted_at' => null]);
         $this->assertNotEquals($oldTemplate->fresh()->deleted_at, null);
+    }
+
+    /** @test */
+    public function unpublish_the_map_when_less_than_4_questions_are_published_while_updating_a_question()
+    {
+        $this->signIn(['editor' => true]);
+
+        $map = $this->createMap(['published' => 1]);
+
+        $question = $this->createQuestion(['map_id' => $map->id, 'published' => 1], 4)
+            ->first();
+
+        $data = factory(Question::class)->raw(['map_id' => null, 'published' => 0]);
+
+        $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->isSuccessful();
+
+        $this->assertEquals(false, $map->fresh()->published);
+    }
+
+    /** @test */
+    public function do_not_unpublish_the_map_when_more_than_4_questions_are_still_published_while_updating_a_question()
+    {
+        $this->signIn(['editor' => true]);
+
+        $map = $this->createMap(['published' => 1]);
+
+        $question = $this->createQuestion(['map_id' => $map->id, 'published' => 1], 5)
+            ->first();
+
+        $data = factory(Question::class)->raw(['map_id' => null, 'published' => 0]);
+
+        $this->patch(route('question.update', ['map' => $map->id, 'question' => $question->id]), $data)->isSuccessful();
+
+        $this->assertEquals(true, $map->fresh()->published);
     }
 }

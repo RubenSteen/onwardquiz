@@ -129,4 +129,34 @@ class QuestionDeleteTest extends TestCase
         $this->assertCount(1, Upload::withTrashed()->get());
         $this->assertNotEquals($question->template()->withTrashed()->first()->deleted_at, null);
     }
+
+    /** @test */
+    public function unpublish_the_map_when_less_than_4_questions_are_published_while_updating_a_question()
+    {
+        $this->signIn(['editor' => true]);
+
+        $map = $this->createMap(['published' => 1]);
+
+        $question = $this->createQuestion(['map_id' => $map->id, 'published' => 1], 4)
+            ->first();
+
+        $this->delete(route('question.destroy', ['map' => $map->id, 'question' => $question->id]))->isSuccessful();
+
+        $this->assertEquals(false, $map->fresh()->published);
+    }
+
+    /** @test */
+    public function do_not_unpublish_the_map_when_more_than_4_questions_are_still_published_while_updating_a_question()
+    {
+        $this->signIn(['editor' => true]);
+
+        $map = $this->createMap(['published' => 1]);
+
+        $question = $this->createQuestion(['map_id' => $map->id, 'published' => 1], 5)
+            ->first();
+
+        $this->delete(route('question.destroy', ['map' => $map->id, 'question' => $question->id]))->isSuccessful();
+
+        $this->assertEquals(true, $map->fresh()->published);
+    }
 }

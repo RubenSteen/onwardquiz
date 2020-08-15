@@ -12,6 +12,7 @@ use App\QuestionPicture;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
@@ -205,6 +206,8 @@ class QuestionController extends Controller
             $question->update($validatedData);
         }
 
+        $this->unpublishMap($question);
+
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question was successfully updated!');
     }
 
@@ -222,6 +225,8 @@ class QuestionController extends Controller
         $this->authorize('delete-question'); // OR/AND // $this->authorize('forceDelete-question');
 
         $question->delete();
+
+        $this->unpublishMap($question);
 
         return redirect()->route('map.edit', $map->id)->with('success', 'Question was deleted!');
     }
@@ -346,5 +351,13 @@ class QuestionController extends Controller
         $picture->restore();
 
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was restored!');
+    }
+
+    private function unpublishMap(Question $question)
+    {
+        if ($question->map->questions->where('published', true)->count() < 4 && $question->map->published == true) {
+            $question->map->update(['published' => false]);
+            Session::flash('warning', "{$question->map->name} has been unpublished due it not having the right amount of questions published");
+        }
     }
 }
