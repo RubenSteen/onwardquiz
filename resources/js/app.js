@@ -15,10 +15,8 @@ Vue.$cookies.config('30d');
 // Use laravel Routes in your application (https://github.com/tightenco/ziggy)
 Vue.prototype.$route = (...args) => route(...args).url();
 
-// Make InertiaApp as a view component available?
 Vue.use(InertiaApp);
 
-// See InertiaJS Docs
 const app = document.getElementById('app');
 
 // See InertiaJS Docs
@@ -27,7 +25,7 @@ new Vue({
         h(InertiaApp, {
             props: {
                 initialPage: JSON.parse(app.dataset.page),
-                resolveComponent: (name) => import(`./Pages/${name}`).then((module) => module.default),
+                resolveComponent: (name) => require(`./Pages/${name}`).default,
             },
         }),
 }).$mount(app);
