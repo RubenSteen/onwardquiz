@@ -109,7 +109,7 @@ class MapController extends Controller
             'id' => $map->id,
             'name' => $map->name,
             'description' => $map->description,
-            'published' => $map->published ? true : false,
+            'published' => $map->published ? 1 : 0,
         ];
 
         if ($map->template !== null) {

@@ -110,7 +110,7 @@ class QuestionController extends Controller
         $data = [
             'id' => $question->id,
             'callout' => $question->callout,
-            'published' => $question->published ? true : false,
+            'published' => $question->published ? 1 : 0,
             'created_at' => $question->created_at,
             'updated_at' => $question->updated_at,
             'template' => [
@@ -268,8 +268,6 @@ class QuestionController extends Controller
     public function storePicture(Request $request, Map $map, Question $question)
     {
         $this->authorize('create-question-picture');
-
-//        $validatedData = $this->pictureValidation($request->all());
 
         $validatedData = Validator::make($request->all(), QuestionPictureCreate::getRules(), QuestionPictureCreate::getMessages(), QuestionPictureCreate::getAttributes())->validate();
 

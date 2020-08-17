@@ -21,7 +21,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $picture = $this->createQuestionPicture();
 
-        $this->delete(route('question.delete.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))->assertForbidden();
+        $this->delete(route('question.destroy.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))->assertForbidden();
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $this->assertCount(1, QuestionPicture::all());
 
-        $this->delete(route('question.delete.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))
+        $this->delete(route('question.destroy.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))
             ->assertRedirect(route('question.edit', ['map' => $picture->question->map->id, 'question' => $picture->question->id]));
 
         $this->assertCount(1, QuestionPicture::withTrashed()->get());
@@ -49,7 +49,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $this->assertCount(1, QuestionPicture::all());
 
-        $this->delete(route('question.delete.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))
+        $this->delete(route('question.destroy.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]))
             ->assertRedirect(route('question.edit', ['map' => $picture->question->map->id, 'question' => $picture->question->id]));
 
         $this->assertCount(1, QuestionPicture::withTrashed()->get());
@@ -73,7 +73,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        $this->delete(route('question.delete.picture', ['map' => $fakeMap->id, 'question' => $questionPicture->question->id, 'picture', $questionPicture->id]));
+        $this->delete(route('question.destroy.picture', ['map' => $fakeMap->id, 'question' => $questionPicture->question->id, 'picture', $questionPicture->id]));
     }
 
     /** @test */
@@ -93,7 +93,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        $this->delete(route('question.delete.picture', ['map' => $questionPicture->question->map->id, 'question' => $questionPicture->question->id, 'picture', $fakeQuestionPicture->id]));
+        $this->delete(route('question.destroy.picture', ['map' => $questionPicture->question->map->id, 'question' => $questionPicture->question->id, 'picture', $fakeQuestionPicture->id]));
     }
 
     /** @test */
@@ -105,7 +105,7 @@ class QuestionPictureDeleteTest extends TestCase
 
         $this->assertDatabaseHas((new Upload)->getTable(), ['uploadable_id' => $picture->id, 'uploadable_type' => 'App\QuestionPicture']);
 
-        $this->delete(route('question.delete.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]));
+        $this->delete(route('question.destroy.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]));
 
         $this->assertNotEquals($picture->image()->onlyTrashed()->first()->deleted_at, null);
     }

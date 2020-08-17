@@ -252,5 +252,14 @@
         return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
       }, // End readableBytes()
     }, // End Methods
+    watch:{
+      'form.published'(newVal) {
+        if (newVal === true) {
+          this.form.published = 1
+        } else if (newVal === false) {
+          this.form.published = 0
+        }
+      }
+    } // End watch
   }
 </script>

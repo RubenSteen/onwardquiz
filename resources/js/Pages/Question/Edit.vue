@@ -62,7 +62,7 @@
                 </div>
                 <p class="mt-2 text-xs text-red-500">Make sure the template being used is the same as the map image </br>
                   Click
-                  <a :href="question.map.image.location" :download="question.map.image.name" class="italic text-red-600">
+                  <a :href="question.map.template.location" :download="question.map.template.name" class="italic text-red-600">
                     here
                   </a>
                   for the image
@@ -126,7 +126,7 @@
                     </span>
                   </div> -->
 
-                  
+
 
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
                     <div class="w-full grid grid-cols-3 grid-flow-row gap-2">
@@ -155,15 +155,15 @@
                     </div>
                   </div> -->
 
-                  
+
 
                   <!-- Begin logout modal -->
-                    <div v-show="newOrEditPicture.modal" class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-10">
+                    <div v-show="picture.modal" class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-10">
                       <div @click="pictureModal('close')" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity">
                         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                       </div>
 
-                      <div v-show="newOrEditPicture.modal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-6xl sm:w-full sm:p-6">
+                      <div v-show="picture.modal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-6xl sm:w-full sm:p-6">
                         <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                           <button @click="pictureModal('close')" type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -179,11 +179,11 @@
                           </div>
                           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                              
-                              {{ newOrEditPicture.form.id !== null ? 'Editing a Picture' : 'Adding a Picture' }}
+
+                              {{ picture.form.id !== null ? 'Editing a Picture' : 'Adding a Picture' }}
                             </h3>
                             <div class="mt-2">
-                              
+
                               <div class="w-full">
                                 <div>
                                   <div>
@@ -192,7 +192,7 @@
                                         This information will be displayed publicly so be careful what you write down...
                                       </p>
                                     </div>
-                                    
+
                                     <div class="mt-6 sm:mt-5">
 
                                       <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -201,7 +201,7 @@
                                         </label>
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                           <div class="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-                                            <select id="country" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" v-model="newOrEditPicture.form.difficulty">
+                                            <select id="country" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" v-model="picture.form.difficulty">
                                               <option value="1">1 (Easy)</option>
                                               <option value="2">2 (Normal)</option>
                                               <option value="3">3 (Medium)</option>
@@ -209,7 +209,7 @@
                                               <option value="5">5 (Hard)</option>
                                             </select>
                                           </div>
-                                          <p class="mt-2 text-xs text-red-600" v-show="$page.errors['newOrEditPicture.difficulty']" v-for="(error, index) in $page.errors['newOrEditPicture.difficulty']" :key="index">
+                                          <p class="mt-2 text-xs text-red-600" v-show="$page.errors['picture.difficulty']" v-for="(error, index) in $page.errors['picture.difficulty']" :key="index">
                                             {{ error }}
                                           </p>
                                         </div>
@@ -224,13 +224,13 @@
                                             <div class="mt-4">
                                               <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                  <input id="offers" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" v-model="newOrEditPicture.form.active">
+                                                  <input id="offers" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" v-model="picture.form.active">
                                                 </div>
                                                 <div class="ml-3 text-sm leading-5">
                                                   <p class="text-gray-500">Make the picture active to be included in the quiz</p>
                                                 </div>
                                               </div>
-                                              <p class="mt-2 text-xs text-red-600" v-show="$page.errors['newOrEditPicture.active']" v-for="(error, index) in $page.errors['newOrEditPicture.active']" :key="index">
+                                              <p class="mt-2 text-xs text-red-600" v-show="$page.errors['picture.active']" v-for="(error, index) in $page.errors['picture.active']" :key="index">
                                                 {{ error }}
                                               </p>
                                             </div>
@@ -244,12 +244,12 @@
                                         </label>
                                         <div class="mt-4 sm:mt-0 sm:col-span-2">
                                           <div class="flex items-center flex-col">
-                                            
-                                            <div class="w-full" v-if="newOrEditPicture.form.id == null">
+
+                                            <div class="w-full" v-if="picture.form.id == null">
                                               <div class="w-full">
-                                                <input @change="getFileFromnewOrEditPictureInput" type="file" ref="newOrEditPicture" style="display: none">
+                                                <input @change="getFileFromPictureInput" type="file" ref="picture" style="display: none">
                                                 <span class="rounded-md shadow-sm">
-                                                  <button @click="$refs.newOrEditPicture.click()" type="button" :class="{ 'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red': $page.errors.picture}"
+                                                  <button @click="$refs.picture.click()" type="button" :class="{ 'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red': $page.errors.image}"
                                                     class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                                                     Browse
                                                   </button>
@@ -257,14 +257,14 @@
                                               </div>
 
                                               <div class="mt-4 w-full">
-                                                <p class="mt-2 text-xs text-red-600" v-show="$page.errors['newOrEditPicture.picture']" v-for="(error, index) in $page.errors['newOrEditPicture.picture']" :key="index">
+                                                <p class="mt-2 text-xs text-red-600" v-show="$page.errors['picture.image']" v-for="(error, index) in $page.errors['picture.image']" :key="index">
                                                   {{ error }}
                                                 </p>
-                                                <div v-if="newOrEditPicture.form.picture"
-                                                  :class="{ 'border-red-500 text-red-900 placeholder-red-300': $page.errors.picture, 'border-indigo-500': !$page.errors.picture}"
+                                                <div v-if="picture.form.image"
+                                                  :class="{ 'border-red-500 text-red-900 placeholder-red-300': $page.errors.image, 'border-indigo-500': !$page.errors.image}"
                                                   class="relative text-gray-500 text-xs border rounded-md w-auto box-border p-4">
                                                   <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-                                                    <button @click="newOrEditPicture.form.picture = null" type="button"
+                                                    <button @click="picture.form.image = null" type="button"
                                                       class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
                                                       <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -272,9 +272,9 @@
                                                       </svg>
                                                     </button>
                                                   </div>
-                                                  File to upload : {{ newOrEditPicture.form.picture.name }}</br>
-                                                  Type : {{ newOrEditPicture.form.picture.type }}</br>
-                                                  Size : {{ readableBytes(newOrEditPicture.form.picture.size) }}
+                                                  File to upload : {{ picture.form.image.name }}</br>
+                                                  Type : {{ picture.form.image.type }}</br>
+                                                  Size : {{ readableBytes(picture.form.image.size) }}
                                                 </div>
                                               </div>
                                             </div>
@@ -282,8 +282,8 @@
                                             <div class="w-full" v-else>
                                               <div class="w-full">
                                                 <div class="px-2 py-2">
-                                                  <a class="flex justify-center self-center" :href="newOrEditPicture.form.picture" target="_blank">
-                                                    <img class="rounded-lg w-auto" :src="newOrEditPicture.form.picture" :alt="newOrEditPicture.form.id">
+                                                  <a class="flex justify-center self-center" :href="picture.form.image" target="_blank">
+                                                    <img class="rounded-lg w-auto" :src="picture.form.image" :alt="picture.form.id">
                                                   </a>
                                                 </div>
                                               </div>
@@ -304,7 +304,7 @@
                         <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                           <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                             <button @click="submitPicture" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                              {{ newOrEditPicture.form.id !== null ? 'Update' : 'Create' }}
+                              {{ picture.form.id !== null ? 'Update' : 'Create' }}
                             </button>
                           </span>
                           <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
@@ -312,8 +312,8 @@
                               Go back
                             </button>
                           </span>
-                          <span class="mt-3 mr-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto" v-if="newOrEditPicture.form.id != null">
-                            <button @click="deletePicture(newOrEditPicture.form.id)" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                          <span class="mt-3 mr-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto" v-if="picture.form.id != null">
+                            <button @click="deletePicture(picture.form.id)" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                               Delete
                             </button>
                           </span>
@@ -327,7 +327,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="">
           <div class="mt-6 sm:mt-5">
             <div class="sm:border-t sm:border-gray-200 sm:pt-5">
@@ -403,12 +403,12 @@
         loading: false,
 
         // Everything that has to do with creating a new image for the question
-        newOrEditPicture: {
+        picture: {
           form: {
             id: null,
             difficulty: "1",
-            active: false,
-            picture: null,
+            active: 0,
+            image: null,
           },
           modal: false,
         },
@@ -443,11 +443,11 @@
         }
       }, //End getFileFromInput()
 
-      getFileFromnewOrEditPictureInput(event) {
+      getFileFromPictureInput(event) {
         if (typeof event.target.files[0] !== 'undefined') {
-          this.newOrEditPicture.form.picture = event.target.files[0];
+          this.picture.form.image = event.target.files[0];
         }
-      }, //End getFileFromnewOrEditPictureInput()
+      }, //End getFileFromPictureInput()
 
       readableBytes(bytes) {
         var i = Math.floor(Math.log(bytes) / Math.log(1024)),
@@ -458,17 +458,17 @@
 
       pictureModal(state, data = null) {
         if (state == 'close') {
-          this.newOrEditPicture.modal = false;
+          this.picture.modal = false;
           return;
         }
 
-        this.newOrEditPicture.modal = true
+        this.picture.modal = true
 
         if (data !== null) {
-          this.newOrEditPicture.form.id = data.id
-          this.newOrEditPicture.form.difficulty = data.difficulty
-          this.newOrEditPicture.form.active = data.active
-          this.newOrEditPicture.form.picture = data.image.location
+          this.picture.form.id = data.id
+          this.picture.form.difficulty = data.difficulty
+          this.picture.form.active = data.active
+          this.picture.form.image = data.image.location
         }
 
         
@@ -479,36 +479,67 @@
 
         var data = new FormData();
 
-        let submitRoute = ''
+        // let submitRoute = ''
+        //
+        // if (this.picture.form.id != null) {
+        //   submitRoute = route('question.update.picture', {map: this.question.map.id, question: this.question.id, picture: this.picture.form.id})
+        // } else {
+        //   submitRoute = route('question.store.picture', {map: this.question.map.id, question: this.question.id})
+        // }
 
-        if (this.newOrEditPicture.form.id != null) {
-          submitRoute = route('question.update.picture', {map: this.question.map.id, question: this.question.id, picture: this.newOrEditPicture.form.id})
-        } else {
-          submitRoute = route('question.store.picture', {map: this.question.map.id, question: this.question.id})
-        }
+        // data.append('picture[_method]', 'POST');
 
-        data.append('newOrEditPicture[_method]', 'POST');
-
-        for (const [field, value] of Object.entries(this.newOrEditPicture.form)) {
-          if (field == 'id' && this.newOrEditPicture.form.id == null) {
+        for (const [field, value] of Object.entries(this.picture.form)) {
+          if (field == 'id' && this.picture.form.id == null) {
             continue;
           }
-          if (field == 'picture' && this.newOrEditPicture.form.id != null) {
+          if (field == 'image' && this.picture.form.id != null) {
             continue;
           }
-          data.append('newOrEditPicture['+ field +']', this.newOrEditPicture.form[field])
+          data.append('picture['+ field +']', this.picture.form[field])
         }
 
-        this.$inertia.post(submitRoute, data)
-          .then(() => {
-            this.loading = false;
+        // this.$inertia.post(submitRoute, data)
+        //   .then(() => {
+        //     this.loading = false;
+        //
+        //     // Check if any errors exist
+        //     if (Object.keys(this.$page.errors).length === 0) {
+        //       this.resetPicture();
+        //     }
+        //   })
 
-            // Check if any errors exist
-            if (Object.keys(this.$page.errors).length === 0) {
-              this.resetnewOrEditPicture();
-            }
-          })
+        this.submitHitEndpoint(data);
       }, // End submitPicture()
+
+      submitHitEndpoint(data) {
+        if (this.picture.form.id != null) {
+          data.append('_method', 'POST');
+          this.$inertia.post(route('question.update.picture', {map: this.question.map.id, question: this.question.id, picture: this.picture.form.id}), data)
+              .then(() => {
+                this.loading = false;
+
+                // Check if any errors exist
+                if (Object.keys(this.$page.errors).length === 0) {
+                  this.resetPicture();
+                }
+              })
+
+        } else {
+
+          data.append('_method', 'POST');
+          this.$inertia.post(route('question.store.picture', {map: this.question.map.id, question: this.question.id}), data)
+              .then(() => {
+                this.loading = false;
+
+                // Check if any errors exist
+                if (Object.keys(this.$page.errors).length === 0) {
+                  this.resetPicture();
+                }
+              })
+
+        }
+      }, // End submitHitEndpoint()
 
       deletePicture(id) {
         if (!confirm('Are you sure you want to delete this picture from the question?')) {
@@ -521,37 +552,51 @@
 
         data.append('_method', 'DELETE');
 
-        this.$inertia.post(route('question.destroy.image', {map: this.question.map.id, question: this.question.id, picture: id}), data)
+        this.$inertia.post(route('question.destroy.picture', {map: this.question.map.id, question: this.question.id, picture: id}), data)
           .then(() => {
             this.loading = false;
-            this.resetnewOrEditPicture();
+            this.resetPicture();
           })
       }, // End deletePicture()
 
-      resetnewOrEditPicture() {
+      resetPicture() {
         this.loading = false;
-        this.newOrEditPicture.form.difficulty = "1";
-        this.newOrEditPicture.form.active = false;
-        this.newOrEditPicture.form.picture = null;
-        this.newOrEditPicture.form.id = null;
+        this.picture.form.difficulty = "1";
+        this.picture.form.active = 0;
+        this.picture.form.image = null;
+        this.picture.form.id = null;
         this.pictureModal('close');
 
         var errors = this.$page.errors;
-        // will only delete the error keys from newOrEditPicture
+        // will only delete the error keys from picture
         Object.keys(errors).forEach(key => {
-            if (key.match("newOrEditPicture")) {
+            if (key.match("picture")) {
               delete this.$page.errors[key]
             }
         })
-      }, // End resetnewOrEditPicture()
+      }, // End resetPicture()
 
     }, // End Methods
     watch: {
-      'newOrEditPicture.modal': function (newVal, oldVal){
+      'picture.modal': function (newVal, oldVal){
           if (newVal == false) {
-            this.resetnewOrEditPicture();
+            this.resetPicture();
          }
       },
+      'form.published'(newVal) {
+        if (newVal === true) {
+          this.form.published = 1
+        } else if (newVal === false) {
+          this.form.published = 0
+        }
+      },
+      'picture.form.active'(newVal) {
+        if (newVal === true) {
+          this.picture.form.active = 1
+        } else if (newVal === false) {
+          this.picture.form.active = 0
+        }
+      }
     } // End Watch
   }
 </script>
