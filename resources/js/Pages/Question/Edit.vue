@@ -82,8 +82,8 @@
                         </svg>
                       </button>
                     </div>
-                    File to upload : {{ form.template.name }}</br>
-                    Type : {{ form.template.type }}</br>
+                    File to upload : {{ form.template.name }}<br>
+                    Type : {{ form.template.type }}<br>
                     Size : {{ readableBytes(form.template.size) }}
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                       Pictures
                     </legend>
                     <small class="text-gray-700 text-xs sm:text-gray-500">
-                      Be creative! add some more pictures of the callout. perhaps ingame pictures from the sky or player perspective and rate them on the difficulty! </br></br>
+                      Be creative! add some more pictures of the callout. perhaps ingame pictures from the sky or player perspective and rate them on the difficulty! <br><br>
                       Click on one of the images to edit a picture
                     </small>
 
@@ -272,8 +272,8 @@
                                                       </svg>
                                                     </button>
                                                   </div>
-                                                  File to upload : {{ picture.form.image.name }}</br>
-                                                  Type : {{ picture.form.image.type }}</br>
+                                                  File to upload : {{ picture.form.image.name }}<br>
+                                                  Type : {{ picture.form.image.type }}<br>
                                                   Size : {{ readableBytes(picture.form.image.size) }}
                                                 </div>
                                               </div>

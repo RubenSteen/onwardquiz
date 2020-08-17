@@ -73,8 +73,8 @@
                         </svg>
                       </button>
                     </div>
-                    File to upload : {{ form.template.name }}</br>
-                    Type : {{ form.template.type }}</br>
+                    File to upload : {{ form.template.name }}<br>
+                    Type : {{ form.template.type }}<br>
                     Size : {{ readableBytes(form.template.size) }}
                   </div>
                 </div>
@@ -93,9 +93,9 @@
                       Template
                     </legend>
                     <small class="text-red-700 text-xs sm:text-red-500">
-                      There always have to be 1 template picture for a question. </br>
-                      When the question is created you will be able to add more picutes. </br>
-                      For now make sure to use the parent (overview) template as a first picture.</br></br>
+                      There always have to be 1 template picture for a question. <br>
+                      When the question is created you will be able to add more picutes. <br>
+                      For now make sure to use the parent (overview) template as a first picture.<br><br>
                       <a :href="map.template.location" target="_blank" type="button"
                         class="text-red-700 text-xs sm:text-red-600 hover:text-red-800 text-xs hover:sm:text-red-700 underline">
                         Click here for the template
