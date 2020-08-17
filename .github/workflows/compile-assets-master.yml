@@ -1,8 +1,8 @@
-name: CD
+name: Compile Assets (Master branch)
 
 on:
   push:
-    branches: [ feature/compiled-prod-actions ]
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout -B feature/compiled-prod-actions
+          git checkout -B master
           git add -f public/
           git commit -m "Build front-end assets"
-          git push -f origin feature/compiled-prod-actions
+          git push -f origin master
