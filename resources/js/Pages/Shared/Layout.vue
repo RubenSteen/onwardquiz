@@ -73,7 +73,7 @@
                                 Take the quiz
                             </inertia-link>
                             <inertia-link
-                                v-if="$page.auth.user.isSuperAdmin"
+                                v-if="$page.auth.user.isEditor || $page.auth.user.isSuperAdmin"
                                 :href="$route('map.index')"
                                 v-bind:class="{
                                     'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
@@ -264,7 +264,7 @@
                             Take the quiz
                         </inertia-link>
                         <inertia-link
-                            v-if="$page.auth.user.isSuperAdmin"
+                            v-if="$page.auth.user.isEditor || $page.auth.user.isSuperAdmin"
                             :href="$route('map.index')"
                             v-bind:class="{
                                 'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(

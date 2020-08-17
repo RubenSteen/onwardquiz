@@ -31900,6 +31900,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
+                        _vm.$page.auth.user.isEditor ||
                         _vm.$page.auth.user.isSuperAdmin
                           ? _c(
                               "inertia-link",
@@ -32216,6 +32217,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
+                        _vm.$page.auth.user.isEditor ||
                         _vm.$page.auth.user.isSuperAdmin
                           ? _c(
                               "inertia-link",
