@@ -10,11 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "${GITHUB_REF##*/}"
-        id: extract_branch
-
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
@@ -25,7 +20,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout -B ${{ steps.extract_branch.outputs.branch }}
+          git checkout -B ${GITHUB_REF##*/}
           git add -f public/
           git commit -m "Build front-end assets"
-          git push -f origin ${{ steps.extract_branch.outputs.branch }}
+          git push -f origin ${GITHUB_REF##*/}
