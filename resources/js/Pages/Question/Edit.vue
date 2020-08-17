@@ -60,7 +60,7 @@
                   </span>
 
                 </div>
-                <p class="mt-2 text-xs text-red-500">Make sure the template being used is the same as the map image </br>
+                <p class="mt-2 text-xs text-red-500">Make sure the template being used is the same as the map image <br>
                   Click
                   <a :href="question.map.template.location" :download="question.map.template.name" class="italic text-red-600">
                     here

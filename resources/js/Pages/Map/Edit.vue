@@ -103,8 +103,8 @@
                         </svg>
                       </button>
                     </div>
-                    File to upload : {{ form.template.name }}</br>
-                    Type : {{ form.template.type }}</br>
+                    File to upload : {{ form.template.name }}<br>
+                    Type : {{ form.template.type }}<br>
                     Size : {{ readableBytes(form.template.size) }}
                   </div>
                 </div>

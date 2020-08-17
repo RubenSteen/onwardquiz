@@ -49,9 +49,9 @@
 
                 </div>
                 <small class="text-red-700 text-xs sm:text-red-500">
-                      There always have to be 1 template picture for a question. </br>
-                      When the question is created you will be able to add more pictures. </br>
-                      Make sure the template being used is the same as the map template.</br></br>
+                      There always have to be 1 template picture for a question. <br>
+                      When the question is created you will be able to add more pictures. <br>
+                      Make sure the template being used is the same as the map template.<br><br>
                       Click
                   <a :href="map.template.location" :download="map.template.name" class="italic text-red-600">
                     here
