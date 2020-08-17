@@ -2,13 +2,18 @@ name: Compile Assets (Master branch)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ feature/compiled-prod-actions ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
 
       - name: Set up Node
         uses: actions/setup-node@v1
@@ -20,7 +25,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout -B master
+          git checkout -B ${{ steps.extract_branch.outputs.branch }}
           git add -f public/
           git commit -m "Build front-end assets"
-          git push -f origin master
+          git push -f origin ${{ steps.extract_branch.outputs.branch }}
