@@ -7,9 +7,9 @@ use App\Http\Requests\QuestionPicture\QuestionPictureUpdate;
 use App\Map;
 use App\Question;
 use App\QuestionPicture;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use DB;
 
 class QuestionPictureController extends Controller
 {
@@ -108,5 +108,4 @@ class QuestionPictureController extends Controller
 
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Question picture was restored!');
     }
-
 }
