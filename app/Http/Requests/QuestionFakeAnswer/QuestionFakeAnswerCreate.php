@@ -90,7 +90,7 @@ class QuestionFakeAnswerCreate extends FormRequest
     public static function getAttributes()
     {
         return [
-            'fake-answer.callout' => 'callout'
+            'fake-answer.callout' => 'callout',
         ];
     }
 }

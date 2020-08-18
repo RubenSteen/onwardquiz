@@ -6,9 +6,9 @@ use App\Http\Requests\QuestionFakeAnswer\QuestionFakeAnswerCreate;
 use App\Map;
 use App\Question;
 use App\QuestionFakeAnswer;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use DB;
 
 class QuestionFakeAnswerController extends Controller
 {

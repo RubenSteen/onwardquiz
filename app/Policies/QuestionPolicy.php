@@ -63,5 +63,4 @@ class QuestionPolicy
     {
         return $user->isSuperAdmin();
     }
-
 }
