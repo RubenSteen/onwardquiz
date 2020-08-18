@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Map;
 use App\Question;
+use App\QuestionFakeAnswer;
 use App\QuestionPicture;
 use App\Upload;
 use App\User;
@@ -121,5 +122,16 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $questionPictures->first();
+    }
+
+    protected function createQuestionFakeAnswer($overrides = [], $amount = 1)
+    {
+        $questionFakeAnswers = factory(QuestionFakeAnswer::class, $amount)->create($overrides);
+
+        if ($amount > 1) {
+            return $questionFakeAnswers;
+        }
+
+        return $questionFakeAnswers->first();
     }
 }

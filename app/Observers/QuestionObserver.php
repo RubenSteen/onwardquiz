@@ -45,6 +45,10 @@ class QuestionObserver
             $instance->delete();
         });
 
+        $question->fakeAnswers()->each(function ($instance) {
+            $instance->delete();
+        });
+
         $question->template()->each(function ($instance) {
             $instance->delete();
         });

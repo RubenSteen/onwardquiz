@@ -43,10 +43,14 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-question', 'App\Policies\QuestionPolicy@delete');
         Gate::define('restore-question', 'App\Policies\QuestionPolicy@restore');
         Gate::define('forceDelete-question', 'App\Policies\QuestionPolicy@forceDelete');
-        Gate::define('create-question-picture', 'App\Policies\QuestionPolicy@createPicture');
-        Gate::define('update-question-picture', 'App\Policies\QuestionPolicy@updatePicture');
-        Gate::define('delete-question-picture', 'App\Policies\QuestionPolicy@deletePicture');
-        Gate::define('restore-question-picture', 'App\Policies\QuestionPolicy@restorePicture');
-        Gate::define('forceDelete-question-picture', 'App\Policies\QuestionPolicy@forceDeletePicture');
+
+        Gate::define('create-question-picture', 'App\Policies\QuestionPicturePolicy@create');
+        Gate::define('update-question-picture', 'App\Policies\QuestionPicturePolicy@update');
+        Gate::define('delete-question-picture', 'App\Policies\QuestionPicturePolicy@delete');
+        Gate::define('restore-question-picture', 'App\Policies\QuestionPicturePolicy@restore');
+        Gate::define('forceDelete-question-picture', 'App\Policies\QuestionPicturePolicy@forceDelete');
+
+        Gate::define('create-question-fake-answer', 'App\Policies\QuestionFakeAnswerPolicy@create');
+        Gate::define('delete-question-fake-answer', 'App\Policies\QuestionFakeAnswerPolicy@delete');
     }
 }

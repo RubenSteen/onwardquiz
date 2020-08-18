@@ -39,6 +39,10 @@ class UniqueInRelation implements Rule
      */
     public function passes($attribute, $value)
     {
+        $attribute = explode('.', $attribute);
+
+        $attribute = end($attribute); // Get last key
+
         $query = DB::table($this->relation->getTable())
             ->where($this->column, $this->parent->id); // Get all the rows that belong to the parent.
 

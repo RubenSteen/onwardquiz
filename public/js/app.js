@@ -4484,6 +4484,87 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4512,6 +4593,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           image: null
         },
         modal: false
+      },
+      // Everything that has to do with creating a new fake answer for the question
+      fakeAnswer: {
+        form: {
+          callout: ''
+        }
       }
     };
   },
@@ -4579,15 +4666,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     },
     // End pictureModal()
     submitPicture: function submitPicture() {
+      var _this2 = this;
+
       this.loading = true;
-      var data = new FormData(); // let submitRoute = ''
-      //
-      // if (this.picture.form.id != null) {
-      //   submitRoute = route('question.update.picture', {map: this.question.map.id, question: this.question.id, picture: this.picture.form.id})
-      // } else {
-      //   submitRoute = route('question.store.picture', {map: this.question.map.id, question: this.question.id})
-      // }
-      // data.append('picture[_method]', 'POST');
+      var data = new FormData();
+      var submitRoute = '';
+
+      if (this.picture.form.id != null) {
+        submitRoute = route('question.update.picture', {
+          map: this.question.map.id,
+          question: this.question.id,
+          picture: this.picture.form.id
+        });
+        data.append('_method', 'PATCH');
+      } else {
+        submitRoute = route('question.store.picture', {
+          map: this.question.map.id,
+          question: this.question.id
+        });
+        data.append('_method', 'POST');
+      }
 
       for (var _i = 0, _Object$entries = Object.entries(this.picture.form); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
@@ -4603,51 +4701,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
 
         data.append('picture[' + field + ']', this.picture.form[field]);
-      } // this.$inertia.post(submitRoute, data)
-      //   .then(() => {
-      //     this.loading = false;
-      //
-      //     // Check if any errors exist
-      //     if (Object.keys(this.$page.errors).length === 0) {
-      //       this.resetPicture();
-      //     }
-      //   })
+      }
 
+      this.$inertia.post(submitRoute, data).then(function () {
+        _this2.loading = false; // Check if any errors exist
 
-      this.submitHitEndpoint(data);
+        if (Object.keys(_this2.$page.errors).length === 0) {
+          _this2.resetPicture();
+        }
+      });
     },
     // End submitPicture()
-    submitHitEndpoint: function submitHitEndpoint(data) {
-      var _this2 = this;
-
-      if (this.picture.form.id != null) {
-        data.append('_method', 'PATCH');
-        this.$inertia.post(route('question.update.picture', {
-          map: this.question.map.id,
-          question: this.question.id,
-          picture: this.picture.form.id
-        }), data).then(function () {
-          _this2.loading = false; // Check if any errors exist
-
-          if (Object.keys(_this2.$page.errors).length === 0) {
-            _this2.resetPicture();
-          }
-        });
-      } else {
-        data.append('_method', 'POST');
-        this.$inertia.post(route('question.store.picture', {
-          map: this.question.map.id,
-          question: this.question.id
-        }), data).then(function () {
-          _this2.loading = false; // Check if any errors exist
-
-          if (Object.keys(_this2.$page.errors).length === 0) {
-            _this2.resetPicture();
-          }
-        });
-      }
-    },
-    // End submitHitEndpoint()
     deletePicture: function deletePicture(id) {
       var _this3 = this;
 
@@ -4685,7 +4749,69 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           delete _this4.$page.errors[key];
         }
       });
-    } // End resetPicture()
+    },
+    // End resetPicture()
+    submitFakeAnswer: function submitFakeAnswer() {
+      var _this5 = this;
+
+      this.loading = true;
+      var data = new FormData();
+      data.append('_method', 'POST');
+
+      for (var _i2 = 0, _Object$entries2 = Object.entries(this.fakeAnswer.form); _i2 < _Object$entries2.length; _i2++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+            field = _Object$entries2$_i[0],
+            value = _Object$entries2$_i[1];
+
+        data.append('fake-answer[' + field + ']', this.fakeAnswer.form[field]);
+      }
+
+      this.$inertia.post(route('question.store.fake-answer', {
+        map: this.question.map.id,
+        question: this.question.id
+      }), data).then(function () {
+        _this5.loading = false; // Check if any errors exist
+
+        if (Object.keys(_this5.$page.errors).length === 0) {
+          _this5.resetFakeAnswer();
+        }
+      });
+    },
+    // End submitFakeAnswer()
+    deleteFakeAnswer: function deleteFakeAnswer(id) {
+      var _this6 = this;
+
+      if (!confirm('Are you sure you want to delete this fake answer from the question?')) {
+        return;
+      }
+
+      this.loading = true;
+      var data = new FormData();
+      data.append('_method', 'DELETE');
+      this.$inertia.post(route('question.destroy.fake-answer', {
+        map: this.question.map.id,
+        question: this.question.id,
+        fakeAnswer: id
+      }), data).then(function () {
+        _this6.loading = false;
+
+        _this6.resetFakeAnswer();
+      });
+    },
+    // End deletePicture()
+    resetFakeAnswer: function resetFakeAnswer() {
+      var _this7 = this;
+
+      this.loading = false;
+      this.fakeAnswer.form.callout = '';
+      var errors = this.$page.errors; // will only delete the error keys from picture
+
+      Object.keys(errors).forEach(function (key) {
+        if (key.match('fake-answer')) {
+          delete _this7.$page.errors[key];
+        }
+      });
+    } // End resetFakeAnswer()
 
   },
   // End Methods
@@ -30334,6 +30460,237 @@ var render = function() {
             )
           ])
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+          },
+          [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                attrs: { for: "first_name" }
+              },
+              [
+                _vm._v(
+                  "\n                    Fake Answers\n                    "
+                ),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-gray-700 text-xs sm:text-gray-500 block"
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Be creative! add some fake callouts that might confuse them into guessing it! Try not to use\n                        names that already exist in the questions itself\n                    "
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c("div", { staticClass: "mt-1 flex rounded-md shadow-sm" }, [
+                  _c(
+                    "div",
+                    { staticClass: "relative flex-grow focus-within:z-10" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.fakeAnswer.form.callout,
+                            expression: "fakeAnswer.form.callout"
+                          }
+                        ],
+                        staticClass:
+                          "form-input block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                        attrs: { disabled: _vm.loading, id: "email" },
+                        domProps: { value: _vm.fakeAnswer.form.callout },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.submitFakeAnswer($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.fakeAnswer.form,
+                              "callout",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
+                      on: { click: _vm.submitFakeAnswer }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "h-5 w-5 text-gray-400",
+                          attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              d:
+                                "M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z",
+                              "clip-rule": "evenodd"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.$page.errors["fake-answer.callout"], function(
+                  error,
+                  index
+                ) {
+                  return _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.$page.errors["fake-answer.callout"],
+                          expression: "$page.errors['fake-answer.callout']"
+                        }
+                      ],
+                      key: index,
+                      staticClass: "mt-2 text-xs text-red-600"
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "ul",
+                    {
+                      staticClass: "mt-3 grid grid-rows-3 grid-flow-col gap-4"
+                    },
+                    _vm._l(_vm.question.fakeAnswers, function(fakeAnswer) {
+                      return _c(
+                        "li",
+                        { staticClass: "col-span-1 flex shadow-sm rounded-md" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md"
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "flex-1 px-4 py-2 text-sm leading-5 truncate"
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "text-gray-900 font-medium hover:text-gray-600 transition ease-in-out duration-150",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v(_vm._s(fakeAnswer.callout))]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex-shrink-0 pr-2" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition ease-in-out duration-150",
+                                    attrs: { disabled: _vm.loading },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteFakeAnswer(
+                                          fakeAnswer.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "w-5 h-5",
+                                        attrs: {
+                                          viewBox: "0 0 20 20",
+                                          fill: "currentColor"
+                                        }
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            "fill-rule": "evenodd",
+                                            d:
+                                              "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+                                            "clip-rule": "evenodd"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              2
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("div", {}, [
           _c("div", { staticClass: "mt-6 sm:mt-5" }, [

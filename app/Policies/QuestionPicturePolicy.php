@@ -5,12 +5,12 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class QuestionPolicy
+class QuestionPicturePolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create questions.
+     * Determine whether the user can create question pictures.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -21,7 +21,7 @@ class QuestionPolicy
     }
 
     /**
-     * Determine whether the user can update the question.
+     * Determine whether the user can update the question picture.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -32,7 +32,7 @@ class QuestionPolicy
     }
 
     /**
-     * Determine whether the user can delete the question.
+     * Determine whether the user can delete the question picture.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -43,7 +43,7 @@ class QuestionPolicy
     }
 
     /**
-     * Determine whether the user can restore the question.
+     * Determine whether the user can restore the question picture.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -54,7 +54,7 @@ class QuestionPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the question.
+     * Determine whether the user can permanently delete the question picture.
      *
      * @param  \App\User  $user
      * @return mixed

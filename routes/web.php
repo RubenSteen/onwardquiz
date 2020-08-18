@@ -74,6 +74,15 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
 
     /*
     |--------------------------------------------------------------------------
+    | Question Picture Routes
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::post('map/{map:id}/question/{question:id}/fake-answer', ['as' => 'question.store.fake-answer',   'uses' => 'QuestionFakeAnswerController@store']);
+    Route::delete('map/{map:id}/question/{question:id}/fake-answer/{fakeAnswer:id}', ['as' => 'question.destroy.fake-answer',   'uses' => 'QuestionFakeAnswerController@destroy']);
+
+    /*
+    |--------------------------------------------------------------------------
     | Quiz Routes
     |--------------------------------------------------------------------------
     |
