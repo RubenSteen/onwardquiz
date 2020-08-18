@@ -4536,6 +4536,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4568,7 +4597,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // Everything that has to do with creating a new fake answer for the question
       fakeAnswer: {
         form: {
-          callout: ""
+          callout: ''
         }
       }
     };
@@ -4774,7 +4803,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var _this7 = this;
 
       this.loading = false;
-      this.fakeAnswer.form.callout = "";
+      this.fakeAnswer.form.callout = '';
       var errors = this.$page.errors; // will only delete the error keys from picture
 
       Object.keys(errors).forEach(function (key) {
@@ -30447,7 +30476,9 @@ var render = function() {
                 attrs: { for: "first_name" }
               },
               [
-                _vm._v("\n              Fake Answers\n              "),
+                _vm._v(
+                  "\n                    Fake Answers\n                    "
+                ),
                 _c(
                   "small",
                   {
@@ -30455,7 +30486,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                Be creative! add some fake callouts that might confuse them into guessing it!\n                Try not to use names that already exist in the questions itself\n              "
+                      "\n                        Be creative! add some fake callouts that might confuse them into guessing it! Try not to use\n                        names that already exist in the questions itself\n                    "
                     )
                   ]
                 )
@@ -30563,9 +30594,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                " +
+                        "\n                        " +
                           _vm._s(error) +
-                          "\n              "
+                          "\n                    "
                       )
                     ]
                   )
