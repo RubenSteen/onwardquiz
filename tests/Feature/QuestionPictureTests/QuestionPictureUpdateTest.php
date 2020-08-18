@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\QuestionTests\QuestionPictureTests;
+namespace Tests\Feature\QuestionPictureTests;
 
 use App\Map;
 use App\Question;
