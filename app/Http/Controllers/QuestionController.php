@@ -122,6 +122,7 @@ class QuestionController extends Controller
                 'updated_at' => $question->template->updated_at,
             ],
             'pictures' => [],
+            'fakeAnswers' => [],
             'map' => [
                 'id' => $map->id,
                 'name' => $map->name,
@@ -158,6 +159,13 @@ class QuestionController extends Controller
                     'created_at' => $picture->image->created_at,
                     'updated_at' => $picture->image->updated_at,
                 ],
+            ]);
+        }
+
+        foreach ($question->fakeAnswers as $fakeAnswer) {
+            array_push($data['fakeAnswers'], [
+                'id' => $fakeAnswer->id,
+                'callout' => $fakeAnswer->callout,
             ]);
         }
 
