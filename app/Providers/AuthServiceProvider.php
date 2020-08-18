@@ -51,5 +51,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('forceDelete-question-picture', 'App\Policies\QuestionPicturePolicy@forceDelete');
 
         Gate::define('create-question-fake-answer', 'App\Policies\QuestionFakeAnswerPolicy@create');
+        Gate::define('delete-question-fake-answer', 'App\Policies\QuestionFakeAnswerPolicy@delete');
     }
 }

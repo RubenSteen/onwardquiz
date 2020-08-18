@@ -4,6 +4,7 @@ namespace Tests\Feature\QuestionTests;
 
 use App\Map;
 use App\Question;
+use App\QuestionFakeAnswer;
 use App\QuestionPicture;
 use App\Upload;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -95,6 +96,24 @@ class QuestionDeleteTest extends TestCase
 
         $this->assertCount(0, Question::all());
         $this->assertCount(0, QuestionPicture::all());
+    }
+
+    /** @test */
+    public function fake_answers_get_deleted_when_a_question_is_deleted()
+    {
+        $question = $this->createQuestion();
+
+        $this->createQuestionFakeAnswer(['question_id' => $question->id], 10);
+
+        $this->assertCount(1, Question::all());
+        $this->assertCount(10, QuestionFakeAnswer::all());
+
+        $this->signIn(['editor' => true]);
+
+        $this->delete(route('question.destroy', ['map' => $question->map->id, 'question' => $question->id]))->isSuccessful();
+
+        $this->assertCount(0, Question::all());
+        $this->assertCount(0, QuestionFakeAnswer::all());
     }
 
     /** @test */

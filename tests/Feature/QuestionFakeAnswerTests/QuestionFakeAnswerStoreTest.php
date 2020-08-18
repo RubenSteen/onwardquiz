@@ -30,7 +30,6 @@ class QuestionFakeAnswerStoreTest extends TestCase
     /** @test */
     public function a_superadmin_can_create_a_question_fake_answer()
     {
-        $this->withoutExceptionHandling();
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
         $question = $this->createQuestion();
@@ -65,7 +64,7 @@ class QuestionFakeAnswerStoreTest extends TestCase
 
         $this->signIn(['editor' => true]);
 
-        $question = $this->createQuestion(); // Parent map is ID 1 and the question picture is linked to it.
+        $question = $this->createQuestion(); // Parent map is ID 1 and the question is linked to it with ID 1.
 
         $fakeMap = $this->createMap(); // fakeQuestion is ID 2
 
