@@ -38,4 +38,9 @@ class Question extends Model
     {
         return $this->hasMany('App\QuestionPicture');
     }
+
+    public function fakeAnswers()
+    {
+        return $this->hasMany('App\QuestionFakeAnswer');
+    }
 }

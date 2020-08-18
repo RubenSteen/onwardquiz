@@ -115,6 +115,10 @@ class HttpSetup extends TestCase
             ],
             [
                 'method' => 'POST',
+                'url' => 'map/{map}/question/{question}/fake-answer',
+            ],
+            [
+                'method' => 'POST',
                 'url' => 'quiz/{map}/question',
             ],
             [

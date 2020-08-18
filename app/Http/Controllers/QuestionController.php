@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Question\QuestionCreate;
 use App\Http\Requests\Question\QuestionUpdate;
-use App\Http\Requests\QuestionPicture\QuestionPictureCreate;
-use App\Http\Requests\QuestionPicture\QuestionPictureUpdate;
+use App\Http\Requests\QuestionPicture\QuestionFakeAnswerCreate;
+use App\Http\Requests\QuestionPicture\QuestionFakeAnswerUpdate;
 use App\Map;
 use App\Question;
 use App\QuestionPicture;
