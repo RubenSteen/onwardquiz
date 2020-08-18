@@ -22,7 +22,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null]);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertForbidden();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertForbidden();
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null]);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)
             ->assertRedirect(route('question.edit', ['map' => $picture->question->map->id, 'question' => $picture->question->id]));
 
         $this->assertDatabaseHas((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
@@ -49,7 +49,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null]);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)
             ->assertRedirect(route('question.edit', ['map' => $picture->question->map->id, 'question' => $picture->question->id]));
 
         $this->assertDatabaseHas((new QuestionPicture)->getTable(), ['difficulty' => $data['picture']['difficulty']]);
@@ -74,7 +74,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        $this->post(route('question.update.picture', ['map' => $fakeMap->id, 'question' => $questionPicture->question->id, 'picture', $questionPicture->id]), $data);
+        $this->patch(route('question.update.picture', ['map' => $fakeMap->id, 'question' => $questionPicture->question->id, 'picture', $questionPicture->id]), $data);
     }
 
     /** @test */
@@ -96,7 +96,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        $this->post(route('question.update.picture', ['map' => $questionPicture->question->map->id, 'question' => $questionPicture->question->id, $fakeQuestionPicture->id]), $data);
+        $this->patch(route('question.update.picture', ['map' => $questionPicture->question->map->id, 'question' => $questionPicture->question->id, $fakeQuestionPicture->id]), $data);
     }
 
     /** @test */
@@ -108,7 +108,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null, 'difficulty' => '']);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty field is required.');
 
@@ -124,7 +124,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null, 'difficulty' => 'This is a string']);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be a number.');
 
@@ -140,7 +140,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null, 'difficulty' => 0]);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('picture.difficulty')[0], 'The difficulty must be between 1 and 5.');
 
@@ -156,7 +156,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null, 'active' => null]);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field is required.');
 
@@ -172,7 +172,7 @@ class QuestionPictureUpdateTest extends TestCase
 
         $data['picture'] = factory(QuestionPicture::class)->raw(['question_id' => null, 'active' => 'Some string']);
 
-        $this->post(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
+        $this->patch(route('question.update.picture', ['map' => $picture->question->map->id, 'question' => $picture->question->id, 'picture' => $picture->id]), $data)->assertSessionHasErrors();
 
         $this->assertEquals(session('errors')->get('picture.active')[0], 'The active field must be true or false.');
 

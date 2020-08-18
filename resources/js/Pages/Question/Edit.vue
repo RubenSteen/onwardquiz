@@ -840,7 +840,7 @@ export default {
 
         submitHitEndpoint(data) {
             if (this.picture.form.id != null) {
-                data.append('_method', 'POST');
+                data.append('_method', 'PATCH');
                 this.$inertia
                     .post(
                         route('question.update.picture', {
