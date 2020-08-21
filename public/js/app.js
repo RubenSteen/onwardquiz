@@ -3575,8 +3575,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Similar-Questions",
+  name: 'Similar-Questions',
   props: {
     mapId: Number,
     questionId: Number,
@@ -3908,7 +3919,6 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-//
 //
 //
 //
@@ -28563,7 +28573,7 @@ var render = function() {
             key: index,
             staticClass: "mt-2 text-xs text-red-600"
           },
-          [_vm._v("\n    " + _vm._s(error) + "\n  ")]
+          [_vm._v("\n        " + _vm._s(error) + "\n    ")]
         )
       }),
       _vm._v(" "),
@@ -30834,7 +30844,11 @@ var render = function() {
                     "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
                   attrs: { for: "callout" }
                 },
-                [_vm._v("\n                Similar Questions\n              ")]
+                [
+                  _vm._v(
+                    "\n                        Similar Questions\n                    "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("similar-questions", {

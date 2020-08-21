@@ -182,7 +182,6 @@ class QuestionController extends Controller
             ]);
         }
 
-
         return Inertia::render('Question/Edit', [
             'question' => $data,
         ]);
