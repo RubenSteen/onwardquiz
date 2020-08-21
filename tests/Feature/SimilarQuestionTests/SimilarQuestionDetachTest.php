@@ -29,6 +29,7 @@ class SimilarQuestionDetachTest extends TestCase
     /** @test */
     public function a_superadmin_can_detach_similar_questions()
     {
+        $this->withoutExceptionHandling();
         $this->signIn(['super_admin' => true, 'editor' => false]);
 
         $firstQuestion = $this->createQuestion();
@@ -83,6 +84,32 @@ class SimilarQuestionDetachTest extends TestCase
     }
 
     /** @test */
+    public function only_the_specified_similar_question_will_get_detached_and_the_others_will_not()
+    {
+        $this->signIn(['super_admin' => false, 'editor' => true]);
+
+        $firstQuestion = $this->createQuestion();
+        $secondQuestion = $this->createQuestion(['map_id' => $firstQuestion->map->id]);
+        $thirdQuestion = $this->createQuestion(['map_id' => $firstQuestion->map->id]);
+
+        $firstQuestion->similar_questions()->attach($secondQuestion->id);
+        $firstQuestion->question_is_similar_to()->attach($secondQuestion->id);
+        $firstQuestion->similar_questions()->attach($thirdQuestion->id);
+        $firstQuestion->question_is_similar_to()->attach($thirdQuestion->id);
+
+        $data['similar_question']['id'] = $secondQuestion->id;
+
+        $this->delete(route('question.detach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data);
+
+        $this->assertDatabaseCount((new SimilarQuestion)->getTable(), 2);
+
+        $this->assertDatabaseMissing((new SimilarQuestion)->getTable(), [
+            'question_id' => $data['similar_question']['id'],
+            'similar_question_id' => $secondQuestion->id,
+        ]);
+    }
+
+    /** @test */
     public function cannot_detach_a_similar_question_when_the_map_is_not_the_parent_of_the_given_question()
     {
         $this->withoutExceptionHandling();
@@ -113,7 +140,7 @@ class SimilarQuestionDetachTest extends TestCase
 
         $this->delete(route('question.detach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data)->assertSessionHasErrors();
 
-        $this->assertEquals(session('errors')->get('similar_question.id')[0], 'The selected question is not part of the given map.');
+        $this->assertEquals(session('errors')->get('similar_question.id')[0], 'The selected similar question is registered as similar to the given question.');
     }
 
     /** @test */

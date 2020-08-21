@@ -24,7 +24,7 @@ class SimilarQuestionController extends Controller
     {
         $this->authorize('attach-similar-question');
 
-        $validatedData = $this->validateData($request, $map);
+        $validatedData = $this->validateData($request, $map, $question);
 
         // Attaches the questions both ways
         $question->similar_questions()->attach($validatedData['similar_question']['id']);
@@ -47,7 +47,7 @@ class SimilarQuestionController extends Controller
     {
         $this->authorize('detach-similar-question');
 
-        $validatedData = $this->validateData($request, $map);
+        $validatedData = $this->validateData($request, $map, $question, true);
 
         // Detaches the questions both ways
         $question->similar_questions()->detach($validatedData['similar_question']['id']);
@@ -64,7 +64,7 @@ class SimilarQuestionController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      * @return array
      */
-    private function validateData(Request $request, Map $map, $detach = false)
+    private function validateData(Request $request, Map $map, Question $question, $detach = false)
     {
        $rules = [
             'similar_question.id' => [
@@ -73,17 +73,23 @@ class SimilarQuestionController extends Controller
             ],
         ];
 
-        if ($detach === true) {
-            $rules['similar_question.id'][] = Rule::in($map->similar_questions->pluck('id')->toArray());
-        } else {
-            $rules['similar_question.id'][] = Rule::in($map->questions->pluck('id')->toArray());
-        }
-
         $messages = [
-            'similar_question.id.in' => 'The selected question is not part of the given map.',
+            'similar_question.id.not_in' => 'The selected question is already registered as similar question.',
             'similar_question.id.required' => 'The similar question id field is required.',
             'similar_question.id.integer' => 'The similar question id must be an integer.',
         ];
+
+        if ($detach === true) {
+            $rules['similar_question.id'][] = Rule::in($question->similar_questions->pluck('id')->toArray());
+            $messages['similar_question.id.in'] = 'The selected similar question is registered as similar to the given question.';
+        } else {
+            $rules['similar_question.id'][] = Rule::in($map->questions->pluck('id')->toArray());
+            $messages['similar_question.id.in'] = 'The selected question is not part of the given map.';
+
+            $rules['similar_question.id'][] = Rule::notIn($question->similar_questions->pluck('id'));
+        }
+
+
 
         return Validator::make($request->all(), $rules, $messages)->validate();
     }

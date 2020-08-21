@@ -77,6 +77,43 @@ class SimilarQuestionAttachTest extends TestCase
     }
 
     /** @test */
+    public function a_question_can_have_multiple_similar_questions()
+    {
+        $this->signIn(['super_admin' => false, 'editor' => true]);
+
+        $firstQuestion = $this->createQuestion();
+        $secondQuestion = $this->createQuestion(['map_id' => $firstQuestion->map->id]);
+        $thirdQuestion = $this->createQuestion(['map_id' => $firstQuestion->map->id]);
+
+        $data['second']['similar_question']['id'] = $secondQuestion->id;
+        $data['third']['similar_question']['id'] = $thirdQuestion->id;
+
+        $this->post(route('question.attach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data['second'])->isSuccessful();
+        $this->post(route('question.attach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data['third'])->isSuccessful();
+
+        $this->assertDatabaseCount((new SimilarQuestion)->getTable(), 4);
+    }
+
+    /** @test */
+    public function a_question_cannot_have_multiple_similar_questions_of_the_same_id()
+    {
+        $this->signIn(['super_admin' => false, 'editor' => true]);
+
+        $firstQuestion = $this->createQuestion();
+        $secondQuestion = $this->createQuestion(['map_id' => $firstQuestion->map->id]);
+
+        $data['similar_question']['id'] = $secondQuestion->id;
+
+        $this->post(route('question.attach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data)->isSuccessful();
+
+        $this->post(route('question.attach.similar-question', ['map' => $firstQuestion->map->id, 'question' => $firstQuestion->id]), $data)->assertSessionHasErrors();
+
+        $this->assertEquals(session('errors')->get('similar_question.id')[0], 'The selected question is already registered as similar question.');
+
+        $this->assertDatabaseCount((new SimilarQuestion)->getTable(), 2);
+    }
+
+    /** @test */
     public function cannot_attach_a_similar_question_when_the_map_is_not_the_parent_of_the_given_question()
     {
         $this->withoutExceptionHandling();
