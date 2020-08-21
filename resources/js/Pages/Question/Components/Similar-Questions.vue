@@ -85,6 +85,7 @@ export default {
     props: {
         mapId: Number,
         questionId: Number,
+        loading: Boolean,
         similarQuestionsIds: Array,
         questions: Array,
     },
@@ -94,13 +95,11 @@ export default {
             form: {
                 id: '',
             },
-
-            loading: false,
         };
     }, // End Data
     methods: {
         submit() {
-            this.loading = true;
+          this.setLoading(true);
 
             var data = new FormData();
 
@@ -111,13 +110,13 @@ export default {
             this.$inertia
                 .post(route('question.attach.similar-question', { map: this.mapId, question: this.questionId }), data)
                 .then(() => {
-                    this.loading = false;
+                  this.setLoading(false);
                     this.form.id = '';
                 });
         }, // End submit()
 
         submitDetach(id) {
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -128,9 +127,13 @@ export default {
             this.$inertia
                 .post(route('question.detach.similar-question', { map: this.mapId, question: this.questionId }), data)
                 .then(() => {
-                    this.loading = false;
+                  this.setLoading(false);
                 });
         }, // End submit()
+
+      setLoading(bool) {
+        this.$emit('loading', bool) // Emits event to the parent
+      }
     }, // End Methods
 };
 </script>

@@ -3591,6 +3591,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     mapId: Number,
     questionId: Number,
+    loading: Boolean,
     similarQuestionsIds: Array,
     questions: Array
   },
@@ -3598,8 +3599,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         id: ''
-      },
-      loading: false
+      }
     };
   },
   // End Data
@@ -3607,7 +3607,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'POST');
       data.append('similar_question[id]', this.form.id);
@@ -3615,7 +3615,8 @@ __webpack_require__.r(__webpack_exports__);
         map: this.mapId,
         question: this.questionId
       }), data).then(function () {
-        _this.loading = false;
+        _this.setLoading(false);
+
         _this.form.id = '';
       });
     },
@@ -3623,7 +3624,7 @@ __webpack_require__.r(__webpack_exports__);
     submitDetach: function submitDetach(id) {
       var _this2 = this;
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'DELETE');
       data.append('similar_question[id]', id);
@@ -3631,10 +3632,13 @@ __webpack_require__.r(__webpack_exports__);
         map: this.mapId,
         question: this.questionId
       }), data).then(function () {
-        _this2.loading = false;
+        _this2.setLoading(false);
       });
-    } // End submit()
-
+    },
+    // End submit()
+    setLoading: function setLoading(bool) {
+      this.$emit('loading', bool); // Emits event to the parent
+    }
   } // End Methods
 
 });
@@ -4725,6 +4729,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4769,7 +4775,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     updateQuestion: function updateQuestion() {
       var _this = this;
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'PATCH');
 
@@ -4786,7 +4792,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         map: this.question.map.id,
         question: this.question.id
       }), data).then(function () {
-        _this.loading = false;
+        _this.setLoading(false);
+
         _this.form.template = null;
       });
     },
@@ -4830,7 +4837,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     submitPicture: function submitPicture() {
       var _this2 = this;
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       var submitRoute = '';
 
@@ -4866,7 +4873,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
 
       this.$inertia.post(submitRoute, data).then(function () {
-        _this2.loading = false; // Check if any errors exist
+        _this2.setLoading(false); // Check if any errors exist
+
 
         if (Object.keys(_this2.$page.errors).length === 0) {
           _this2.resetPicture();
@@ -4881,7 +4889,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return;
       }
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'DELETE');
       this.$inertia.post(route('question.destroy.picture', {
@@ -4889,7 +4897,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         question: this.question.id,
         picture: id
       }), data).then(function () {
-        _this3.loading = false;
+        _this3.setLoading(false);
 
         _this3.resetPicture();
       });
@@ -4898,7 +4906,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     resetPicture: function resetPicture() {
       var _this4 = this;
 
-      this.loading = false;
+      this.setLoading(false);
       this.picture.form.difficulty = '1';
       this.picture.form.active = 0;
       this.picture.form.image = null;
@@ -4916,7 +4924,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     submitFakeAnswer: function submitFakeAnswer() {
       var _this5 = this;
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'POST');
 
@@ -4932,7 +4940,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         map: this.question.map.id,
         question: this.question.id
       }), data).then(function () {
-        _this5.loading = false; // Check if any errors exist
+        _this5.setLoading(false); // Check if any errors exist
+
 
         if (Object.keys(_this5.$page.errors).length === 0) {
           _this5.resetFakeAnswer();
@@ -4947,7 +4956,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         return;
       }
 
-      this.loading = true;
+      this.setLoading(true);
       var data = new FormData();
       data.append('_method', 'DELETE');
       this.$inertia.post(route('question.destroy.fake-answer', {
@@ -4955,7 +4964,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         question: this.question.id,
         fakeAnswer: id
       }), data).then(function () {
-        _this6.loading = false;
+        _this6.setLoading(false);
 
         _this6.resetFakeAnswer();
       });
@@ -4964,7 +4973,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     resetFakeAnswer: function resetFakeAnswer() {
       var _this7 = this;
 
-      this.loading = false;
+      this.setLoading(false);
       this.fakeAnswer.form.callout = '';
       var errors = this.$page.errors; // will only delete the error keys from picture
 
@@ -4973,8 +4982,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           delete _this7.$page.errors[key];
         }
       });
-    } // End resetFakeAnswer()
-
+    },
+    // End resetFakeAnswer()
+    setLoading: function setLoading(bool) {
+      this.loading = bool;
+    }
   },
   // End Methods
   watch: {
@@ -30856,8 +30868,10 @@ var render = function() {
                   "map-id": _vm.question.map.id,
                   "question-id": _vm.question.id,
                   "similar-questions-ids": _vm.question.similar_question_ids,
-                  questions: _vm.question.map.questions
-                }
+                  questions: _vm.question.map.questions,
+                  loading: _vm.loading
+                },
+                on: { loading: _vm.setLoading }
               })
             ],
             1
