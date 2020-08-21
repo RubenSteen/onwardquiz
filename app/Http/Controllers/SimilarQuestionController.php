@@ -26,9 +26,34 @@ class SimilarQuestionController extends Controller
 
         $validatedData = $this->validateData($request, $map);
 
+        // Attaches the questions both ways
         $question->similar_questions()->attach($validatedData['similar_question']['id']);
+        $question->question_is_similar_to()->attach($validatedData['similar_question']['id']);
 
         return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Similar question was successfully attached!');
+    }
+
+    /**
+     * Check if the specified question is linked to the specified map.
+     * Update the specified question picture in storage for the specified question.
+     * The image cannot be edited, only the question picture data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Map  $map
+     * @param  \App\Question  $question
+     * @return \Illuminate\Http\Response
+     */
+    public function detach(Request $request, Map $map, Question $question)
+    {
+        $this->authorize('detach-similar-question');
+
+        $validatedData = $this->validateData($request, $map);
+
+        // Detaches the questions both ways
+        $question->similar_questions()->detach($validatedData['similar_question']['id']);
+        $question->question_is_similar_to()->detach($validatedData['similar_question']['id']);
+
+        return redirect()->route('question.edit', ['map' => $map->id, 'question' => $question->id])->with('success', 'Similar question was successfully detached!');
     }
 
     /**
@@ -39,16 +64,20 @@ class SimilarQuestionController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      * @return array
      */
-    private function validateData(Request $request, Map $map)
+    private function validateData(Request $request, Map $map, $detach = false)
     {
-
-        $rules = [
+       $rules = [
             'similar_question.id' => [
                 'required',
                 'integer',
-                Rule::in($map->questions->pluck('id')->toArray()),
             ],
         ];
+
+        if ($detach === true) {
+            $rules['similar_question.id'][] = Rule::in($map->similar_questions->pluck('id')->toArray());
+        } else {
+            $rules['similar_question.id'][] = Rule::in($map->questions->pluck('id')->toArray());
+        }
 
         $messages = [
             'similar_question.id.in' => 'The selected question is not part of the given map.',
