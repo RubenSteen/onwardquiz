@@ -628,21 +628,20 @@
                     </div>
                 </div>
 
-              <div class="mt-6 sm:mt-5 mb-5">
-                <div
-                    class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                >
-                  <label
-                      for="callout"
-                      class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Similar Questions
-                  </label>
+                <div class="mt-6 sm:mt-5 mb-5">
+                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        <label for="callout" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                            Similar Questions
+                        </label>
 
-                  <similar-questions :map-id="question.map.id" :question-id="question.id" :similar-questions-ids="question.similar_question_ids" :questions="question.map.questions"></similar-questions>
-
+                        <similar-questions
+                            :map-id="question.map.id"
+                            :question-id="question.id"
+                            :similar-questions-ids="question.similar_question_ids"
+                            :questions="question.map.questions"
+                        ></similar-questions>
+                    </div>
                 </div>
-              </div>
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
