@@ -83,6 +83,15 @@ Route::group(['middleware' => ['auth', 'last.activity']], function ($router) {
 
     /*
     |--------------------------------------------------------------------------
+    | Similar Question Routes
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::post('map/{map:id}/question/{question:id}/similar-question', ['as' => 'question.attach.similar-question',   'uses' => 'SimilarQuestionController@attach']);
+    Route::delete('map/{map:id}/question/{question:id}/similar-question', ['as' => 'question.detach.similar-question',   'uses' => 'SimilarQuestionController@detach']);
+
+    /*
+    |--------------------------------------------------------------------------
     | Quiz Routes
     |--------------------------------------------------------------------------
     |
