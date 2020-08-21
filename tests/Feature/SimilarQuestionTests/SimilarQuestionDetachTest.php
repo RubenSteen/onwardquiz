@@ -46,7 +46,7 @@ class SimilarQuestionDetachTest extends TestCase
         // Will look if the records are detached both ways.
         $this->assertDatabaseMissing((new SimilarQuestion)->getTable(), [
             'similar_question_id' => $data['similar_question']['id'],
-            'question_id' => $firstQuestion->id
+            'question_id' => $firstQuestion->id,
         ]);
 
         $this->assertDatabaseMissing((new SimilarQuestion)->getTable(), [
@@ -74,7 +74,7 @@ class SimilarQuestionDetachTest extends TestCase
         // Will look if the records are detached both ways.
         $this->assertDatabaseMissing((new SimilarQuestion)->getTable(), [
             'similar_question_id' => $data['similar_question']['id'],
-            'question_id' => $firstQuestion->id
+            'question_id' => $firstQuestion->id,
         ]);
 
         $this->assertDatabaseMissing((new SimilarQuestion)->getTable(), [

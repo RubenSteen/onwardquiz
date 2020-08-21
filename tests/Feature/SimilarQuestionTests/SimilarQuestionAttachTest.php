@@ -67,7 +67,7 @@ class SimilarQuestionAttachTest extends TestCase
         // Will look if the records are attached both ways.
         $this->assertDatabaseHas((new SimilarQuestion)->getTable(), [
             'similar_question_id' => $data['similar_question']['id'],
-            'question_id' => $firstQuestion->id
+            'question_id' => $firstQuestion->id,
         ]);
 
         $this->assertDatabaseHas((new SimilarQuestion)->getTable(), [

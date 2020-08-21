@@ -13,7 +13,7 @@ class SimilarQuestionController extends Controller
     /**
      * Check if the specified question is linked to the specified map.
      * Attach the given request question ID to the question
-     * And Attach the question ID to the request question ID
+     * And Attach the question ID to the request question ID.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
@@ -57,7 +57,7 @@ class SimilarQuestionController extends Controller
     }
 
     /**
-     * Checks if the given question ID is part of the map
+     * Checks if the given question ID is part of the map.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Map  $map
@@ -66,7 +66,7 @@ class SimilarQuestionController extends Controller
      */
     private function validateData(Request $request, Map $map, Question $question, $detach = false)
     {
-       $rules = [
+        $rules = [
             'similar_question.id' => [
                 'required',
                 'integer',
@@ -88,8 +88,6 @@ class SimilarQuestionController extends Controller
 
             $rules['similar_question.id'][] = Rule::notIn($question->similar_questions->pluck('id'));
         }
-
-
 
         return Validator::make($request->all(), $rules, $messages)->validate();
     }
