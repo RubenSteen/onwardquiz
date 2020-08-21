@@ -628,6 +628,23 @@
                     </div>
                 </div>
 
+                <div class="mt-6 sm:mt-5 mb-5">
+                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        <label for="callout" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                            Similar Questions
+                        </label>
+
+                        <similar-questions
+                            :map-id="question.map.id"
+                            :question-id="question.id"
+                            :similar-questions-ids="question.similar_question_ids"
+                            :questions="question.map.questions"
+                            :loading="loading"
+                            v-on:loading="setLoading"
+                        ></similar-questions>
+                    </div>
+                </div>
+
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
                         Fake Answers
@@ -790,11 +807,13 @@
 </template>
 
 <script>
+import SimilarQuestions from './Components/Similar-Questions';
 import Layout from '../Shared/Layout';
 
 export default {
     components: {
         Layout,
+        SimilarQuestions,
     }, // End Components
     props: {
         question: Object,
@@ -830,7 +849,7 @@ export default {
     }, // End Data
     methods: {
         updateQuestion() {
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -848,7 +867,7 @@ export default {
             this.$inertia
                 .post(route('question.update', { map: this.question.map.id, question: this.question.id }), data)
                 .then(() => {
-                    this.loading = false;
+                    this.setLoading(false);
                     this.form.template = null;
                 });
         }, // End updateQuestion()
@@ -889,7 +908,7 @@ export default {
         }, // End pictureModal()
 
         submitPicture() {
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -921,7 +940,7 @@ export default {
             }
 
             this.$inertia.post(submitRoute, data).then(() => {
-                this.loading = false;
+                this.setLoading(false);
 
                 // Check if any errors exist
                 if (Object.keys(this.$page.errors).length === 0) {
@@ -935,7 +954,7 @@ export default {
                 return;
             }
 
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -951,13 +970,13 @@ export default {
                     data
                 )
                 .then(() => {
-                    this.loading = false;
+                    this.setLoading(false);
                     this.resetPicture();
                 });
         }, // End deletePicture()
 
         resetPicture() {
-            this.loading = false;
+            this.setLoading(false);
             this.picture.form.difficulty = '1';
             this.picture.form.active = 0;
             this.picture.form.image = null;
@@ -974,7 +993,7 @@ export default {
         }, // End resetPicture()
 
         submitFakeAnswer() {
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -990,7 +1009,7 @@ export default {
                     data
                 )
                 .then(() => {
-                    this.loading = false;
+                    this.setLoading(false);
 
                     // Check if any errors exist
                     if (Object.keys(this.$page.errors).length === 0) {
@@ -1004,7 +1023,7 @@ export default {
                 return;
             }
 
-            this.loading = true;
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -1020,13 +1039,13 @@ export default {
                     data
                 )
                 .then(() => {
-                    this.loading = false;
+                    this.setLoading(false);
                     this.resetFakeAnswer();
                 });
         }, // End deletePicture()
 
         resetFakeAnswer() {
-            this.loading = false;
+            this.setLoading(false);
             this.fakeAnswer.form.callout = '';
 
             var errors = this.$page.errors;
@@ -1037,6 +1056,9 @@ export default {
                 }
             });
         }, // End resetFakeAnswer()
+        setLoading(bool) {
+            this.loading = bool;
+        },
     }, // End Methods
     watch: {
         'picture.modal': function (newVal, oldVal) {

@@ -25,8 +25,6 @@ class QuestionFakeAnswerStoreTest extends TestCase
         $this->post(route('question.store.fake-answer', ['map' => $question->map->id, 'question' => $question->id]), $data)->assertForbidden();
     }
 
-    private $image_max_template_size = 15000;
-
     /** @test */
     public function a_superadmin_can_create_a_question_fake_answer()
     {

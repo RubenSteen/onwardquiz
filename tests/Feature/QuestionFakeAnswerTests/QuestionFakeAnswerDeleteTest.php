@@ -23,8 +23,6 @@ class QuestionFakeAnswerDeleteTest extends TestCase
         $this->delete(route('question.destroy.fake-answer', ['map' => $fakeAnswer->question->map->id, 'question' => $fakeAnswer->question->id, 'fakeAnswer' => $fakeAnswer->id]))->assertForbidden();
     }
 
-    private $image_max_template_size = 15000;
-
     /** @test */
     public function a_superadmin_can_delete_a_question_fake_answer()
     {

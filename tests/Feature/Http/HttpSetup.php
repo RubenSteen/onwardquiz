@@ -118,6 +118,14 @@ class HttpSetup extends TestCase
                 'url' => 'map/{map}/question/{question}/{picture}/picture',
             ],
             [
+                'method' => 'DELETE',
+                'url' => 'map/{map}/question/{question}/similar-question',
+            ],
+            [
+                'method' => 'POST',
+                'url' => 'map/{map}/question/{question}/similar-question',
+            ],
+            [
                 'method' => 'POST',
                 'url' => 'map/{map}/question/{question}/fake-answer',
             ],

@@ -122,6 +122,7 @@ class QuestionController extends Controller
                 'updated_at' => $question->template->updated_at,
             ],
             'pictures' => [],
+            'similar_question_ids' => [],
             'fakeAnswers' => [],
             'map' => [
                 'id' => $map->id,
@@ -131,6 +132,7 @@ class QuestionController extends Controller
                 'deleted_at' => $map->deleted_at,
                 'created_at' => $map->created_at,
                 'updated_at' => $map->updated_at,
+                'questions' => [],
                 'template' => [
                     'id' => $map->template->id,
                     'name' => $map->template->name,
@@ -141,6 +143,17 @@ class QuestionController extends Controller
                 ],
             ],
         ];
+
+        foreach ($question->similar_questions as $similar_question) {
+            $data['similar_question_ids'][] = $similar_question->id;
+        }
+
+        foreach ($map->questions as $map_question) {
+            array_push($data['map']['questions'], [
+                'id' => $map_question->id,
+                'callout' => $map_question->callout,
+            ]);
+        }
 
         foreach ($question->pictures as $picture) {
             array_push($data['pictures'], [

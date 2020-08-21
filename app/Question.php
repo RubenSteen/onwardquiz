@@ -43,4 +43,14 @@ class Question extends Model
     {
         return $this->hasMany('App\QuestionFakeAnswer');
     }
+
+    public function similar_questions()
+    {
+        return $this->belongsToMany('App\Question', 'similar_questions', 'question_id', 'similar_question_id');
+    }
+
+    public function question_is_similar_to()
+    {
+        return $this->belongsToMany('App\Question', 'similar_questions', 'similar_question_id', 'question_id');
+    }
 }
