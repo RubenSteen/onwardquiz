@@ -99,7 +99,7 @@ export default {
     }, // End Data
     methods: {
         submit() {
-          this.setLoading(true);
+            this.setLoading(true);
 
             var data = new FormData();
 
@@ -110,7 +110,7 @@ export default {
             this.$inertia
                 .post(route('question.attach.similar-question', { map: this.mapId, question: this.questionId }), data)
                 .then(() => {
-                  this.setLoading(false);
+                    this.setLoading(false);
                     this.form.id = '';
                 });
         }, // End submit()
@@ -127,13 +127,13 @@ export default {
             this.$inertia
                 .post(route('question.detach.similar-question', { map: this.mapId, question: this.questionId }), data)
                 .then(() => {
-                  this.setLoading(false);
+                    this.setLoading(false);
                 });
         }, // End submit()
 
-      setLoading(bool) {
-        this.$emit('loading', bool) // Emits event to the parent
-      }
+        setLoading(bool) {
+            this.$emit('loading', bool); // Emits event to the parent
+        },
     }, // End Methods
 };
 </script>
