@@ -55,6 +55,5 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('attach-similar-question', 'App\Policies\SimilarQuestionPolicy@attach');
         Gate::define('detach-similar-question', 'App\Policies\SimilarQuestionPolicy@detach');
-
     }
 }
