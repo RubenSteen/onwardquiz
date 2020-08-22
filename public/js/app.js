@@ -3660,6 +3660,675 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Question-Pictures-Modal",
+  props: {
+    mapId: Number,
+    questionId: Number,
+    showModal: Boolean,
+    givenPicture: {
+      type: Object,
+      "default": null
+    }
+  },
+  // End Props
+  data: function data() {
+    return {
+      form: {
+        id: null,
+        difficulty: '1',
+        active: 0,
+        image: null
+      }
+    };
+  },
+  // End Data
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.setLoading(true);
+      var data = new FormData();
+      var submitRoute = '';
+
+      if (this.form.id != null) {
+        submitRoute = route('question.update.picture', {
+          map: this.mapId,
+          question: this.questionId,
+          picture: this.form.id
+        });
+        data.append('_method', 'PATCH');
+      } else {
+        submitRoute = route('question.store.picture', {
+          map: this.mapId,
+          question: this.questionId
+        });
+        data.append('_method', 'POST');
+      }
+
+      for (var _i = 0, _Object$entries = Object.entries(this.form); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            field = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        if (field == 'id' && this.form.id == null) {
+          continue;
+        }
+
+        if (field == 'image' && this.form.id != null) {
+          continue;
+        }
+
+        data.append('picture[' + field + ']', this.form[field]);
+      }
+
+      this.$inertia.post(submitRoute, data).then(function () {
+        _this.setLoading(false); // Check if any errors exist
+
+
+        if (Object.keys(_this.$page.errors).length === 0) {
+          _this.reset();
+        }
+      });
+    },
+    // End submitPicture()
+    remove: function remove(id) {
+      var _this2 = this;
+
+      if (!confirm('Are you sure you want to delete this picture from the question?')) {
+        return;
+      }
+
+      this.setLoading(true);
+      var data = new FormData();
+      data.append('_method', 'DELETE');
+      this.$inertia.post(route('question.destroy.picture', {
+        map: this.mapId,
+        question: this.questionId,
+        picture: id
+      }), data).then(function () {
+        _this2.setLoading(false);
+
+        _this2.reset();
+      });
+    },
+    // End deletePicture()
+    reset: function reset() {
+      var _this3 = this;
+
+      this.setLoading(false);
+      this.form.difficulty = '1';
+      this.form.active = 0;
+      this.form.image = null;
+      this.form.id = null;
+      this.setShowModal(false);
+      var errors = this.$page.errors; // will only delete the error keys from picture
+
+      Object.keys(errors).forEach(function (key) {
+        if (key.match('picture')) {
+          delete _this3.$page.errors[key];
+        }
+      });
+    },
+    // End reset()
+    getFileFromPictureInput: function getFileFromPictureInput(event) {
+      if (typeof event.target.files[0] !== 'undefined') {
+        this.form.image = event.target.files[0];
+      }
+    },
+    //End getFileFromPictureInput()
+    readableBytes: function readableBytes(bytes) {
+      var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+          sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
+    },
+    // End readableBytes()
+    setShowModal: function setShowModal(bool) {
+      this.$emit('modal', bool); // Emits event to the parent
+    },
+    // End setShow()
+    setLoading: function setLoading(bool) {
+      this.$emit('loading', bool); // Emits event to the parent
+    } // End setLoading()
+
+  },
+  // End method
+  watch: {
+    'givenPicture': function givenPicture(newVal) {
+      if (newVal !== null) {
+        this.form.id = this.givenPicture.id;
+        this.form.difficulty = this.givenPicture.difficulty;
+        this.form.active = this.givenPicture.active;
+        this.form.image = this.givenPicture.image.location;
+      }
+    },
+    'showModal': function showModal(newVal) {
+      if (newVal == false) {
+        this.reset();
+      }
+    },
+    'form.active': function formActive(newVal) {
+      if (newVal === true) {
+        this.form.active = 1;
+      } else if (newVal === false) {
+        this.form.active = 0;
+      }
+    }
+  } // End Watch
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Pages_Question_Components_Question_Pictures_Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Question/Components/Question-Pictures-Modal */ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Question-Pictures",
+  components: {
+    QuestionPicturesModal: _Pages_Question_Components_Question_Pictures_Modal__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  // End Components
+  props: {
+    showModal: Boolean,
+    pictures: Array,
+    mapId: Number,
+    questionId: Number
+  },
+  // End Props
+  data: function data() {
+    return {
+      modal: false,
+      selectPicture: null
+    };
+  },
+  // End Data
+  methods: {
+    setShowModal: function setShowModal(bool) {
+      if (bool === false) {
+        this.selectPicture = null;
+      }
+
+      this.$emit('showPictureModal', bool); // Emits event to the parent
+    },
+    // End setShow()
+    setLoading: function setLoading(bool) {
+      this.$emit('loading', bool); // Emits event to the parent
+    },
+    // End setLoading()
+    readableBytes: function readableBytes(bytes) {
+      var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+          sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
+    },
+    // End readableBytes()
+    created: function created() {
+      this.$parent.$on('pictureModal', console.log('hello'));
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Similar-Questions.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Similar-Questions.vue?vue&type=script&lang=js& ***!
@@ -4074,779 +4743,342 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Question_Components_Similar_Questions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Question/Components/Similar-Questions */ "./resources/js/Pages/Question/Components/Similar-Questions.vue");
 /* harmony import */ var _Pages_Question_Components_Fake_Answers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Question/Components/Fake-Answers */ "./resources/js/Pages/Question/Components/Fake-Answers.vue");
-/* harmony import */ var _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Shared/Layout */ "./resources/js/Pages/Shared/Layout.vue");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+/* harmony import */ var _Pages_Question_Components_Question_Pictures__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Question/Components/Question-Pictures */ "./resources/js/Pages/Question/Components/Question-Pictures.vue");
+/* harmony import */ var _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/Shared/Layout */ "./resources/js/Pages/Shared/Layout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Layout: _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Layout: _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_3__["default"],
     SimilarQuestions: _Pages_Question_Components_Similar_Questions__WEBPACK_IMPORTED_MODULE_0__["default"],
-    FakeAnswers: _Pages_Question_Components_Fake_Answers__WEBPACK_IMPORTED_MODULE_1__["default"]
+    FakeAnswers: _Pages_Question_Components_Fake_Answers__WEBPACK_IMPORTED_MODULE_1__["default"],
+    QuestionPictures: _Pages_Question_Components_Question_Pictures__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   // End Components
   props: {
     question: Object
   },
   // End Props
-  remember: 'form',
   data: function data() {
     return {
       form: {
@@ -4855,16 +5087,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         template: null
       },
       loading: false,
-      // Everything that has to do with creating a new image for the question
-      picture: {
-        form: {
-          id: null,
-          difficulty: '1',
-          active: 0,
-          image: null
-        },
-        modal: false
-      }
+      pictureModal: false
     };
   },
   // End Data
@@ -4901,146 +5124,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
     },
     //End getFileFromInput()
-    getFileFromPictureInput: function getFileFromPictureInput(event) {
-      if (typeof event.target.files[0] !== 'undefined') {
-        this.picture.form.image = event.target.files[0];
-      }
-    },
-    //End getFileFromPictureInput()
     readableBytes: function readableBytes(bytes) {
       var i = Math.floor(Math.log(bytes) / Math.log(1024)),
           sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
       return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
     },
     // End readableBytes()
-    pictureModal: function pictureModal(state) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      if (state == 'close') {
-        this.picture.modal = false;
-        return;
-      }
-
-      this.picture.modal = true;
-
-      if (data !== null) {
-        this.picture.form.id = data.id;
-        this.picture.form.difficulty = data.difficulty;
-        this.picture.form.active = data.active;
-        this.picture.form.image = data.image.location;
-      }
-    },
-    // End pictureModal()
-    submitPicture: function submitPicture() {
-      var _this2 = this;
-
-      this.setLoading(true);
-      var data = new FormData();
-      var submitRoute = '';
-
-      if (this.picture.form.id != null) {
-        submitRoute = route('question.update.picture', {
-          map: this.question.map.id,
-          question: this.question.id,
-          picture: this.picture.form.id
-        });
-        data.append('_method', 'PATCH');
-      } else {
-        submitRoute = route('question.store.picture', {
-          map: this.question.map.id,
-          question: this.question.id
-        });
-        data.append('_method', 'POST');
-      }
-
-      for (var _i = 0, _Object$entries = Object.entries(this.picture.form); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            field = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
-
-        if (field == 'id' && this.picture.form.id == null) {
-          continue;
-        }
-
-        if (field == 'image' && this.picture.form.id != null) {
-          continue;
-        }
-
-        data.append('picture[' + field + ']', this.picture.form[field]);
-      }
-
-      this.$inertia.post(submitRoute, data).then(function () {
-        _this2.setLoading(false); // Check if any errors exist
-
-
-        if (Object.keys(_this2.$page.errors).length === 0) {
-          _this2.resetPicture();
-        }
-      });
-    },
-    // End submitPicture()
-    deletePicture: function deletePicture(id) {
-      var _this3 = this;
-
-      if (!confirm('Are you sure you want to delete this picture from the question?')) {
-        return;
-      }
-
-      this.setLoading(true);
-      var data = new FormData();
-      data.append('_method', 'DELETE');
-      this.$inertia.post(route('question.destroy.picture', {
-        map: this.question.map.id,
-        question: this.question.id,
-        picture: id
-      }), data).then(function () {
-        _this3.setLoading(false);
-
-        _this3.resetPicture();
-      });
-    },
-    // End deletePicture()
-    resetPicture: function resetPicture() {
-      var _this4 = this;
-
-      this.setLoading(false);
-      this.picture.form.difficulty = '1';
-      this.picture.form.active = 0;
-      this.picture.form.image = null;
-      this.picture.form.id = null;
-      this.pictureModal('close');
-      var errors = this.$page.errors; // will only delete the error keys from picture
-
-      Object.keys(errors).forEach(function (key) {
-        if (key.match('picture')) {
-          delete _this4.$page.errors[key];
-        }
-      });
-    },
-    // End resetPicture()
     setLoading: function setLoading(bool) {
       this.loading = bool;
+    },
+    setPictureModal: function setPictureModal(bool) {
+      this.pictureModal = bool;
     }
   },
   // End Methods
   watch: {
-    'picture.modal': function pictureModal(newVal, oldVal) {
-      if (newVal == false) {
-        this.resetPicture();
-      }
-    },
     'form.published': function formPublished(newVal) {
       if (newVal === true) {
         this.form.published = 1;
       } else if (newVal === false) {
         this.form.published = 0;
-      }
-    },
-    'picture.form.active': function pictureFormActive(newVal) {
-      if (newVal === true) {
-        this.picture.form.active = 1;
-      } else if (newVal === false) {
-        this.picture.form.active = 0;
       }
     }
   } // End Watch
@@ -28696,6 +28799,1004 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.showModal,
+          expression: "showModal"
+        }
+      ],
+      staticClass:
+        "fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-10"
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "fixed inset-0 transition-opacity",
+          attrs: {
+            "x-transition:enter": "ease-out duration-300",
+            "x-transition:enter-start": "opacity-0",
+            "x-transition:enter-end": "opacity-100",
+            "x-transition:leave": "ease-in duration-200",
+            "x-transition:leave-start": "opacity-100",
+            "x-transition:leave-end": "opacity-0"
+          },
+          on: {
+            click: function($event) {
+              return _vm.setShowModal(false)
+            }
+          }
+        },
+        [_c("div", { staticClass: "absolute inset-0 bg-gray-500 opacity-75" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showModal,
+              expression: "showModal"
+            }
+          ],
+          staticClass:
+            "relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-6xl sm:w-full sm:p-6",
+          attrs: {
+            "x-transition:enter": "ease-out duration-300",
+            "x-transition:enter-start":
+              "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+            "x-transition:enter-end": "opacity-100 translate-y-0 sm:scale-100",
+            "x-transition:leave": "ease-in duration-200",
+            "x-transition:leave-start":
+              "opacity-100 translate-y-0 sm:scale-100",
+            "x-transition:leave-end":
+              "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "hidden sm:block absolute top-0 right-0 pt-4 pr-4" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setShowModal(false)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-6 w-6",
+                      attrs: {
+                        stroke: "currentColor",
+                        fill: "none",
+                        viewBox: "0 0 24 24"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d: "M6 18L18 6M6 6l12 12"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "sm:flex sm:items-start" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10"
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-6 w-6 text-indigo-600",
+                    attrs: {
+                      stroke: "currentColor",
+                      fill: "none",
+                      viewBox: "0 0 24 24"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M4 16L8.58579 11.4142C9.36683 10.6332 10.6332 10.6332 11.4142 11.4142L16 16M14 14L15.5858 12.4142C16.3668 11.6332 17.6332 11.6332 18.4142 12.4142L20 14M14 8H14.01M6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20Z",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left" },
+              [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "text-lg leading-6 font-medium text-gray-900"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          _vm.form.id !== null
+                            ? "Editing a Picture"
+                            : "Adding a Picture"
+                        ) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-2" }, [
+                  _c("div", { staticClass: "w-full" }, [
+                    _c("div", [
+                      _c("div", [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mt-6 sm:mt-5" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass:
+                                    "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                                  attrs: { for: "country" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                            Difficulty\n                                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "mt-1 sm:mt-0 sm:col-span-2" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                                    },
+                                    [
+                                      _c(
+                                        "select",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.difficulty,
+                                              expression:
+                                                "\n                                                                                        form.difficulty\n                                                                                    "
+                                            }
+                                          ],
+                                          staticClass:
+                                            "block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                                          attrs: { id: "country" },
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "difficulty",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "1" } },
+                                            [_vm._v("1 (Easy)")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "2" } },
+                                            [_vm._v("2 (Normal)")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "3" } },
+                                            [_vm._v("3 (Medium)")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "4" } },
+                                            [_vm._v("4 (A bit unfair)")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "5" } },
+                                            [_vm._v("5 (Hard)")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(
+                                    _vm.$page.errors["picture.difficulty"],
+                                    function(error, index) {
+                                      return _c(
+                                        "p",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value:
+                                                _vm.$page.errors[
+                                                  "picture.difficulty"
+                                                ],
+                                              expression:
+                                                "\n                                                                                    $page.errors[\n                                                                                        'picture.difficulty'\n                                                                                    ]\n                                                                                "
+                                            }
+                                          ],
+                                          key: index,
+                                          staticClass:
+                                            "mt-2 text-xs text-red-600"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(error) +
+                                              "\n                                            "
+                                          )
+                                        ]
+                                      )
+                                    }
+                                  )
+                                ],
+                                2
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass:
+                                    "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                                  attrs: { for: "country" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                            Active\n                                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "mt-4 sm:mt-0 sm:col-span-2" },
+                                [
+                                  _c("div", { staticClass: "max-w-lg" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "mt-4" },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "relative flex items-start"
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "flex items-center h-5"
+                                              },
+                                              [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.form.active,
+                                                      expression: "form.active"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
+                                                  attrs: {
+                                                    id: "offers",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.active
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form.active,
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form.active
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a = _vm.form.active,
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form,
+                                                              "active",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form,
+                                                              "active",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "active",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(1)
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(
+                                          _vm.$page.errors["picture.active"],
+                                          function(error, index) {
+                                            return _c(
+                                              "p",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value:
+                                                      _vm.$page.errors[
+                                                        "picture.active"
+                                                      ],
+                                                    expression:
+                                                      "\n                                                                                            $page.errors[\n                                                                                                'picture.active'\n                                                                                            ]\n                                                                                        "
+                                                  }
+                                                ],
+                                                key: index,
+                                                staticClass:
+                                                  "mt-2 text-xs text-red-600"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                        " +
+                                                    _vm._s(error) +
+                                                    "\n                                                    "
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      ],
+                                      2
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass:
+                                    "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                                  attrs: { for: "country" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                            Picture\n                                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "mt-4 sm:mt-0 sm:col-span-2" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "flex items-center flex-col"
+                                    },
+                                    [
+                                      _vm.form.id == null
+                                        ? _c("div", { staticClass: "w-full" }, [
+                                            _c(
+                                              "div",
+                                              { staticClass: "w-full" },
+                                              [
+                                                _c("input", {
+                                                  ref: "picture",
+                                                  staticStyle: {
+                                                    display: "none"
+                                                  },
+                                                  attrs: { type: "file" },
+                                                  on: {
+                                                    change:
+                                                      _vm.getFileFromPictureInput
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "rounded-md shadow-sm"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
+                                                        class: {
+                                                          "border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red":
+                                                            _vm.$page.errors
+                                                              .image
+                                                        },
+                                                        attrs: {
+                                                          type: "button"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$refs.picture.click()
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                                                                Browse\n                                                                                            "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "mt-4 w-full" },
+                                              [
+                                                _vm._l(
+                                                  _vm.$page.errors[
+                                                    "picture.image"
+                                                  ],
+                                                  function(error, index) {
+                                                    return _c(
+                                                      "p",
+                                                      {
+                                                        directives: [
+                                                          {
+                                                            name: "show",
+                                                            rawName: "v-show",
+                                                            value:
+                                                              _vm.$page.errors[
+                                                                "picture.image"
+                                                              ],
+                                                            expression:
+                                                              "\n                                                                                                $page.errors[\n                                                                                                    'picture.image'\n                                                                                                ]\n                                                                                            "
+                                                          }
+                                                        ],
+                                                        key: index,
+                                                        staticClass:
+                                                          "mt-2 text-xs text-red-600"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                            " +
+                                                            _vm._s(error) +
+                                                            "\n                                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                _vm._v(" "),
+                                                _vm.form.image
+                                                  ? _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "relative text-gray-500 text-xs border rounded-md w-auto box-border p-4",
+                                                        class: {
+                                                          "border-red-500 text-red-900 placeholder-red-300":
+                                                            _vm.$page.errors
+                                                              .image,
+                                                          "border-indigo-500": !_vm
+                                                            .$page.errors.image
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "hidden sm:block absolute top-0 right-0 pt-4 pr-4"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "button",
+                                                              {
+                                                                staticClass:
+                                                                  "text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150",
+                                                                attrs: {
+                                                                  type: "button"
+                                                                },
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.form.image = null
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "svg",
+                                                                  {
+                                                                    staticClass:
+                                                                      "h-6 w-6",
+                                                                    attrs: {
+                                                                      stroke:
+                                                                        "currentColor",
+                                                                      fill:
+                                                                        "none",
+                                                                      viewBox:
+                                                                        "0 0 24 24"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c("path", {
+                                                                      attrs: {
+                                                                        "stroke-linecap":
+                                                                          "round",
+                                                                        "stroke-linejoin":
+                                                                          "round",
+                                                                        "stroke-width":
+                                                                          "2",
+                                                                        d:
+                                                                          "M6 18L18 6M6 6l12 12"
+                                                                      }
+                                                                    })
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(
+                                                          "\n                                                            File to upload :\n                                                            " +
+                                                            _vm._s(
+                                                              _vm.form.image
+                                                                .name
+                                                            )
+                                                        ),
+                                                        _c("br"),
+                                                        _vm._v(
+                                                          "\n                                                            Type :\n                                                            " +
+                                                            _vm._s(
+                                                              _vm.form.image
+                                                                .type
+                                                            )
+                                                        ),
+                                                        _c("br"),
+                                                        _vm._v(
+                                                          "\n                                                            Size :\n                                                            " +
+                                                            _vm._s(
+                                                              _vm.readableBytes(
+                                                                _vm.form.image
+                                                                  .size
+                                                              )
+                                                            ) +
+                                                            "\n                                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _vm._e()
+                                              ],
+                                              2
+                                            )
+                                          ])
+                                        : _c("div", { staticClass: "w-full" }, [
+                                            _c(
+                                              "div",
+                                              { staticClass: "w-full" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "px-2 py-2" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "flex justify-center self-center",
+                                                        attrs: {
+                                                          href: _vm.form.image,
+                                                          target: "_blank"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          staticClass:
+                                                            "rounded-lg w-auto",
+                                                          attrs: {
+                                                            src: _vm.form.image,
+                                                            alt: _vm.form.id
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mt-5 sm:mt-4 sm:flex sm:flex-row-reverse" },
+            [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                      attrs: { type: "button" },
+                      on: { click: _vm.submit }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                                    " +
+                          _vm._s(_vm.form.id !== null ? "Update" : "Create") +
+                          "\n                                                "
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.setShowModal(false)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                                    Go back\n                                                "
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.form.id != null
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "mt-3 mr-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.remove(_vm.form.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                                    Delete\n                                                "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "p",
+        { staticClass: "mt-1 max-w-2xl text-sm leading-5 text-gray-500" },
+        [
+          _vm._v(
+            "\n                                        This information will be displayed publicly\n                                        so be careful what you write down...\n                                    "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ml-3 text-sm leading-5" }, [
+      _c("p", { staticClass: "text-gray-500" }, [
+        _vm._v(
+          "\n                                                                Make the picture\n                                                                active to be\n                                                                included in the quiz\n                                                            "
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "mt-1 sm:mt-0 sm:col-span-2" },
+    [
+      _c(
+        "div",
+        { staticClass: "w-full grid grid-cols-3 grid-flow-row gap-2" },
+        _vm._l(_vm.pictures, function(picture, index) {
+          return _c(
+            "div",
+            {
+              key: index,
+              staticClass:
+                "bg-white overflow-hidden overflow-hidden shadow rounded-lg"
+            },
+            [
+              _c("div", { staticClass: "px-2 py-2 h-64" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-span-4 flex justify-center self-center h-64"
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "rounded-lg w-auto",
+                      attrs: {
+                        src: picture.image.location,
+                        alt: picture.image.name
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.setShowModal(true)
+                          _vm.selectPicture = picture
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "mt-4 border-t border-gray-200 px-4 py-4 sm:px-6 text-xs text-gray-800 flex flex-col items-center"
+                },
+                [
+                  _c("span", [_vm._v("Name : " + _vm._s(picture.image.name))]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _vm._v(
+                      "Size : " + _vm._s(_vm.readableBytes(picture.image.size))
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Type : " + _vm._s(picture.image.type))])
+                ]
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("question-pictures-modal", {
+        attrs: {
+          "map-id": _vm.mapId,
+          "question-id": _vm.questionId,
+          "show-modal": _vm.showModal,
+          "given-picture": _vm.selectPicture
+        },
+        on: { modal: _vm.setShowModal, loading: _vm.setLoading }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Similar-Questions.vue?vue&type=template&id=18607942&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Question/Components/Similar-Questions.vue?vue&type=template&id=18607942& ***!
@@ -29775,7 +30876,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      return _vm.pictureModal("open")
+                                      return _vm.setPictureModal(true)
                                     }
                                   }
                                 },
@@ -29790,1270 +30891,20 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-full grid grid-cols-3 grid-flow-row gap-2"
-                          },
-                          _vm._l(_vm.question.pictures, function(
-                            picture,
-                            index
-                          ) {
-                            return _c(
-                              "div",
-                              {
-                                key: index,
-                                staticClass:
-                                  "bg-white overflow-hidden overflow-hidden shadow rounded-lg"
-                              },
-                              [
-                                _c("div", { staticClass: "px-2 py-2 h-64" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-span-4 flex justify-center self-center h-64"
-                                    },
-                                    [
-                                      _c("img", {
-                                        staticClass: "rounded-lg w-auto",
-                                        attrs: {
-                                          src: picture.image.location,
-                                          alt: picture.image.name
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.pictureModal(
-                                              "open",
-                                              picture
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-4 border-t border-gray-200 px-4 py-4 sm:px-6 text-xs text-gray-800 flex flex-col items-center"
-                                  },
-                                  [
-                                    _c("span", [
-                                      _vm._v(
-                                        "Name : " + _vm._s(picture.image.name)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v(
-                                        "Size : " +
-                                          _vm._s(
-                                            _vm.readableBytes(
-                                              picture.image.size
-                                            )
-                                          )
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v(
-                                        "Type : " + _vm._s(picture.image.type)
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.picture.modal,
-                              expression: "picture.modal"
-                            }
-                          ],
-                          staticClass:
-                            "fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-10"
+                      _c("question-pictures", {
+                        attrs: {
+                          "show-modal": _vm.pictureModal,
+                          pictures: _vm.question.pictures,
+                          "map-id": _vm.question.map.id,
+                          "question-id": _vm.question.id
                         },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "fixed inset-0 transition-opacity",
-                              attrs: {
-                                "x-transition:enter": "ease-out duration-300",
-                                "x-transition:enter-start": "opacity-0",
-                                "x-transition:enter-end": "opacity-100",
-                                "x-transition:leave": "ease-in duration-200",
-                                "x-transition:leave-start": "opacity-100",
-                                "x-transition:leave-end": "opacity-0"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.pictureModal("close")
-                                }
-                              }
-                            },
-                            [
-                              _c("div", {
-                                staticClass:
-                                  "absolute inset-0 bg-gray-500 opacity-75"
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.picture.modal,
-                                  expression: "picture.modal"
-                                }
-                              ],
-                              staticClass:
-                                "relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-6xl sm:w-full sm:p-6",
-                              attrs: {
-                                "x-transition:enter": "ease-out duration-300",
-                                "x-transition:enter-start":
-                                  "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
-                                "x-transition:enter-end":
-                                  "opacity-100 translate-y-0 sm:scale-100",
-                                "x-transition:leave": "ease-in duration-200",
-                                "x-transition:leave-start":
-                                  "opacity-100 translate-y-0 sm:scale-100",
-                                "x-transition:leave-end":
-                                  "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "hidden sm:block absolute top-0 right-0 pt-4 pr-4"
-                                },
-                                [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.pictureModal("close")
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "svg",
-                                        {
-                                          staticClass: "h-6 w-6",
-                                          attrs: {
-                                            stroke: "currentColor",
-                                            fill: "none",
-                                            viewBox: "0 0 24 24"
-                                          }
-                                        },
-                                        [
-                                          _c("path", {
-                                            attrs: {
-                                              "stroke-linecap": "round",
-                                              "stroke-linejoin": "round",
-                                              "stroke-width": "2",
-                                              d: "M6 18L18 6M6 6l12 12"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "sm:flex sm:items-start" },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10"
-                                    },
-                                    [
-                                      _c(
-                                        "svg",
-                                        {
-                                          staticClass:
-                                            "h-6 w-6 text-indigo-600",
-                                          attrs: {
-                                            stroke: "currentColor",
-                                            fill: "none",
-                                            viewBox: "0 0 24 24"
-                                          }
-                                        },
-                                        [
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M4 16L8.58579 11.4142C9.36683 10.6332 10.6332 10.6332 11.4142 11.4142L16 16M14 14L15.5858 12.4142C16.3668 11.6332 17.6332 11.6332 18.4142 12.4142L20 14M14 8H14.01M6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20Z",
-                                              "stroke-width": "2",
-                                              "stroke-linecap": "round",
-                                              "stroke-linejoin": "round"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
-                                    },
-                                    [
-                                      _c(
-                                        "h3",
-                                        {
-                                          staticClass:
-                                            "text-lg leading-6 font-medium text-gray-900"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    " +
-                                              _vm._s(
-                                                _vm.picture.form.id !== null
-                                                  ? "Editing a Picture"
-                                                  : "Adding a Picture"
-                                              ) +
-                                              "\n                                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mt-2" }, [
-                                        _c("div", { staticClass: "w-full" }, [
-                                          _c("div", [
-                                            _c("div", [
-                                              _c("div", [
-                                                _c(
-                                                  "p",
-                                                  {
-                                                    staticClass:
-                                                      "mt-1 max-w-2xl text-sm leading-5 text-gray-500"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                                                        This information will be displayed publicly\n                                                                        so be careful what you write down...\n                                                                    "
-                                                    )
-                                                  ]
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "mt-6 sm:mt-5" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
-                                                          attrs: {
-                                                            for: "country"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                                            Difficulty\n                                                                        "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "mt-1 sm:mt-0 sm:col-span-2"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "max-w-lg rounded-md shadow-sm sm:max-w-xs"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "select",
-                                                                {
-                                                                  directives: [
-                                                                    {
-                                                                      name:
-                                                                        "model",
-                                                                      rawName:
-                                                                        "v-model",
-                                                                      value:
-                                                                        _vm
-                                                                          .picture
-                                                                          .form
-                                                                          .difficulty,
-                                                                      expression:
-                                                                        "\n                                                                                        picture.form.difficulty\n                                                                                    "
-                                                                    }
-                                                                  ],
-                                                                  staticClass:
-                                                                    "block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                                                                  attrs: {
-                                                                    id:
-                                                                      "country"
-                                                                  },
-                                                                  on: {
-                                                                    change: function(
-                                                                      $event
-                                                                    ) {
-                                                                      var $$selectedVal = Array.prototype.filter
-                                                                        .call(
-                                                                          $event
-                                                                            .target
-                                                                            .options,
-                                                                          function(
-                                                                            o
-                                                                          ) {
-                                                                            return o.selected
-                                                                          }
-                                                                        )
-                                                                        .map(
-                                                                          function(
-                                                                            o
-                                                                          ) {
-                                                                            var val =
-                                                                              "_value" in
-                                                                              o
-                                                                                ? o._value
-                                                                                : o.value
-                                                                            return val
-                                                                          }
-                                                                        )
-                                                                      _vm.$set(
-                                                                        _vm
-                                                                          .picture
-                                                                          .form,
-                                                                        "difficulty",
-                                                                        $event
-                                                                          .target
-                                                                          .multiple
-                                                                          ? $$selectedVal
-                                                                          : $$selectedVal[0]
-                                                                      )
-                                                                    }
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "option",
-                                                                    {
-                                                                      attrs: {
-                                                                        value:
-                                                                          "1"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "1 (Easy)"
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "option",
-                                                                    {
-                                                                      attrs: {
-                                                                        value:
-                                                                          "2"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "2 (Normal)"
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "option",
-                                                                    {
-                                                                      attrs: {
-                                                                        value:
-                                                                          "3"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "3 (Medium)"
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "option",
-                                                                    {
-                                                                      attrs: {
-                                                                        value:
-                                                                          "4"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "4 (A bit unfair)"
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "option",
-                                                                    {
-                                                                      attrs: {
-                                                                        value:
-                                                                          "5"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "5 (Hard)"
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _vm._l(
-                                                            _vm.$page.errors[
-                                                              "picture.difficulty"
-                                                            ],
-                                                            function(
-                                                              error,
-                                                              index
-                                                            ) {
-                                                              return _c(
-                                                                "p",
-                                                                {
-                                                                  directives: [
-                                                                    {
-                                                                      name:
-                                                                        "show",
-                                                                      rawName:
-                                                                        "v-show",
-                                                                      value:
-                                                                        _vm
-                                                                          .$page
-                                                                          .errors[
-                                                                          "picture.difficulty"
-                                                                        ],
-                                                                      expression:
-                                                                        "\n                                                                                    $page.errors[\n                                                                                        'picture.difficulty'\n                                                                                    ]\n                                                                                "
-                                                                    }
-                                                                  ],
-                                                                  key: index,
-                                                                  staticClass:
-                                                                    "mt-2 text-xs text-red-600"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "\n                                                                                " +
-                                                                      _vm._s(
-                                                                        error
-                                                                      ) +
-                                                                      "\n                                                                            "
-                                                                  )
-                                                                ]
-                                                              )
-                                                            }
-                                                          )
-                                                        ],
-                                                        2
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
-                                                          attrs: {
-                                                            for: "country"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                                            Active\n                                                                        "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "mt-4 sm:mt-0 sm:col-span-2"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "max-w-lg"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "mt-4"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "div",
-                                                                    {
-                                                                      staticClass:
-                                                                        "relative flex items-start"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "flex items-center h-5"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "input",
-                                                                            {
-                                                                              directives: [
-                                                                                {
-                                                                                  name:
-                                                                                    "model",
-                                                                                  rawName:
-                                                                                    "v-model",
-                                                                                  value:
-                                                                                    _vm
-                                                                                      .picture
-                                                                                      .form
-                                                                                      .active,
-                                                                                  expression:
-                                                                                    "\n                                                                                                    picture.form\n                                                                                                        .active\n                                                                                                "
-                                                                                }
-                                                                              ],
-                                                                              staticClass:
-                                                                                "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
-                                                                              attrs: {
-                                                                                id:
-                                                                                  "offers",
-                                                                                type:
-                                                                                  "checkbox"
-                                                                              },
-                                                                              domProps: {
-                                                                                checked: Array.isArray(
-                                                                                  _vm
-                                                                                    .picture
-                                                                                    .form
-                                                                                    .active
-                                                                                )
-                                                                                  ? _vm._i(
-                                                                                      _vm
-                                                                                        .picture
-                                                                                        .form
-                                                                                        .active,
-                                                                                      null
-                                                                                    ) >
-                                                                                    -1
-                                                                                  : _vm
-                                                                                      .picture
-                                                                                      .form
-                                                                                      .active
-                                                                              },
-                                                                              on: {
-                                                                                change: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  var $$a =
-                                                                                      _vm
-                                                                                        .picture
-                                                                                        .form
-                                                                                        .active,
-                                                                                    $$el =
-                                                                                      $event.target,
-                                                                                    $$c = $$el.checked
-                                                                                      ? true
-                                                                                      : false
-                                                                                  if (
-                                                                                    Array.isArray(
-                                                                                      $$a
-                                                                                    )
-                                                                                  ) {
-                                                                                    var $$v = null,
-                                                                                      $$i = _vm._i(
-                                                                                        $$a,
-                                                                                        $$v
-                                                                                      )
-                                                                                    if (
-                                                                                      $$el.checked
-                                                                                    ) {
-                                                                                      $$i <
-                                                                                        0 &&
-                                                                                        _vm.$set(
-                                                                                          _vm
-                                                                                            .picture
-                                                                                            .form,
-                                                                                          "active",
-                                                                                          $$a.concat(
-                                                                                            [
-                                                                                              $$v
-                                                                                            ]
-                                                                                          )
-                                                                                        )
-                                                                                    } else {
-                                                                                      $$i >
-                                                                                        -1 &&
-                                                                                        _vm.$set(
-                                                                                          _vm
-                                                                                            .picture
-                                                                                            .form,
-                                                                                          "active",
-                                                                                          $$a
-                                                                                            .slice(
-                                                                                              0,
-                                                                                              $$i
-                                                                                            )
-                                                                                            .concat(
-                                                                                              $$a.slice(
-                                                                                                $$i +
-                                                                                                  1
-                                                                                              )
-                                                                                            )
-                                                                                        )
-                                                                                    }
-                                                                                  } else {
-                                                                                    _vm.$set(
-                                                                                      _vm
-                                                                                        .picture
-                                                                                        .form,
-                                                                                      "active",
-                                                                                      $$c
-                                                                                    )
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "ml-3 text-sm leading-5"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "p",
-                                                                            {
-                                                                              staticClass:
-                                                                                "text-gray-500"
-                                                                            },
-                                                                            [
-                                                                              _vm._v(
-                                                                                "\n                                                                                                Make the picture\n                                                                                                active to be\n                                                                                                included in the quiz\n                                                                                            "
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _vm._l(
-                                                                    _vm.$page
-                                                                      .errors[
-                                                                      "picture.active"
-                                                                    ],
-                                                                    function(
-                                                                      error,
-                                                                      index
-                                                                    ) {
-                                                                      return _c(
-                                                                        "p",
-                                                                        {
-                                                                          directives: [
-                                                                            {
-                                                                              name:
-                                                                                "show",
-                                                                              rawName:
-                                                                                "v-show",
-                                                                              value:
-                                                                                _vm
-                                                                                  .$page
-                                                                                  .errors[
-                                                                                  "picture.active"
-                                                                                ],
-                                                                              expression:
-                                                                                "\n                                                                                            $page.errors[\n                                                                                                'picture.active'\n                                                                                            ]\n                                                                                        "
-                                                                            }
-                                                                          ],
-                                                                          key: index,
-                                                                          staticClass:
-                                                                            "mt-2 text-xs text-red-600"
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                                                                        " +
-                                                                              _vm._s(
-                                                                                error
-                                                                              ) +
-                                                                              "\n                                                                                    "
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    }
-                                                                  )
-                                                                ],
-                                                                2
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
-                                                          attrs: {
-                                                            for: "country"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                                            Picture\n                                                                        "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "mt-4 sm:mt-0 sm:col-span-2"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "flex items-center flex-col"
-                                                            },
-                                                            [
-                                                              _vm.picture.form
-                                                                .id == null
-                                                                ? _c(
-                                                                    "div",
-                                                                    {
-                                                                      staticClass:
-                                                                        "w-full"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "w-full"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "input",
-                                                                            {
-                                                                              ref:
-                                                                                "picture",
-                                                                              staticStyle: {
-                                                                                display:
-                                                                                  "none"
-                                                                              },
-                                                                              attrs: {
-                                                                                type:
-                                                                                  "file"
-                                                                              },
-                                                                              on: {
-                                                                                change:
-                                                                                  _vm.getFileFromPictureInput
-                                                                              }
-                                                                            }
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
-                                                                            "span",
-                                                                            {
-                                                                              staticClass:
-                                                                                "rounded-md shadow-sm"
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "button",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
-                                                                                  class: {
-                                                                                    "border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red":
-                                                                                      _vm
-                                                                                        .$page
-                                                                                        .errors
-                                                                                        .image
-                                                                                  },
-                                                                                  attrs: {
-                                                                                    type:
-                                                                                      "button"
-                                                                                  },
-                                                                                  on: {
-                                                                                    click: function(
-                                                                                      $event
-                                                                                    ) {
-                                                                                      return _vm.$refs.picture.click()
-                                                                                    }
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    "\n                                                                                                Browse\n                                                                                            "
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "mt-4 w-full"
-                                                                        },
-                                                                        [
-                                                                          _vm._l(
-                                                                            _vm
-                                                                              .$page
-                                                                              .errors[
-                                                                              "picture.image"
-                                                                            ],
-                                                                            function(
-                                                                              error,
-                                                                              index
-                                                                            ) {
-                                                                              return _c(
-                                                                                "p",
-                                                                                {
-                                                                                  directives: [
-                                                                                    {
-                                                                                      name:
-                                                                                        "show",
-                                                                                      rawName:
-                                                                                        "v-show",
-                                                                                      value:
-                                                                                        _vm
-                                                                                          .$page
-                                                                                          .errors[
-                                                                                          "picture.image"
-                                                                                        ],
-                                                                                      expression:
-                                                                                        "\n                                                                                                $page.errors[\n                                                                                                    'picture.image'\n                                                                                                ]\n                                                                                            "
-                                                                                    }
-                                                                                  ],
-                                                                                  key: index,
-                                                                                  staticClass:
-                                                                                    "mt-2 text-xs text-red-600"
-                                                                                },
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    "\n                                                                                            " +
-                                                                                      _vm._s(
-                                                                                        error
-                                                                                      ) +
-                                                                                      "\n                                                                                        "
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            }
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _vm
-                                                                            .picture
-                                                                            .form
-                                                                            .image
-                                                                            ? _c(
-                                                                                "div",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "relative text-gray-500 text-xs border rounded-md w-auto box-border p-4",
-                                                                                  class: {
-                                                                                    "border-red-500 text-red-900 placeholder-red-300":
-                                                                                      _vm
-                                                                                        .$page
-                                                                                        .errors
-                                                                                        .image,
-                                                                                    "border-indigo-500": !_vm
-                                                                                      .$page
-                                                                                      .errors
-                                                                                      .image
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "div",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "hidden sm:block absolute top-0 right-0 pt-4 pr-4"
-                                                                                    },
-                                                                                    [
-                                                                                      _c(
-                                                                                        "button",
-                                                                                        {
-                                                                                          staticClass:
-                                                                                            "text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150",
-                                                                                          attrs: {
-                                                                                            type:
-                                                                                              "button"
-                                                                                          },
-                                                                                          on: {
-                                                                                            click: function(
-                                                                                              $event
-                                                                                            ) {
-                                                                                              _vm.picture.form.image = null
-                                                                                            }
-                                                                                          }
-                                                                                        },
-                                                                                        [
-                                                                                          _c(
-                                                                                            "svg",
-                                                                                            {
-                                                                                              staticClass:
-                                                                                                "h-6 w-6",
-                                                                                              attrs: {
-                                                                                                stroke:
-                                                                                                  "currentColor",
-                                                                                                fill:
-                                                                                                  "none",
-                                                                                                viewBox:
-                                                                                                  "0 0 24 24"
-                                                                                              }
-                                                                                            },
-                                                                                            [
-                                                                                              _c(
-                                                                                                "path",
-                                                                                                {
-                                                                                                  attrs: {
-                                                                                                    "stroke-linecap":
-                                                                                                      "round",
-                                                                                                    "stroke-linejoin":
-                                                                                                      "round",
-                                                                                                    "stroke-width":
-                                                                                                      "2",
-                                                                                                    d:
-                                                                                                      "M6 18L18 6M6 6l12 12"
-                                                                                                  }
-                                                                                                }
-                                                                                              )
-                                                                                            ]
-                                                                                          )
-                                                                                        ]
-                                                                                      )
-                                                                                    ]
-                                                                                  ),
-                                                                                  _vm._v(
-                                                                                    "\n                                                                                            File to upload :\n                                                                                            " +
-                                                                                      _vm._s(
-                                                                                        _vm
-                                                                                          .picture
-                                                                                          .form
-                                                                                          .image
-                                                                                          .name
-                                                                                      )
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "br"
-                                                                                  ),
-                                                                                  _vm._v(
-                                                                                    "\n                                                                                            Type :\n                                                                                            " +
-                                                                                      _vm._s(
-                                                                                        _vm
-                                                                                          .picture
-                                                                                          .form
-                                                                                          .image
-                                                                                          .type
-                                                                                      )
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "br"
-                                                                                  ),
-                                                                                  _vm._v(
-                                                                                    "\n                                                                                            Size :\n                                                                                            " +
-                                                                                      _vm._s(
-                                                                                        _vm.readableBytes(
-                                                                                          _vm
-                                                                                            .picture
-                                                                                            .form
-                                                                                            .image
-                                                                                            .size
-                                                                                        )
-                                                                                      ) +
-                                                                                      "\n                                                                                        "
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            : _vm._e()
-                                                                        ],
-                                                                        2
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                : _c(
-                                                                    "div",
-                                                                    {
-                                                                      staticClass:
-                                                                        "w-full"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "w-full"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "div",
-                                                                            {
-                                                                              staticClass:
-                                                                                "px-2 py-2"
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "a",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "flex justify-center self-center",
-                                                                                  attrs: {
-                                                                                    href:
-                                                                                      _vm
-                                                                                        .picture
-                                                                                        .form
-                                                                                        .image,
-                                                                                    target:
-                                                                                      "_blank"
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "img",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "rounded-lg w-auto",
-                                                                                      attrs: {
-                                                                                        src:
-                                                                                          _vm
-                                                                                            .picture
-                                                                                            .form
-                                                                                            .image,
-                                                                                        alt:
-                                                                                          _vm
-                                                                                            .picture
-                                                                                            .form
-                                                                                            .id
-                                                                                      }
-                                                                                    }
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ])
-                                          ])
-                                        ])
-                                      ])
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "mt-5 sm:mt-4 sm:flex sm:flex-row-reverse"
-                                },
-                                [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                                          attrs: { type: "button" },
-                                          on: { click: _vm.submitPicture }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    " +
-                                              _vm._s(
-                                                _vm.picture.form.id !== null
-                                                  ? "Update"
-                                                  : "Create"
-                                              ) +
-                                              "\n                                                "
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                                          attrs: { type: "button" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.pictureModal("close")
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    Go back\n                                                "
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.picture.form.id != null
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "mt-3 mr-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
-                                        },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                                              attrs: { type: "button" },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.deletePicture(
-                                                    _vm.picture.form.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                    Delete\n                                                "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]
+                        on: {
+                          showPictureModal: _vm.setPictureModal,
+                          loading: _vm.setLoading
+                        }
+                      })
+                    ],
+                    1
                   )
                 ])
               ]
@@ -47853,6 +47704,10 @@ var map = {
 	"./Map/Index.vue": "./resources/js/Pages/Map/Index.vue",
 	"./Question/Components/Fake-Answers": "./resources/js/Pages/Question/Components/Fake-Answers.vue",
 	"./Question/Components/Fake-Answers.vue": "./resources/js/Pages/Question/Components/Fake-Answers.vue",
+	"./Question/Components/Question-Pictures": "./resources/js/Pages/Question/Components/Question-Pictures.vue",
+	"./Question/Components/Question-Pictures-Modal": "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue",
+	"./Question/Components/Question-Pictures-Modal.vue": "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue",
+	"./Question/Components/Question-Pictures.vue": "./resources/js/Pages/Question/Components/Question-Pictures.vue",
 	"./Question/Components/Similar-Questions": "./resources/js/Pages/Question/Components/Similar-Questions.vue",
 	"./Question/Components/Similar-Questions.vue": "./resources/js/Pages/Question/Components/Similar-Questions.vue",
 	"./Question/Create": "./resources/js/Pages/Question/Create.vue",
@@ -48385,6 +48240,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Fake_Answers_vue_vue_type_template_id_32662e36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Fake_Answers_vue_vue_type_template_id_32662e36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true& */ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true&");
+/* harmony import */ var _Question_Pictures_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Question-Pictures-Modal.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Question_Pictures_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "d5a19eda",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Question/Components/Question-Pictures-Modal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Question-Pictures-Modal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true& ***!
+  \***********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures-Modal.vue?vue&type=template&id=d5a19eda&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_Modal_vue_vue_type_template_id_d5a19eda_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Question-Pictures.vue?vue&type=template&id=62f16b5a& */ "./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a&");
+/* harmony import */ var _Question_Pictures_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Question-Pictures.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Question_Pictures_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Question/Components/Question-Pictures.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Question-Pictures.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Question-Pictures.vue?vue&type=template&id=62f16b5a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Question/Components/Question-Pictures.vue?vue&type=template&id=62f16b5a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Question_Pictures_vue_vue_type_template_id_62f16b5a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
