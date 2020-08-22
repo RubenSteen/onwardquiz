@@ -194,7 +194,6 @@
                                         v-on:loading="setLoading"
                                     ></question-pictures>
                                     <!-- /End question picture -->
-
                                 </div>
                             </fieldset>
                         </div>

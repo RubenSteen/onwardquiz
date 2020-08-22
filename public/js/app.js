@@ -3576,11 +3576,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Fake-Answers",
+  name: 'Fake-Answers',
   props: {
     mapId: Number,
     questionId: Number,
@@ -3973,104 +3970,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Question-Pictures-Modal",
+  name: 'Question-Pictures-Modal',
   props: {
     mapId: Number,
     questionId: Number,
@@ -4203,7 +4104,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   // End method
   watch: {
-    'givenPicture': function givenPicture(newVal) {
+    givenPicture: function givenPicture(newVal) {
       if (newVal !== null) {
         this.form.id = this.givenPicture.id;
         this.form.difficulty = this.givenPicture.difficulty;
@@ -4211,7 +4112,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         this.form.image = this.givenPicture.image.location;
       }
     },
-    'showModal': function showModal(newVal) {
+    showModal: function showModal(newVal) {
       if (newVal == false) {
         this.reset();
       }
@@ -4281,9 +4182,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Question-Pictures",
+  name: 'Question-Pictures',
   components: {
     QuestionPicturesModal: _Pages_Question_Components_Question_Pictures_Modal__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -4745,7 +4648,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Question_Components_Fake_Answers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Question/Components/Fake-Answers */ "./resources/js/Pages/Question/Components/Fake-Answers.vue");
 /* harmony import */ var _Pages_Question_Components_Question_Pictures__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Question/Components/Question-Pictures */ "./resources/js/Pages/Question/Components/Question-Pictures.vue");
 /* harmony import */ var _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/Shared/Layout */ "./resources/js/Pages/Shared/Layout.vue");
-//
 //
 //
 //
@@ -28704,7 +28606,7 @@ var render = function() {
             key: index,
             staticClass: "mt-2 text-xs text-red-600"
           },
-          [_vm._v("\n    " + _vm._s(error) + "\n  ")]
+          [_vm._v("\n        " + _vm._s(error) + "\n    ")]
         )
       }),
       _vm._v(" "),
@@ -29021,8 +28923,7 @@ var render = function() {
                                               name: "model",
                                               rawName: "v-model",
                                               value: _vm.form.difficulty,
-                                              expression:
-                                                "\n                                                                                        form.difficulty\n                                                                                    "
+                                              expression: "form.difficulty"
                                             }
                                           ],
                                           staticClass:
@@ -29104,7 +29005,7 @@ var render = function() {
                                                   "picture.difficulty"
                                                 ],
                                               expression:
-                                                "\n                                                                                    $page.errors[\n                                                                                        'picture.difficulty'\n                                                                                    ]\n                                                                                "
+                                                "$page.errors['picture.difficulty']"
                                             }
                                           ],
                                           key: index,
@@ -29259,7 +29160,7 @@ var render = function() {
                                                         "picture.active"
                                                       ],
                                                     expression:
-                                                      "\n                                                                                            $page.errors[\n                                                                                                'picture.active'\n                                                                                            ]\n                                                                                        "
+                                                      "$page.errors['picture.active']"
                                                   }
                                                 ],
                                                 key: index,
@@ -29364,7 +29265,7 @@ var render = function() {
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "\n                                                                                                Browse\n                                                                                            "
+                                                          "\n                                                                Browse\n                                                            "
                                                         )
                                                       ]
                                                     )
@@ -29394,7 +29295,7 @@ var render = function() {
                                                                 "picture.image"
                                                               ],
                                                             expression:
-                                                              "\n                                                                                                $page.errors[\n                                                                                                    'picture.image'\n                                                                                                ]\n                                                                                            "
+                                                              "$page.errors['picture.image']"
                                                           }
                                                         ],
                                                         key: index,
@@ -29588,9 +29489,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                                    " +
+                        "\n                    " +
                           _vm._s(_vm.form.id !== null ? "Update" : "Create") +
-                          "\n                                                "
+                          "\n                "
                       )
                     ]
                   )
@@ -29616,11 +29517,7 @@ var render = function() {
                         }
                       }
                     },
-                    [
-                      _vm._v(
-                        "\n                                                    Go back\n                                                "
-                      )
-                    ]
+                    [_vm._v("\n                    Go back\n                ")]
                   )
                 ]
               ),
@@ -29647,7 +29544,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                                    Delete\n                                                "
+                            "\n                    Delete\n                "
                           )
                         ]
                       )
@@ -29672,7 +29569,7 @@ var staticRenderFns = [
         { staticClass: "mt-1 max-w-2xl text-sm leading-5 text-gray-500" },
         [
           _vm._v(
-            "\n                                        This information will be displayed publicly\n                                        so be careful what you write down...\n                                    "
+            "\n                                        This information will be displayed publicly so be careful what you write\n                                        down...\n                                    "
           )
         ]
       )
@@ -29685,7 +29582,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ml-3 text-sm leading-5" }, [
       _c("p", { staticClass: "text-gray-500" }, [
         _vm._v(
-          "\n                                                                Make the picture\n                                                                active to be\n                                                                included in the quiz\n                                                            "
+          "\n                                                                Make the picture active to be included in the quiz\n                                                            "
         )
       ])
     ])
