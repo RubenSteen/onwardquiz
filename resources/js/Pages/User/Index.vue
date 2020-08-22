@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Layout from '../Shared/Layout';
+import Layout from '@/Pages/Shared/Layout';
 
 export default {
     components: {

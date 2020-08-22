@@ -506,18 +506,11 @@
 </template>
 
 <script>
-// import LeftSideNavbar from '../Shared/LeftSideNavbar'
-// import TopNavbar from '../Shared/TopNavbar'
-// import AlertTopOfPage from '../Shared/AlertTopOfPage'
-
-import Breadcrumbs from './Breadcrumbs';
-import Alerts from './Alerts';
+import Breadcrumbs from '@/Pages/Shared/Breadcrumbs';
+import Alerts from '@/Pages/Shared/Alerts';
 
 export default {
     components: {
-        // LeftSideNavbar,
-        // TopNavbar,
-        // AlertTopOfPage,
         Breadcrumbs,
         Alerts,
     }, // End components

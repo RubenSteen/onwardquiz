@@ -161,8 +161,8 @@
 </template>
 
 <script>
-import Layout from '../Shared/Layout';
-import Pagination from '../Shared/Pagination';
+import Layout from '@/Pages/Shared/Layout';
+import Pagination from '@/Pages/Shared/Pagination';
 
 export default {
     components: {

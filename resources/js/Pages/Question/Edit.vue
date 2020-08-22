@@ -807,8 +807,8 @@
 </template>
 
 <script>
-import SimilarQuestions from './Components/Similar-Questions';
-import Layout from '../Shared/Layout';
+import SimilarQuestions from '@/Pages/Question/Components/Similar-Questions';
+import Layout from '@/Pages/Shared/Layout';
 
 export default {
     components: {
