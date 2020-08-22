@@ -12,7 +12,10 @@
                             class="rounded-lg w-auto"
                             :src="picture.image.location"
                             :alt="picture.image.name"
-                            @click="setShowModal(true); selectPicture = picture"
+                            @click="
+                                setShowModal(true);
+                                selectPicture = picture;
+                            "
                         />
                     </div>
                 </div>
@@ -36,7 +39,6 @@
             v-on:loading="setLoading"
         ></question-pictures-modal>
         <!-- /End picture modal -->
-
     </div>
 </template>
 
@@ -44,7 +46,7 @@
 import QuestionPicturesModal from '@/Pages/Question/Components/Question-Pictures-Modal';
 
 export default {
-    name: "Question-Pictures",
+    name: 'Question-Pictures',
 
     components: {
         QuestionPicturesModal,
@@ -82,9 +84,9 @@ export default {
 
             return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
         }, // End readableBytes()
-        created: function() {
+        created: function () {
             this.$parent.$on('pictureModal', console.log('hello'));
-        }
+        },
     },
-}
+};
 </script>
