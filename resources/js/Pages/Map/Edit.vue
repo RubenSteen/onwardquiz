@@ -133,7 +133,7 @@
                                                 @change="getFileFromInput"
                                                 type="file"
                                                 ref="file"
-                                                style="display: none;"
+                                                style="display: none"
                                             />
                                             <button
                                                 @click="$refs.file.click()"

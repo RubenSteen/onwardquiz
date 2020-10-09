@@ -30,33 +30,25 @@
                 <div class="px-4 py-5 sm:px-6">
                     <dl class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
                         <div class="sm:col-span-1">
-                            <dt class="text-sm leading-5 font-medium text-gray-500">
-                                Full discord name
-                            </dt>
+                            <dt class="text-sm leading-5 font-medium text-gray-500">Full discord name</dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900">
                                 {{ user.getFullUsername }}
                             </dd>
                         </div>
                         <div class="sm:col-span-1">
-                            <dt class="text-sm leading-5 font-medium text-gray-500">
-                                Joined us at
-                            </dt>
+                            <dt class="text-sm leading-5 font-medium text-gray-500">Joined us at</dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900">
                                 {{ user.created_at }}
                             </dd>
                         </div>
                         <div class="sm:col-span-1">
-                            <dt class="text-sm leading-5 font-medium text-gray-500">
-                                Email address
-                            </dt>
+                            <dt class="text-sm leading-5 font-medium text-gray-500">Email address</dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900">
                                 {{ user.email }}
                             </dd>
                         </div>
                         <div class="sm:col-span-1">
-                            <dt class="text-sm leading-5 font-medium text-gray-500">
-                                Language
-                            </dt>
+                            <dt class="text-sm leading-5 font-medium text-gray-500">Language</dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900">
                                 {{ user.locale }}
                             </dd>
