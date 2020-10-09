@@ -48,14 +48,12 @@
                 <div
                     class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
                 >
-                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
-                        Template
-                    </label>
+                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700"> Template </label>
                     <div class="mt-2 sm:mt-0 sm:col-span-2">
                         <div class="flex items-center">
                             <span class="rounded-md shadow-sm flex">
                                 <div>
-                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none;" />
+                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none" />
                                     <button
                                         @click="$refs.file.click()"
                                         type="button"

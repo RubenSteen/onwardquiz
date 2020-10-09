@@ -6,18 +6,14 @@
             <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                 <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
                     <div class="ml-4 mt-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            Users
-                        </h3>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Users</h3>
                     </div>
                 </div>
             </div>
             <!-- /End card header -->
 
             <div v-if="users.length === 0" class="h-64 flex justify-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">
-                    Nothing here...
-                </h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">Nothing here...</h3>
             </div>
 
             <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

@@ -162,7 +162,7 @@
                                                                 @change="getFileFromPictureInput"
                                                                 type="file"
                                                                 ref="picture"
-                                                                style="display: none;"
+                                                                style="display: none"
                                                             />
                                                             <span class="rounded-md shadow-sm">
                                                                 <button
