@@ -5,7 +5,7 @@
         <div class="w-full">
             <div
                 class="bg-primary shadow-md p-4 flex flex-col justify-between leading-normal border rounded relative"
-                style="border-color: #172340;"
+                style="border-color: #172340"
             >
                 <div class="absolute right-0 top-0 p-4">
                     <span
@@ -29,9 +29,7 @@
                 <div class="grid grid-cols-12 gap-4">
                     <form class="px-8 pt-6 pb-8 mb-4 col-span-12">
                         <div class="mb-6 col-span-4 w-full">
-                            <label class="block text-sm font-medium mb-2" for="name">
-                                Name
-                            </label>
+                            <label class="block text-sm font-medium mb-2" for="name"> Name </label>
                             <input
                                 v-bind:class="{ 'border border-red-500': $page.errors.username }"
                                 class="shadow appearance-none rounded w-64 py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline"
