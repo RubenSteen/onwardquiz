@@ -12,8 +12,9 @@
                         v-for="question in questions"
                         :value="question.id"
                         v-if="!similarQuestionsIds.includes(question.id)"
-                        >{{ question.callout }}</option
                     >
+                        {{ question.callout }}
+                    </option>
                 </select>
             </div>
             <button
