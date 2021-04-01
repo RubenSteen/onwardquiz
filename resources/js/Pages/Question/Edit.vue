@@ -49,9 +49,7 @@
                 <div
                     class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
                 >
-                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
-                        Template
-                    </label>
+                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700"> Template </label>
                     <div class="mt-2 sm:mt-0 sm:col-span-2">
                         <div class="flex items-center">
                             <span class="h-48 w-64 md:w-64 md:h-64 overflow-hidden bg-gray-100 flex">
@@ -78,7 +76,7 @@
                                     >
                                         Download
                                     </a>
-                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none;" />
+                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none" />
                                     <button
                                         @click="$refs.file.click()"
                                         type="button"
@@ -339,21 +337,21 @@
                                                                                             picture.form.difficulty
                                                                                         "
                                                                                     >
-                                                                                        <option value="1"
-                                                                                            >1 (Easy)</option
-                                                                                        >
-                                                                                        <option value="2"
-                                                                                            >2 (Normal)</option
-                                                                                        >
-                                                                                        <option value="3"
-                                                                                            >3 (Medium)</option
-                                                                                        >
-                                                                                        <option value="4"
-                                                                                            >4 (A bit unfair)</option
-                                                                                        >
-                                                                                        <option value="5"
-                                                                                            >5 (Hard)</option
-                                                                                        >
+                                                                                        <option value="1">
+                                                                                            1 (Easy)
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 (Normal)
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 (Medium)
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 (A bit unfair)
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 (Hard)
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <p
@@ -419,8 +417,9 @@
                                                                                                     'picture.active'
                                                                                                 ]
                                                                                             "
-                                                                                            v-for="(error,
-                                                                                            index) in $page.errors[
+                                                                                            v-for="(
+                                                                                                error, index
+                                                                                            ) in $page.errors[
                                                                                                 'picture.active'
                                                                                             ]"
                                                                                             :key="index"
@@ -454,7 +453,7 @@
                                                                                                 "
                                                                                                 type="file"
                                                                                                 ref="picture"
-                                                                                                style="display: none;"
+                                                                                                style="display: none"
                                                                                             />
                                                                                             <span
                                                                                                 class="rounded-md shadow-sm"
@@ -484,8 +483,9 @@
                                                                                                         'picture.image'
                                                                                                     ]
                                                                                                 "
-                                                                                                v-for="(error,
-                                                                                                index) in $page.errors[
+                                                                                                v-for="(
+                                                                                                    error, index
+                                                                                                ) in $page.errors[
                                                                                                     'picture.image'
                                                                                                 ]"
                                                                                                 :key="index"

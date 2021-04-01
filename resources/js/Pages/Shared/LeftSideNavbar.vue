@@ -1,7 +1,7 @@
 <template>
     <header>
-        <nav class="min-h-screen bg-primary font-semibold" style="border-right: solid 1px #172340;">
-            <div class="h-16 flex justify-between px-2 items-center" style="border-bottom: solid 1px #172340;">
+        <nav class="min-h-screen bg-primary font-semibold" style="border-right: solid 1px #172340">
+            <div class="h-16 flex justify-between px-2 items-center" style="border-bottom: solid 1px #172340">
                 <div class="">
                     <inertia-link href="/" class="block my-2 text-primary text-lg font-bold" v-if="!collapsed">{{
                         $page.app.name
