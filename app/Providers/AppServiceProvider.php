@@ -90,7 +90,8 @@ class AppServiceProvider extends ServiceProvider
     protected function registerLengthAwarePaginator()
     {
         $this->app->bind(LengthAwarePaginator::class, function ($app, $values) {
-            return new class(...array_values($values)) extends LengthAwarePaginator {
+            return new class(...array_values($values)) extends LengthAwarePaginator
+            {
                 public function only(...$attributes)
                 {
                     return $this->transform(function ($item) use ($attributes) {
