@@ -192,7 +192,7 @@
                     </nav>
                 </div>
 
-                <div x-show="open" style="display: none;" class="absolute top-0 inset-x-0 p-2 md:hidden">
+                <div x-show="open" style="display: none" class="absolute top-0 inset-x-0 p-2 md:hidden">
                     <div
                         class="rounded-lg shadow-md transition transform origin-top-right"
                         x-show="open"
