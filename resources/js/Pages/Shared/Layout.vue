@@ -26,7 +26,16 @@
                         <button
                             v-show="sidebarOpen"
                             @click="sidebarOpen = false"
-                            class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
+                            class="
+                                flex
+                                items-center
+                                justify-center
+                                h-12
+                                w-12
+                                rounded-full
+                                focus:outline-none
+                                focus:bg-gray-600
+                            "
                         >
                             <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 <path
@@ -51,14 +60,41 @@
                             <inertia-link
                                 :href="$route('quiz.index')"
                                 v-bind:class="{
-                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                        'quiz.index'
-                                    ),
+                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                        currentActiveLink('quiz.index'),
                                 }"
-                                class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                                class="
+                                    mt-1
+                                    group
+                                    flex
+                                    items-center
+                                    px-2
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    font-medium
+                                    text-gray-600
+                                    rounded-md
+                                    hover:text-gray-900
+                                    hover:bg-gray-50
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                             >
                                 <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                                    class="
+                                        mr-3
+                                        h-6
+                                        w-6
+                                        text-gray-400
+                                        group-hover:text-gray-500 group-focus:text-gray-500
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 20 20"
@@ -76,14 +112,40 @@
                                 v-if="$page.auth.user.isEditor || $page.auth.user.isSuperAdmin"
                                 :href="$route('map.index')"
                                 v-bind:class="{
-                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                        'admin.map.index'
-                                    ),
+                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                        currentActiveLink('admin.map.index'),
                                 }"
-                                class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                                class="
+                                    group
+                                    flex
+                                    items-center
+                                    px-2
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    font-medium
+                                    text-gray-600
+                                    rounded-md
+                                    hover:text-gray-900
+                                    hover:bg-gray-50
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                             >
                                 <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
+                                    class="
+                                        mr-3
+                                        h-6
+                                        w-6
+                                        text-gray-400
+                                        group-hover:text-gray-500 group-focus:text-gray-600
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -101,14 +163,41 @@
                                 v-if="$page.auth.user.isSuperAdmin"
                                 :href="$route('admin.user.index')"
                                 v-bind:class="{
-                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                        'auth.admin.user.index'
-                                    ),
+                                    'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                        currentActiveLink('auth.admin.user.index'),
                                 }"
-                                class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                                class="
+                                    mt-1
+                                    group
+                                    flex
+                                    items-center
+                                    px-2
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    font-medium
+                                    text-gray-600
+                                    rounded-md
+                                    hover:text-gray-900
+                                    hover:bg-gray-50
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                             >
                                 <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                                    class="
+                                        mr-3
+                                        h-6
+                                        w-6
+                                        text-gray-400
+                                        group-hover:text-gray-500 group-focus:text-gray-500
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -191,7 +280,16 @@
                                     </p>
                                     <inertia-link
                                         :href="$route('user.profile')"
-                                        class="text-sm leading-5 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150"
+                                        class="
+                                            text-sm
+                                            leading-5
+                                            font-medium
+                                            text-gray-500
+                                            group-hover:text-gray-700 group-focus:underline
+                                            transition
+                                            ease-in-out
+                                            duration-150
+                                        "
                                     >
                                         View profile
                                     </inertia-link>
@@ -242,14 +340,41 @@
                         <inertia-link
                             :href="$route('quiz.index')"
                             v-bind:class="{
-                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                    'quiz.index'
-                                ),
+                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                    currentActiveLink('quiz.index'),
                             }"
-                            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                            class="
+                                mt-1
+                                group
+                                flex
+                                items-center
+                                px-2
+                                py-2
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-600
+                                rounded-md
+                                hover:text-gray-900
+                                hover:bg-gray-50
+                                focus:outline-none
+                                focus:bg-gray-100
+                                transition
+                                ease-in-out
+                                duration-150
+                            "
                         >
                             <svg
-                                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                                class="
+                                    mr-3
+                                    h-6
+                                    w-6
+                                    text-gray-400
+                                    group-hover:text-gray-500 group-focus:text-gray-500
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 stroke="currentColor"
                                 fill="none"
                                 viewBox="0 0 20 20"
@@ -267,14 +392,40 @@
                             v-if="$page.auth.user.isEditor || $page.auth.user.isSuperAdmin"
                             :href="$route('map.index')"
                             v-bind:class="{
-                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                    'admin.map.index'
-                                ),
+                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                    currentActiveLink('admin.map.index'),
                             }"
-                            class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                            class="
+                                group
+                                flex
+                                items-center
+                                px-2
+                                py-2
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-600
+                                rounded-md
+                                hover:text-gray-900
+                                hover:bg-gray-50
+                                focus:outline-none
+                                focus:bg-gray-100
+                                transition
+                                ease-in-out
+                                duration-150
+                            "
                         >
                             <svg
-                                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
+                                class="
+                                    mr-3
+                                    h-6
+                                    w-6
+                                    text-gray-400
+                                    group-hover:text-gray-500 group-focus:text-gray-600
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 stroke="currentColor"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -292,14 +443,41 @@
                             v-if="$page.auth.user.isSuperAdmin"
                             :href="$route('admin.user.index')"
                             v-bind:class="{
-                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200': currentActiveLink(
-                                    'auth.admin.user.index'
-                                ),
+                                'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200':
+                                    currentActiveLink('auth.admin.user.index'),
                             }"
-                            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                            class="
+                                mt-1
+                                group
+                                flex
+                                items-center
+                                px-2
+                                py-2
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-600
+                                rounded-md
+                                hover:text-gray-900
+                                hover:bg-gray-50
+                                focus:outline-none
+                                focus:bg-gray-100
+                                transition
+                                ease-in-out
+                                duration-150
+                            "
                         >
                             <svg
-                                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                                class="
+                                    mr-3
+                                    h-6
+                                    w-6
+                                    text-gray-400
+                                    group-hover:text-gray-500 group-focus:text-gray-500
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 stroke="currentColor"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -342,7 +520,16 @@
                                 </p>
                                 <inertia-link
                                     :href="$route('user.profile')"
-                                    class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150"
+                                    class="
+                                        text-xs
+                                        leading-4
+                                        font-medium
+                                        text-gray-500
+                                        group-hover:text-gray-700 group-focus:underline
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     View profile
                                 </inertia-link>
@@ -372,7 +559,23 @@
             <div class="pl-1 sm:pl-3" :class="{ 'md:hidden pt-1 sm:pt-3': quizMode == false }">
                 <button
                     @click.stop="sidebarOpen = true"
-                    class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
+                    class="
+                        -ml-0.5
+                        -mt-0.5
+                        h-12
+                        w-12
+                        inline-flex
+                        items-center
+                        justify-center
+                        rounded-md
+                        text-gray-500
+                        hover:text-gray-900
+                        focus:outline-none
+                        focus:bg-gray-200
+                        transition
+                        ease-in-out
+                        duration-150
+                    "
                     :class="{ 'absolute z-10 bg-black': quizMode == true }"
                 >
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -400,7 +603,18 @@
                     <!-- Begin logout modal -->
                     <div
                         v-show="showLogoutModal"
-                        class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-50"
+                        class="
+                            fixed
+                            bottom-0
+                            inset-x-0
+                            px-4
+                            pb-4
+                            sm:inset-0
+                            sm:flex
+                            sm:items-center
+                            sm:justify-center
+                            z-50
+                        "
                     >
                         <div
                             @click="showLogoutModal = false"
@@ -423,13 +637,35 @@
                             x-transition:leave="ease-in duration-200"
                             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                            class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                            class="
+                                relative
+                                bg-white
+                                rounded-lg
+                                px-4
+                                pt-5
+                                pb-4
+                                overflow-hidden
+                                shadow-xl
+                                transform
+                                transition-all
+                                sm:max-w-lg
+                                sm:w-full
+                                sm:p-6
+                            "
                         >
                             <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                                 <button
                                     @click="showLogoutModal = false"
                                     type="button"
-                                    class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                    class="
+                                        text-gray-400
+                                        hover:text-gray-500
+                                        focus:outline-none
+                                        focus:text-gray-500
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                         <path
@@ -443,7 +679,19 @@
                             </div>
                             <div class="sm:flex sm:items-start">
                                 <div
-                                    class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                                    class="
+                                        mx-auto
+                                        flex-shrink-0 flex
+                                        items-center
+                                        justify-center
+                                        h-12
+                                        w-12
+                                        rounded-full
+                                        bg-red-100
+                                        sm:mx-0
+                                        sm:h-10
+                                        sm:w-10
+                                    "
                                 >
                                     <svg
                                         class="h-6 w-6 text-red-600"
@@ -460,13 +708,9 @@
                                     </svg>
                                 </div>
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Logout
-                                    </h3>
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Logout</h3>
                                     <div class="mt-2">
-                                        <p class="text-sm leading-5 text-gray-500">
-                                            Are you sure you want to logout?
-                                        </p>
+                                        <p class="text-sm leading-5 text-gray-500">Are you sure you want to logout?</p>
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +719,30 @@
                                     <button
                                         @click="logout"
                                         type="button"
-                                        class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                        class="
+                                            inline-flex
+                                            justify-center
+                                            w-full
+                                            rounded-md
+                                            border border-transparent
+                                            px-4
+                                            py-2
+                                            bg-red-600
+                                            text-base
+                                            leading-6
+                                            font-medium
+                                            text-white
+                                            shadow-sm
+                                            hover:bg-red-500
+                                            focus:outline-none
+                                            focus:border-red-700
+                                            focus:shadow-outline-red
+                                            transition
+                                            ease-in-out
+                                            duration-150
+                                            sm:text-sm
+                                            sm:leading-5
+                                        "
                                     >
                                         Logout
                                     </button>
@@ -484,7 +751,30 @@
                                     <button
                                         @click="showLogoutModal = false"
                                         type="button"
-                                        class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                        class="
+                                            inline-flex
+                                            justify-center
+                                            w-full
+                                            rounded-md
+                                            border border-gray-300
+                                            px-4
+                                            py-2
+                                            bg-white
+                                            text-base
+                                            leading-6
+                                            font-medium
+                                            text-gray-700
+                                            shadow-sm
+                                            hover:text-gray-500
+                                            focus:outline-none
+                                            focus:border-blue-300
+                                            focus:shadow-outline
+                                            transition
+                                            ease-in-out
+                                            duration-150
+                                            sm:text-sm
+                                            sm:leading-5
+                                        "
                                     >
                                         Go back
                                     </button>

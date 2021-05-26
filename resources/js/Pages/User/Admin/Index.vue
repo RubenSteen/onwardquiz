@@ -6,18 +6,14 @@
             <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                 <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
                     <div class="ml-4 mt-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            Users
-                        </h3>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Users</h3>
                     </div>
                 </div>
             </div>
             <!-- /End card header -->
 
             <div v-if="users.length === 0" class="h-64 flex justify-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">
-                    Nothing here...
-                </h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">Nothing here...</h3>
             </div>
 
             <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -35,7 +31,16 @@
                         />
                         <span
                             v-else
-                            class="w-32 h-32 flex-shrink-0 mx-auto inline-block rounded-full overflow-hidden bg-gray-100"
+                            class="
+                                w-32
+                                h-32
+                                flex-shrink-0
+                                mx-auto
+                                inline-block
+                                rounded-full
+                                overflow-hidden
+                                bg-gray-100
+                            "
                         >
                             <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -54,17 +59,41 @@
                             <dd class="mt-3">
                                 <span
                                     v-show="user.isSuperAdmin"
-                                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                                    class="
+                                        px-2
+                                        py-1
+                                        text-teal-800 text-xs
+                                        leading-4
+                                        font-medium
+                                        bg-teal-100
+                                        rounded-full
+                                    "
                                     >Super Admin</span
                                 >
                                 <span
                                     v-show="user.isEditor"
-                                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                                    class="
+                                        px-2
+                                        py-1
+                                        text-teal-800 text-xs
+                                        leading-4
+                                        font-medium
+                                        bg-teal-100
+                                        rounded-full
+                                    "
                                     >Editor</span
                                 >
                                 <span
                                     v-show="user.isEditor == false && user.isSuperAdmin == false"
-                                    class="px-2 py-1 text-gray-800 text-xs leading-4 font-medium bg-gray-100 rounded-full"
+                                    class="
+                                        px-2
+                                        py-1
+                                        text-gray-800 text-xs
+                                        leading-4
+                                        font-medium
+                                        bg-gray-100
+                                        rounded-full
+                                    "
                                     >No roles</span
                                 >
                             </dd>
@@ -72,7 +101,15 @@
                             <dd class="mt-3">
                                 <span
                                     v-show="user.isConfirmed"
-                                    class="px-2 py-1 text-blue-800 text-xs leading-4 font-medium bg-blue-100 rounded-full"
+                                    class="
+                                        px-2
+                                        py-1
+                                        text-blue-800 text-xs
+                                        leading-4
+                                        font-medium
+                                        bg-blue-100
+                                        rounded-full
+                                    "
                                     >Confirmed</span
                                 >
                                 <span
@@ -82,7 +119,15 @@
                                 >
                                 <span
                                     v-show="user.isConfirmed == false && user.isBanned == false"
-                                    class="px-2 py-1 text-gray-800 text-xs leading-4 font-medium bg-gray-100 rounded-full"
+                                    class="
+                                        px-2
+                                        py-1
+                                        text-gray-800 text-xs
+                                        leading-4
+                                        font-medium
+                                        bg-gray-100
+                                        rounded-full
+                                    "
                                     >No statuses</span
                                 >
                             </dd>
@@ -93,7 +138,30 @@
                             <div class="w-0 flex-1 flex border-r border-gray-200">
                                 <div
                                     @click="selectedUser = user"
-                                    class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150"
+                                    class="
+                                        relative
+                                        -mr-px
+                                        w-0
+                                        flex-1
+                                        inline-flex
+                                        items-center
+                                        justify-center
+                                        py-4
+                                        text-sm
+                                        leading-5
+                                        text-gray-700
+                                        font-medium
+                                        border border-transparent
+                                        rounded-bl-lg
+                                        hover:text-gray-500
+                                        focus:outline-none
+                                        focus:shadow-outline-blue
+                                        focus:border-blue-300
+                                        focus:z-10
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     <svg class="w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
@@ -153,7 +221,20 @@
         -->
                 <div
                     v-if="selectedUser != null"
-                    class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full sm:p-6"
+                    class="
+                        bg-white
+                        rounded-lg
+                        px-4
+                        pt-5
+                        pb-4
+                        overflow-hidden
+                        shadow-xl
+                        transform
+                        transition-all
+                        sm:max-w-lg
+                        w-full
+                        sm:p-6
+                    "
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="modal-headline"
@@ -168,7 +249,16 @@
                             />
                             <span
                                 v-else
-                                class="h-12 w-12 flex-shrink-0 mx-auto inline-block rounded-full overflow-hidden bg-gray-100"
+                                class="
+                                    h-12
+                                    w-12
+                                    flex-shrink-0
+                                    mx-auto
+                                    inline-block
+                                    rounded-full
+                                    overflow-hidden
+                                    bg-gray-100
+                                "
                             >
                                 <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -194,7 +284,15 @@
                                                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
                                                             <div>
                                                                 <div
-                                                                    class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700"
+                                                                    class="
+                                                                        text-base
+                                                                        leading-6
+                                                                        font-medium
+                                                                        text-gray-900
+                                                                        sm:text-sm
+                                                                        sm:leading-5
+                                                                        sm:text-gray-700
+                                                                    "
                                                                     id="label-email"
                                                                 >
                                                                     Actions
@@ -208,7 +306,15 @@
                                                                                 v-model="form.banned"
                                                                                 id="banned"
                                                                                 type="checkbox"
-                                                                                class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                                                class="
+                                                                                    form-checkbox
+                                                                                    h-4
+                                                                                    w-4
+                                                                                    text-indigo-600
+                                                                                    transition
+                                                                                    duration-150
+                                                                                    ease-in-out
+                                                                                "
                                                                             />
                                                                         </div>
                                                                         <div class="ml-3 text-sm leading-5">
@@ -226,7 +332,15 @@
                                                                                     v-model="form.confirmed"
                                                                                     id="confirmed"
                                                                                     type="checkbox"
-                                                                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                                                    class="
+                                                                                        form-checkbox
+                                                                                        h-4
+                                                                                        w-4
+                                                                                        text-indigo-600
+                                                                                        transition
+                                                                                        duration-150
+                                                                                        ease-in-out
+                                                                                    "
                                                                                 />
                                                                             </div>
                                                                             <div class="ml-3 text-sm leading-5">
@@ -245,7 +359,15 @@
                                                                                     v-model="form.editor"
                                                                                     id="editor"
                                                                                     type="checkbox"
-                                                                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                                                    class="
+                                                                                        form-checkbox
+                                                                                        h-4
+                                                                                        w-4
+                                                                                        text-indigo-600
+                                                                                        transition
+                                                                                        duration-150
+                                                                                        ease-in-out
+                                                                                    "
                                                                                 />
                                                                             </div>
                                                                             <div class="ml-3 text-sm leading-5">
@@ -264,7 +386,15 @@
                                                                                     v-model="form.super_admin"
                                                                                     id="super-admin"
                                                                                     type="checkbox"
-                                                                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                                                    class="
+                                                                                        form-checkbox
+                                                                                        h-4
+                                                                                        w-4
+                                                                                        text-indigo-600
+                                                                                        transition
+                                                                                        duration-150
+                                                                                        ease-in-out
+                                                                                    "
                                                                                 />
                                                                             </div>
                                                                             <div class="ml-3 text-sm leading-5">
@@ -293,7 +423,30 @@
                             <button
                                 @click="updateUser"
                                 type="button"
-                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                class="
+                                    inline-flex
+                                    justify-center
+                                    w-full
+                                    rounded-md
+                                    border border-transparent
+                                    px-4
+                                    py-2
+                                    bg-indigo-600
+                                    text-base
+                                    leading-6
+                                    font-medium
+                                    text-white
+                                    shadow-sm
+                                    hover:bg-indigo-500
+                                    focus:outline-none
+                                    focus:border-indigo-700
+                                    focus:shadow-outline-indigo
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                    sm:text-sm
+                                    sm:leading-5
+                                "
                             >
                                 Submit
                             </button>
@@ -302,7 +455,30 @@
                             <button
                                 @click="selectedUser = null"
                                 type="button"
-                                class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                class="
+                                    inline-flex
+                                    justify-center
+                                    w-full
+                                    rounded-md
+                                    border border-gray-300
+                                    px-4
+                                    py-2
+                                    bg-white
+                                    text-base
+                                    leading-6
+                                    font-medium
+                                    text-gray-700
+                                    shadow-sm
+                                    hover:text-gray-500
+                                    focus:outline-none
+                                    focus:border-blue-300
+                                    focus:shadow-outline-blue
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                    sm:text-sm
+                                    sm:leading-5
+                                "
                             >
                                 Cancel
                             </button>

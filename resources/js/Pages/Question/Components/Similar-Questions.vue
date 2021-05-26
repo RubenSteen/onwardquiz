@@ -6,20 +6,60 @@
                     v-model="form.id"
                     :disabled="loading"
                     id="similar-question"
-                    class="form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    class="
+                        form-select
+                        block
+                        w-full
+                        pl-3
+                        pr-10
+                        py-2
+                        text-base
+                        leading-6
+                        border-gray-300
+                        focus:outline-none
+                        focus:shadow-outline-blue
+                        focus:border-blue-300
+                        sm:text-sm
+                        sm:leading-5
+                    "
                 >
                     <option
                         v-for="question in questions"
                         :value="question.id"
                         v-if="!similarQuestionsIds.includes(question.id)"
-                        >{{ question.callout }}</option
                     >
+                        {{ question.callout }}
+                    </option>
                 </select>
             </div>
             <button
                 :disabled="loading"
                 @click="submit"
-                class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                class="
+                    -ml-px
+                    relative
+                    inline-flex
+                    items-center
+                    px-4
+                    py-2
+                    border border-gray-300
+                    text-sm
+                    leading-5
+                    font-medium
+                    rounded-r-md
+                    text-gray-700
+                    bg-gray-50
+                    hover:text-gray-500
+                    hover:bg-white
+                    focus:outline-none
+                    focus:shadow-outline-blue
+                    focus:border-blue-300
+                    active:bg-gray-100
+                    active:text-gray-700
+                    transition
+                    ease-in-out
+                    duration-150
+                "
             >
                 <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                     <path
@@ -47,12 +87,26 @@
                     class="col-span-1 flex shadow-sm rounded-md"
                 >
                     <div
-                        class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md"
+                        class="
+                            flex-1 flex
+                            items-center
+                            justify-between
+                            border-t border-r border-b border-gray-200
+                            bg-white
+                            rounded-r-md
+                        "
                     >
                         <div class="flex-1 px-4 py-2 text-sm leading-5 truncate">
                             <a
                                 href="#"
-                                class="text-gray-900 font-medium hover:text-gray-600 transition ease-in-out duration-150"
+                                class="
+                                    text-gray-900
+                                    font-medium
+                                    hover:text-gray-600
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 >{{ question.callout }}</a
                             >
                         </div>
@@ -60,7 +114,23 @@
                             <button
                                 :disabled="loading"
                                 @click="submitDetach(question.id)"
-                                class="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition ease-in-out duration-150"
+                                class="
+                                    w-8
+                                    h-8
+                                    inline-flex
+                                    items-center
+                                    justify-center
+                                    text-gray-400
+                                    rounded-full
+                                    bg-transparent
+                                    hover:text-gray-500
+                                    focus:outline-none
+                                    focus:text-gray-500
+                                    focus:bg-gray-100
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                             >
                                 <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path
