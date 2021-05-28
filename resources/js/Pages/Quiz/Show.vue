@@ -6,7 +6,19 @@
                     <img class="object-contain w-full h-full" :src="question.image" />
                 </div>
                 <div
-                    class="text-center px-1 pt-1 md:px-2 md:py-2 md:m-2 flex flex-col justify-center md:w-3/12 lg:w-3/12 xl:w-2/12"
+                    class="
+                        text-center
+                        px-1
+                        pt-1
+                        md:px-2
+                        md:py-2
+                        md:m-2
+                        flex flex-col
+                        justify-center
+                        md:w-3/12
+                        lg:w-3/12
+                        xl:w-2/12
+                    "
                 >
                     <div class="overflow-hidden">
                         <ul>

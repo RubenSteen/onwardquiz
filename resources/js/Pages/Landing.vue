@@ -29,7 +29,21 @@
       To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
   -->
             <div
-                class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                class="
+                    relative
+                    bg-white
+                    rounded-lg
+                    px-4
+                    pt-5
+                    pb-4
+                    overflow-hidden
+                    shadow-xl
+                    transform
+                    transition-all
+                    sm:max-w-lg
+                    sm:w-full
+                    sm:p-6
+                "
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-headline"
@@ -37,7 +51,15 @@
                 <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                     <button
                         type="button"
-                        class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                        class="
+                            text-gray-400
+                            hover:text-gray-500
+                            focus:outline-none
+                            focus:text-gray-500
+                            transition
+                            ease-in-out
+                            duration-150
+                        "
                         aria-label="Close"
                         @click="$page.flash.warning = null"
                     >
@@ -53,7 +75,19 @@
                 </div>
                 <div class="sm:flex sm:items-start">
                     <div
-                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10"
+                        class="
+                            mx-auto
+                            flex-shrink-0 flex
+                            items-center
+                            justify-center
+                            h-12
+                            w-12
+                            rounded-full
+                            bg-yellow-100
+                            sm:mx-0
+                            sm:h-10
+                            sm:w-10
+                        "
                     >
                         <svg class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -103,7 +137,14 @@
                         <rect width="404" height="784" fill="url(#svg-pattern-squares-1)" />
                     </svg>
                     <svg
-                        class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 md:-translate-y-1/2 lg:-translate-x-1/2"
+                        class="
+                            absolute
+                            left-full
+                            transform
+                            -translate-y-3/4 -translate-x-1/4
+                            md:-translate-y-1/2
+                            lg:-translate-x-1/2
+                        "
                         width="404"
                         height="784"
                         fill="none"
@@ -142,7 +183,22 @@
                                     <button
                                         @click="open = true"
                                         type="button"
-                                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                        class="
+                                            inline-flex
+                                            items-center
+                                            justify-center
+                                            p-2
+                                            rounded-md
+                                            text-gray-400
+                                            hover:text-gray-500
+                                            hover:bg-gray-100
+                                            focus:outline-none
+                                            focus:bg-gray-100
+                                            focus:text-gray-500
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                        "
                                     >
                                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                             <path
@@ -166,7 +222,24 @@
                             <span v-if="$page.auth.check === true" class="inline-flex rounded-md shadow">
                                 <a
                                     :href="$route('user.profile')"
-                                    class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        w-full
+                                        px-5
+                                        py-3
+                                        text-center
+                                        font-medium
+                                        text-indigo-600
+                                        bg-gray-50
+                                        hover:bg-gray-100
+                                        hover:text-indigo-700
+                                        focus:outline-none
+                                        focus:bg-gray-100
+                                        focus:text-indigo-700
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                 >
                                     My profile
                                 </a>
@@ -175,7 +248,24 @@
                                 <a
                                     v-if="$page.auth.check === false"
                                     :href="$route('login')"
-                                    class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        w-full
+                                        px-5
+                                        py-3
+                                        text-center
+                                        font-medium
+                                        text-indigo-600
+                                        bg-gray-50
+                                        hover:bg-gray-100
+                                        hover:text-indigo-700
+                                        focus:outline-none
+                                        focus:bg-gray-100
+                                        focus:text-indigo-700
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                 >
                                     Log in
                                 </a>
@@ -183,7 +273,24 @@
                                     v-else
                                     @click="$inertia.post($route('logout.post'))"
                                     type="button"
-                                    class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        w-full
+                                        px-5
+                                        py-3
+                                        text-center
+                                        font-medium
+                                        text-indigo-600
+                                        bg-gray-50
+                                        hover:bg-gray-100
+                                        hover:text-indigo-700
+                                        focus:outline-none
+                                        focus:bg-gray-100
+                                        focus:text-indigo-700
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                 >
                                     Log out
                                 </button>
@@ -192,7 +299,7 @@
                     </nav>
                 </div>
 
-                <div x-show="open" style="display: none;" class="absolute top-0 inset-x-0 p-2 md:hidden">
+                <div x-show="open" style="display: none" class="absolute top-0 inset-x-0 p-2 md:hidden">
                     <div
                         class="rounded-lg shadow-md transition transform origin-top-right"
                         x-show="open"
@@ -216,7 +323,22 @@
                                     <button
                                         @click="open = false"
                                         type="button"
-                                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                        class="
+                                            inline-flex
+                                            items-center
+                                            justify-center
+                                            p-2
+                                            rounded-md
+                                            text-gray-400
+                                            hover:text-gray-500
+                                            hover:bg-gray-100
+                                            focus:outline-none
+                                            focus:bg-gray-100
+                                            focus:text-gray-500
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                        "
                                     >
                                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                             <path
@@ -232,22 +354,89 @@
                             <div class="px-2 pt-2 pb-3">
                                 <a
                                     href="#"
-                                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        px-3
+                                        py-2
+                                        rounded-md
+                                        text-base
+                                        font-medium
+                                        text-gray-700
+                                        hover:text-gray-900
+                                        hover:bg-gray-50
+                                        focus:outline-none
+                                        focus:text-gray-900
+                                        focus:bg-gray-50
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                     >Product</a
                                 >
                                 <a
                                     href="#"
-                                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                                    class="
+                                        mt-1
+                                        block
+                                        px-3
+                                        py-2
+                                        rounded-md
+                                        text-base
+                                        font-medium
+                                        text-gray-700
+                                        hover:text-gray-900
+                                        hover:bg-gray-50
+                                        focus:outline-none
+                                        focus:text-gray-900
+                                        focus:bg-gray-50
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                     >Features</a
                                 >
                                 <a
                                     href="#"
-                                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                                    class="
+                                        mt-1
+                                        block
+                                        px-3
+                                        py-2
+                                        rounded-md
+                                        text-base
+                                        font-medium
+                                        text-gray-700
+                                        hover:text-gray-900
+                                        hover:bg-gray-50
+                                        focus:outline-none
+                                        focus:text-gray-900
+                                        focus:bg-gray-50
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                     >Marketplace</a
                                 >
                                 <a
                                     href="#"
-                                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                                    class="
+                                        mt-1
+                                        block
+                                        px-3
+                                        py-2
+                                        rounded-md
+                                        text-base
+                                        font-medium
+                                        text-gray-700
+                                        hover:text-gray-900
+                                        hover:bg-gray-50
+                                        focus:outline-none
+                                        focus:text-gray-900
+                                        focus:bg-gray-50
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                     >Company</a
                                 >
                             </div>
@@ -255,7 +444,24 @@
                                 <inertia-link
                                     v-if="$page.auth.check === false"
                                     :href="$route('login')"
-                                    class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        w-full
+                                        px-5
+                                        py-3
+                                        text-center
+                                        font-medium
+                                        text-indigo-600
+                                        bg-gray-50
+                                        hover:bg-gray-100
+                                        hover:text-indigo-700
+                                        focus:outline-none
+                                        focus:bg-gray-100
+                                        focus:text-indigo-700
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                 >
                                     Log in
                                 </inertia-link>
@@ -263,7 +469,24 @@
                                     v-else
                                     @click="$inertia.post($route('logout.post'))"
                                     type="button"
-                                    class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out"
+                                    class="
+                                        block
+                                        w-full
+                                        px-5
+                                        py-3
+                                        text-center
+                                        font-medium
+                                        text-indigo-600
+                                        bg-gray-50
+                                        hover:bg-gray-100
+                                        hover:text-indigo-700
+                                        focus:outline-none
+                                        focus:bg-gray-100
+                                        focus:text-indigo-700
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                    "
                                 >
                                     Log in
                                 </button>
@@ -275,14 +498,32 @@
                 <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
                     <div class="text-center">
                         <h2
-                            class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl"
+                            class="
+                                text-4xl
+                                tracking-tight
+                                leading-10
+                                font-extrabold
+                                text-gray-900
+                                sm:text-5xl
+                                sm:leading-none
+                                md:text-6xl
+                            "
                         >
                             <span class="text-indigo-600">Onward</span>
                             <br class="xl:hidden" />
                             training made simple
                         </h2>
                         <p
-                            class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+                            class="
+                                mt-3
+                                max-w-md
+                                mx-auto
+                                text-base text-gray-500
+                                sm:text-lg
+                                md:mt-5
+                                md:text-xl
+                                md:max-w-3xl
+                            "
                         >
                             A place to level up in your onward skills, such as learning callout or weapon sounds!
                         </p>
@@ -291,14 +532,60 @@
                                 <a
                                     v-if="$page.auth.check === false"
                                     :href="$route('login')"
-                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+                                    class="
+                                        w-full
+                                        flex
+                                        items-center
+                                        justify-center
+                                        px-8
+                                        py-3
+                                        border border-transparent
+                                        text-base
+                                        leading-6
+                                        font-medium
+                                        rounded-md
+                                        text-white
+                                        bg-indigo-600
+                                        hover:bg-indigo-500
+                                        focus:outline-none
+                                        focus:shadow-outline-indigo
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                        md:py-4
+                                        md:text-lg
+                                        md:px-10
+                                    "
                                 >
                                     Get started
                                 </a>
                                 <inertia-link
                                     v-else
                                     :href="$route('quiz.index')"
-                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+                                    class="
+                                        w-full
+                                        flex
+                                        items-center
+                                        justify-center
+                                        px-8
+                                        py-3
+                                        border border-transparent
+                                        text-base
+                                        leading-6
+                                        font-medium
+                                        rounded-md
+                                        text-white
+                                        bg-indigo-600
+                                        hover:bg-indigo-500
+                                        focus:outline-none
+                                        focus:shadow-outline-indigo
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                        md:py-4
+                                        md:text-lg
+                                        md:px-10
+                                    "
                                 >
                                     Get started
                                 </inertia-link>
@@ -340,7 +627,15 @@
 
                 <div class="relative">
                     <h3
-                        class="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
+                        class="
+                            text-center text-3xl
+                            leading-8
+                            font-extrabold
+                            tracking-tight
+                            text-gray-900
+                            sm:text-4xl
+                            sm:leading-10
+                        "
                     >
                         Features
                     </h3>
@@ -352,7 +647,15 @@
                 <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
                     <div class="relative">
                         <h4
-                            class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9"
+                            class="
+                                text-2xl
+                                leading-8
+                                font-extrabold
+                                text-gray-900
+                                tracking-tight
+                                sm:text-3xl
+                                sm:leading-9
+                            "
                         >
                             What can you currently do
                         </h4>
@@ -367,7 +670,16 @@
                                 <div class="flex">
                                     <div class="flex-shrink-0">
                                         <div
-                                            class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"
+                                            class="
+                                                flex
+                                                items-center
+                                                justify-center
+                                                h-12
+                                                w-12
+                                                rounded-md
+                                                bg-indigo-500
+                                                text-white
+                                            "
                                         >
                                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                                 <path
@@ -395,7 +707,16 @@
                                 <div class="flex">
                                     <div class="flex-shrink-0">
                                         <div
-                                            class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"
+                                            class="
+                                                flex
+                                                items-center
+                                                justify-center
+                                                h-12
+                                                w-12
+                                                rounded-md
+                                                bg-indigo-500
+                                                text-white
+                                            "
                                         >
                                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                                 <path
@@ -471,7 +792,15 @@
                     <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
                         <div class="lg:col-start-2">
                             <h4
-                                class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9"
+                                class="
+                                    text-2xl
+                                    leading-8
+                                    font-extrabold
+                                    text-gray-900
+                                    tracking-tight
+                                    sm:text-3xl
+                                    sm:leading-9
+                                "
                             >
                                 Planned/being worked on
                             </h4>
@@ -485,7 +814,16 @@
                                     <div class="flex">
                                         <div class="flex-shrink-0">
                                             <div
-                                                class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"
+                                                class="
+                                                    flex
+                                                    items-center
+                                                    justify-center
+                                                    h-12
+                                                    w-12
+                                                    rounded-md
+                                                    bg-indigo-500
+                                                    text-white
+                                                "
                                             >
                                                 <svg
                                                     class="h-6 w-6"
@@ -517,7 +855,16 @@
                                     <div class="flex">
                                         <div class="flex-shrink-0">
                                             <div
-                                                class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"
+                                                class="
+                                                    flex
+                                                    items-center
+                                                    justify-center
+                                                    h-12
+                                                    w-12
+                                                    rounded-md
+                                                    bg-indigo-500
+                                                    text-white
+                                                "
                                             >
                                                 <svg
                                                     class="h-6 w-6"

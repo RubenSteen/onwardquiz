@@ -22,7 +22,20 @@
                                     'text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700':
                                         loading === false,
                                 }"
-                                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out"
+                                class="
+                                    inline-flex
+                                    justify-center
+                                    py-2
+                                    px-4
+                                    border border-transparent
+                                    text-sm
+                                    leading-5
+                                    font-medium
+                                    rounded-md
+                                    transition
+                                    duration-150
+                                    ease-in-out
+                                "
                             >
                                 Delete
                             </button>
@@ -30,7 +43,13 @@
                     </div>
                     <div class="mt-6 sm:mt-5">
                         <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            class="
+                                sm:grid sm:grid-cols-3
+                                sm:gap-4
+                                sm:items-start
+                                sm:border-t sm:border-gray-200
+                                sm:pt-5
+                            "
                         >
                             <label
                                 for="name"
@@ -48,7 +67,18 @@
                                             'border-red-500 text-red-900 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                 $page.errors.name,
                                         }"
-                                        class="flex-1 form-input block w-full rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        class="
+                                            flex-1
+                                            form-input
+                                            block
+                                            w-full
+                                            rounded-none rounded-md
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                            sm:text-sm
+                                            sm:leading-5
+                                        "
                                     />
                                 </div>
                                 <p
@@ -62,7 +92,15 @@
                         </div>
 
                         <div
-                            class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            class="
+                                mt-6
+                                sm:mt-5
+                                sm:grid sm:grid-cols-3
+                                sm:gap-4
+                                sm:items-start
+                                sm:border-t sm:border-gray-200
+                                sm:pt-5
+                            "
                         >
                             <label
                                 for="description"
@@ -80,7 +118,16 @@
                                             'border-red-500 text-red-900 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                 $page.errors.description,
                                         }"
-                                        class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        class="
+                                            form-textarea
+                                            block
+                                            w-full
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                            sm:text-sm
+                                            sm:leading-5
+                                        "
                                     ></textarea>
                                 </div>
                                 <p
@@ -96,7 +143,15 @@
                         </div>
 
                         <div
-                            class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
+                            class="
+                                mt-6
+                                sm:mt-5
+                                sm:grid sm:grid-cols-3
+                                sm:gap-4
+                                sm:items-center
+                                sm:border-t sm:border-gray-200
+                                sm:pt-5
+                            "
                         >
                             <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
                                 Template
@@ -125,7 +180,26 @@
                                                 target="_blank"
                                                 v-if="map.template"
                                                 type="button"
-                                                class="py-2 px-3 border-2 border-indigo-600 hover:border-indigo-700 rounded-md text-sm leading-4 font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:border-indigo-800 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                                                class="
+                                                    py-2
+                                                    px-3
+                                                    border-2 border-indigo-600
+                                                    hover:border-indigo-700
+                                                    rounded-md
+                                                    text-sm
+                                                    leading-4
+                                                    font-medium
+                                                    text-indigo-600
+                                                    hover:text-indigo-700
+                                                    focus:outline-none
+                                                    focus:border-indigo-800
+                                                    focus:shadow-outline-blue
+                                                    active:bg-gray-50
+                                                    active:text-gray-800
+                                                    transition
+                                                    duration-150
+                                                    ease-in-out
+                                                "
                                             >
                                                 Download
                                             </a>
@@ -133,7 +207,7 @@
                                                 @change="getFileFromInput"
                                                 type="file"
                                                 ref="file"
-                                                style="display: none;"
+                                                style="display: none"
                                             />
                                             <button
                                                 @click="$refs.file.click()"
@@ -142,7 +216,26 @@
                                                     'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                         $page.errors.template,
                                                 }"
-                                                class="ml-2 py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                                                class="
+                                                    ml-2
+                                                    py-2
+                                                    px-3
+                                                    border border-gray-300
+                                                    rounded-md
+                                                    text-sm
+                                                    leading-4
+                                                    font-medium
+                                                    text-gray-600
+                                                    hover:text-gray-500
+                                                    focus:outline-none
+                                                    focus:border-blue-300
+                                                    focus:shadow-outline-blue
+                                                    active:bg-gray-50
+                                                    active:text-gray-800
+                                                    transition
+                                                    duration-150
+                                                    ease-in-out
+                                                "
                                             >
                                                 Change
                                             </button>
@@ -177,7 +270,15 @@
                                             <button
                                                 @click="form.template = null"
                                                 type="button"
-                                                class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                                class="
+                                                    text-gray-400
+                                                    hover:text-gray-500
+                                                    focus:outline-none
+                                                    focus:text-gray-500
+                                                    transition
+                                                    ease-in-out
+                                                    duration-150
+                                                "
                                             >
                                                 <svg
                                                     class="h-6 w-6"
@@ -210,7 +311,15 @@
                                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
                                     <div>
                                         <legend
-                                            class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700"
+                                            class="
+                                                text-base
+                                                leading-6
+                                                font-medium
+                                                text-gray-900
+                                                sm:text-sm
+                                                sm:leading-5
+                                                sm:text-gray-700
+                                            "
                                         >
                                             Others
                                         </legend>
@@ -223,7 +332,15 @@
                                                         v-model="form.published"
                                                         id="published"
                                                         type="checkbox"
-                                                        class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                        class="
+                                                            form-checkbox
+                                                            h-4
+                                                            w-4
+                                                            text-indigo-600
+                                                            transition
+                                                            duration-150
+                                                            ease-in-out
+                                                        "
                                                     />
                                                 </div>
                                                 <div class="pl-7 text-sm leading-5">
@@ -254,7 +371,25 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <inertia-link
                             :href="$route('map.index')"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="
+                                py-2
+                                px-4
+                                border border-gray-300
+                                rounded-md
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-700
+                                hover:text-gray-500
+                                focus:outline-none
+                                focus:border-blue-300
+                                focus:shadow-outline-blue
+                                active:bg-gray-50
+                                active:text-gray-800
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Cancel
                         </inertia-link>
@@ -270,7 +405,20 @@
                                 'text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700':
                                     loading === false,
                             }"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out"
+                            class="
+                                inline-flex
+                                justify-center
+                                py-2
+                                px-4
+                                border border-transparent
+                                text-sm
+                                leading-5
+                                font-medium
+                                rounded-md
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Save
                         </button>
@@ -282,13 +430,50 @@
                     Questions
                     <inertia-link
                         :href="$route('question.create', { map: map.id })"
-                        class="cursor-pointer inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 text-white ml-2 transition duration-150 ease-in-out"
+                        class="
+                            cursor-pointer
+                            inline-flex
+                            items-center
+                            px-2
+                            py-0.5
+                            rounded
+                            text-xs
+                            font-medium
+                            leading-4
+                            bg-indigo-600
+                            hover:bg-indigo-500
+                            focus:border-indigo-700
+                            focus:shadow-outline-indigo
+                            active:bg-indigo-700
+                            text-white
+                            ml-2
+                            transition
+                            duration-150
+                            ease-in-out
+                        "
                     >
                         Create
                     </inertia-link>
                 </h3>
                 <div
-                    class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 text-center overflow-auto h-64 sm:h-full border border-gray-300 rounded-md box-border py-4 px-2"
+                    class="
+                        mt-4
+                        grid grid-cols-1
+                        sm:grid-cols-2
+                        md:grid-cols-3
+                        lg:grid-cols-4
+                        xl:grid-cols-5
+                        gap-4
+                        text-center
+                        overflow-auto
+                        h-64
+                        sm:h-full
+                        border border-gray-300
+                        rounded-md
+                        box-border
+                        py-4
+                        px-2
+                    "
                 >
                     <span v-for="question in map.questions">
                         <inertia-link

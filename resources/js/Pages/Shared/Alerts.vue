@@ -48,7 +48,21 @@
                                     v-for="(link, index) in $page.flash.success.links"
                                     :key="index"
                                     :href="link.target"
-                                    class="px-2 py-1.5 rounded-md text-sm leading-5 font-medium text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 transition ease-in-out duration-150"
+                                    class="
+                                        px-2
+                                        py-1.5
+                                        rounded-md
+                                        text-sm
+                                        leading-5
+                                        font-medium
+                                        text-green-800
+                                        hover:bg-green-200
+                                        focus:outline-none
+                                        focus:bg-green-200
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     {{ link.name }}
                                 </inertia-link>
@@ -65,7 +79,18 @@
                     <div class="ml-auto pl-3">
                         <div class="-mx-1.5 -my-1.5">
                             <button
-                                class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-200 focus:outline-none focus:bg-green-200 transition ease-in-out duration-150"
+                                class="
+                                    inline-flex
+                                    rounded-md
+                                    p-1.5
+                                    text-green-500
+                                    hover:bg-green-200
+                                    focus:outline-none
+                                    focus:bg-green-200
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 @click="$page.flash.success = null"
                             >
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -110,7 +135,21 @@
                                     v-for="(link, index) in $page.flash.info.links"
                                     :key="index"
                                     :href="link.target"
-                                    class="px-2 py-1.5 rounded-md text-sm leading-5 font-medium text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 transition ease-in-out duration-150"
+                                    class="
+                                        px-2
+                                        py-1.5
+                                        rounded-md
+                                        text-sm
+                                        leading-5
+                                        font-medium
+                                        text-blue-800
+                                        hover:bg-blue-200
+                                        focus:outline-none
+                                        focus:bg-blue-200
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     {{ link.name }}
                                 </inertia-link>
@@ -127,7 +166,18 @@
                     <div class="ml-auto pl-3">
                         <div class="-mx-1.5 -my-1.5">
                             <button
-                                class="inline-flex rounded-md p-1.5 text-blue-500 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 transition ease-in-out duration-150"
+                                class="
+                                    inline-flex
+                                    rounded-md
+                                    p-1.5
+                                    text-blue-500
+                                    hover:bg-blue-200
+                                    focus:outline-none
+                                    focus:bg-blue-200
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 @click="$page.flash.info = null"
                             >
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -172,7 +222,21 @@
                                     v-for="(link, index) in $page.flash.error.links"
                                     :key="index"
                                     :href="link.target"
-                                    class="px-2 py-1.5 rounded-md text-sm leading-5 font-medium text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 transition ease-in-out duration-150"
+                                    class="
+                                        px-2
+                                        py-1.5
+                                        rounded-md
+                                        text-sm
+                                        leading-5
+                                        font-medium
+                                        text-red-800
+                                        hover:bg-red-200
+                                        focus:outline-none
+                                        focus:bg-red-200
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     {{ link.name }}
                                 </inertia-link>
@@ -189,7 +253,18 @@
                     <div class="ml-auto pl-3">
                         <div class="-mx-1.5 -my-1.5">
                             <button
-                                class="inline-flex rounded-md p-1.5 text-red-500 hover:bg-red-200 focus:outline-none focus:bg-red-200 transition ease-in-out duration-150"
+                                class="
+                                    inline-flex
+                                    rounded-md
+                                    p-1.5
+                                    text-red-500
+                                    hover:bg-red-200
+                                    focus:outline-none
+                                    focus:bg-red-200
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 @click="$page.flash.error = null"
                             >
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -234,7 +309,21 @@
                                     v-for="(link, index) in $page.flash.warning.links"
                                     :key="index"
                                     :href="link.target"
-                                    class="px-2 py-1.5 rounded-md text-sm leading-5 font-medium text-yellow-800 hover:bg-yellow-200 focus:outline-none focus:bg-yellow-200 transition ease-in-out duration-150"
+                                    class="
+                                        px-2
+                                        py-1.5
+                                        rounded-md
+                                        text-sm
+                                        leading-5
+                                        font-medium
+                                        text-yellow-800
+                                        hover:bg-yellow-200
+                                        focus:outline-none
+                                        focus:bg-yellow-200
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                    "
                                 >
                                     {{ link.name }}
                                 </inertia-link>
@@ -251,7 +340,18 @@
                     <div class="ml-auto pl-3">
                         <div class="-mx-1.5 -my-1.5">
                             <button
-                                class="inline-flex rounded-md p-1.5 text-yellow-500 hover:bg-yellow-200 focus:outline-none focus:bg-yellow-200 transition ease-in-out duration-150"
+                                class="
+                                    inline-flex
+                                    rounded-md
+                                    p-1.5
+                                    text-yellow-500
+                                    hover:bg-yellow-200
+                                    focus:outline-none
+                                    focus:bg-yellow-200
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                                 @click="$page.flash.warning = null"
                             >
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

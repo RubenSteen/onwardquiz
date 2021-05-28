@@ -3,7 +3,26 @@
         <div class="w-0 flex-1 flex" v-if="links[[links.length - 1]].label === 'Next'">
             <inertia-link
                 :href="links[0].url"
-                class="-mt-px border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm leading-5 font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-400 transition ease-in-out duration-150"
+                class="
+                    -mt-px
+                    border-t-2 border-transparent
+                    pt-4
+                    pr-1
+                    inline-flex
+                    items-center
+                    text-sm
+                    leading-5
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-700
+                    hover:border-gray-300
+                    focus:outline-none
+                    focus:text-gray-700
+                    focus:border-gray-400
+                    transition
+                    ease-in-out
+                    duration-150
+                "
             >
                 <svg class="mr-3 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -26,7 +45,23 @@
                     'border-indigo-500 text-indigo-600 focus:border-indigo-700 focus:text-indigo-800': link.active,
                     'border-transparent text-gray-500 focus:border-gray-400 focus:text-gray-700 ': !link.active,
                 }"
-                class="-mt-px border-t-2 pt-4 px-4 inline-flex items-center text-sm leading-5 font-medium hover:text-gray-700 hover:border-gray-300 focus:outline-none transition ease-in-out duration-150"
+                class="
+                    -mt-px
+                    border-t-2
+                    pt-4
+                    px-4
+                    inline-flex
+                    items-center
+                    text-sm
+                    leading-5
+                    font-medium
+                    hover:text-gray-700
+                    hover:border-gray-300
+                    focus:outline-none
+                    transition
+                    ease-in-out
+                    duration-150
+                "
             >
                 {{ link.label }}
             </inertia-link>
@@ -35,7 +70,26 @@
         <div class="w-0 flex-1 flex justify-end" v-if="links[0].label === 'Previous'">
             <inertia-link
                 :href="links[[links.length - 1]].url"
-                class="-mt-px border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm leading-5 font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-400 transition ease-in-out duration-150"
+                class="
+                    -mt-px
+                    border-t-2 border-transparent
+                    pt-4
+                    pl-1
+                    inline-flex
+                    items-center
+                    text-sm
+                    leading-5
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-700
+                    hover:border-gray-300
+                    focus:outline-none
+                    focus:text-gray-700
+                    focus:border-gray-400
+                    transition
+                    ease-in-out
+                    duration-150
+                "
             >
                 Next
                 <svg class="ml-3 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
