@@ -1,7 +1,7 @@
 <template>
     <header>
-        <nav class="min-h-screen bg-primary font-semibold" style="border-right: solid 1px #172340;">
-            <div class="h-16 flex justify-between px-2 items-center" style="border-bottom: solid 1px #172340;">
+        <nav class="min-h-screen bg-primary font-semibold" style="border-right: solid 1px #172340">
+            <div class="h-16 flex justify-between px-2 items-center" style="border-bottom: solid 1px #172340">
                 <div class="">
                     <inertia-link href="/" class="block my-2 text-primary text-lg font-bold" v-if="!collapsed">{{
                         $page.app.name
@@ -10,7 +10,15 @@
 
                 <div class="block">
                     <button
-                        class="flex items-center px-3 py-2 text-gray-500 border-teal-400 hover:text-white hover:border-white"
+                        class="
+                            flex
+                            items-center
+                            px-3
+                            py-2
+                            text-gray-500
+                            border-teal-400
+                            hover:text-white hover:border-white
+                        "
                         @click="toggleCollapse()"
                     >
                         <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center flex-row flex-wrap justify-between pr-4" style="font-size: 0.9rem;">
+    <div class="flex items-center flex-row flex-wrap justify-between pr-4" style="font-size: 0.9rem">
         <div class="">
             <inertia-link href="#" class="inline-block nav-item mr-4"
                 ><i class="fas fa-icons" /><span> Start quiz</span></inertia-link

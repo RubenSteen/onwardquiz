@@ -12,7 +12,9 @@
                     </div>
                     <div class="mt-6 sm:mt-5">
                         <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            class="
+                                sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
+                            "
                         >
                             <label
                                 for="callout"
@@ -30,7 +32,17 @@
                                             'border-red-500 text-red-900 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                 $page.errors.callout,
                                         }"
-                                        class="flex-1 form-input block w-full rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        class="
+                                            flex-1
+                                            form-input
+                                            block
+                                            w-full
+                                            rounded-none rounded-md
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                            sm:text-sm sm:leading-5
+                                        "
                                     />
                                 </div>
                                 <p
@@ -47,11 +59,12 @@
                 </div>
 
                 <div
-                    class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
+                    class="
+                        mt-6
+                        sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5
+                    "
                 >
-                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
-                        Template
-                    </label>
+                    <label for="photo" class="block text-sm leading-5 font-medium text-gray-700"> Template </label>
                     <div class="mt-2 sm:mt-0 sm:col-span-2">
                         <div class="flex items-center">
                             <span class="h-48 w-64 md:w-64 md:h-64 overflow-hidden bg-gray-100 flex">
@@ -74,11 +87,27 @@
                                     <a
                                         :href="question.template.location"
                                         :download="question.template.name"
-                                        class="py-2 px-3 border-2 border-indigo-600 hover:border-indigo-700 rounded-md text-sm leading-4 font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:border-indigo-800 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                                        class="
+                                            py-2
+                                            px-3
+                                            border-2 border-indigo-600
+                                            hover:border-indigo-700
+                                            rounded-md
+                                            text-sm
+                                            leading-4
+                                            font-medium
+                                            text-indigo-600
+                                            hover:text-indigo-700
+                                            focus:outline-none focus:border-indigo-800 focus:shadow-outline-blue
+                                            active:bg-gray-50 active:text-gray-800
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                        "
                                     >
                                         Download
                                     </a>
-                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none;" />
+                                    <input @change="getFileFromInput" type="file" ref="file" style="display: none" />
                                     <button
                                         @click="$refs.file.click()"
                                         type="button"
@@ -86,7 +115,23 @@
                                             'border-red-500 text-red-700 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                 $page.errors.template,
                                         }"
-                                        class="ml-2 py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                                        class="
+                                            ml-2
+                                            py-2
+                                            px-3
+                                            border border-gray-300
+                                            rounded-md
+                                            text-sm
+                                            leading-4
+                                            font-medium
+                                            text-gray-600
+                                            hover:text-gray-500
+                                            focus:outline-none focus:border-blue-300 focus:shadow-outline-blue
+                                            active:bg-gray-50 active:text-gray-800
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                        "
                                     >
                                         Change
                                     </button>
@@ -126,7 +171,14 @@
                                     <button
                                         @click="form.template = null"
                                         type="button"
-                                        class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                        class="
+                                            text-gray-400
+                                            hover:text-gray-500
+                                            focus:outline-none focus:text-gray-500
+                                            transition
+                                            ease-in-out
+                                            duration-150
+                                        "
                                     >
                                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                             <path
@@ -153,7 +205,13 @@
                                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
                                     <div>
                                         <legend
-                                            class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700"
+                                            class="
+                                                text-base
+                                                leading-6
+                                                font-medium
+                                                text-gray-900
+                                                sm:text-sm sm:leading-5 sm:text-gray-700
+                                            "
                                         >
                                             Pictures
                                         </legend>
@@ -176,7 +234,20 @@
                                                         'text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700':
                                                             loading === false,
                                                     }"
-                                                    class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out"
+                                                    class="
+                                                        inline-flex
+                                                        justify-center
+                                                        py-2
+                                                        px-4
+                                                        border border-transparent
+                                                        text-sm
+                                                        leading-5
+                                                        font-medium
+                                                        rounded-md
+                                                        transition
+                                                        duration-150
+                                                        ease-in-out
+                                                    "
                                                 >
                                                     Add a picture
                                                 </button>
@@ -210,7 +281,16 @@
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="mt-4 border-t border-gray-200 px-4 py-4 sm:px-6 text-xs text-gray-800 flex flex-col items-center"
+                                                    class="
+                                                        mt-4
+                                                        border-t border-gray-200
+                                                        px-4
+                                                        py-4
+                                                        sm:px-6
+                                                        text-xs text-gray-800
+                                                        flex flex-col
+                                                        items-center
+                                                    "
                                                 >
                                                     <span>Name : {{ picture.image.name }}</span>
                                                     <span>Size : {{ readableBytes(picture.image.size) }}</span>
@@ -233,7 +313,15 @@
                                     <!-- Begin logout modal -->
                                     <div
                                         v-show="picture.modal"
-                                        class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center z-10"
+                                        class="
+                                            fixed
+                                            bottom-0
+                                            inset-x-0
+                                            px-4
+                                            pb-4
+                                            sm:inset-0 sm:flex sm:items-center sm:justify-center
+                                            z-10
+                                        "
                                     >
                                         <div
                                             @click="pictureModal('close')"
@@ -256,13 +344,32 @@
                                             x-transition:leave="ease-in duration-200"
                                             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                                             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                            class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-6xl sm:w-full sm:p-6"
+                                            class="
+                                                relative
+                                                bg-white
+                                                rounded-lg
+                                                px-4
+                                                pt-5
+                                                pb-4
+                                                overflow-hidden
+                                                shadow-xl
+                                                transform
+                                                transition-all
+                                                sm:max-w-6xl sm:w-full sm:p-6
+                                            "
                                         >
                                             <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                                                 <button
                                                     @click="pictureModal('close')"
                                                     type="button"
-                                                    class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                                    class="
+                                                        text-gray-400
+                                                        hover:text-gray-500
+                                                        focus:outline-none focus:text-gray-500
+                                                        transition
+                                                        ease-in-out
+                                                        duration-150
+                                                    "
                                                 >
                                                     <svg
                                                         class="h-6 w-6"
@@ -281,7 +388,17 @@
                                             </div>
                                             <div class="sm:flex sm:items-start">
                                                 <div
-                                                    class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10"
+                                                    class="
+                                                        mx-auto
+                                                        flex-shrink-0 flex
+                                                        items-center
+                                                        justify-center
+                                                        h-12
+                                                        w-12
+                                                        rounded-full
+                                                        bg-indigo-100
+                                                        sm:mx-0 sm:h-10 sm:w-10
+                                                    "
                                                 >
                                                     <svg
                                                         class="h-6 w-6 text-indigo-600"
@@ -311,7 +428,13 @@
                                                                 <div>
                                                                     <div>
                                                                         <p
-                                                                            class="mt-1 max-w-2xl text-sm leading-5 text-gray-500"
+                                                                            class="
+                                                                                mt-1
+                                                                                max-w-2xl
+                                                                                text-sm
+                                                                                leading-5
+                                                                                text-gray-500
+                                                                            "
                                                                         >
                                                                             This information will be displayed publicly
                                                                             so be careful what you write down...
@@ -320,40 +443,70 @@
 
                                                                     <div class="mt-6 sm:mt-5">
                                                                         <div
-                                                                            class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                                                                            class="
+                                                                                mt-6
+                                                                                sm:mt-5
+                                                                                sm:grid
+                                                                                sm:grid-cols-3
+                                                                                sm:gap-4
+                                                                                sm:items-start
+                                                                                sm:border-t
+                                                                                sm:border-gray-200
+                                                                                sm:pt-5
+                                                                            "
                                                                         >
                                                                             <label
                                                                                 for="country"
-                                                                                class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
+                                                                                class="
+                                                                                    block
+                                                                                    text-sm
+                                                                                    font-medium
+                                                                                    leading-5
+                                                                                    text-gray-700
+                                                                                    sm:mt-px sm:pt-2
+                                                                                "
                                                                             >
                                                                                 Difficulty
                                                                             </label>
                                                                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                                                 <div
-                                                                                    class="max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                                                                                    class="
+                                                                                        max-w-lg
+                                                                                        rounded-md
+                                                                                        shadow-sm
+                                                                                        sm:max-w-xs
+                                                                                    "
                                                                                 >
                                                                                     <select
                                                                                         id="country"
-                                                                                        class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                                                                        class="
+                                                                                            block
+                                                                                            form-select
+                                                                                            w-full
+                                                                                            transition
+                                                                                            duration-150
+                                                                                            ease-in-out
+                                                                                            sm:text-sm sm:leading-5
+                                                                                        "
                                                                                         v-model="
                                                                                             picture.form.difficulty
                                                                                         "
                                                                                     >
-                                                                                        <option value="1"
-                                                                                            >1 (Easy)</option
-                                                                                        >
-                                                                                        <option value="2"
-                                                                                            >2 (Normal)</option
-                                                                                        >
-                                                                                        <option value="3"
-                                                                                            >3 (Medium)</option
-                                                                                        >
-                                                                                        <option value="4"
-                                                                                            >4 (A bit unfair)</option
-                                                                                        >
-                                                                                        <option value="5"
-                                                                                            >5 (Hard)</option
-                                                                                        >
+                                                                                        <option value="1">
+                                                                                            1 (Easy)
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 (Normal)
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 (Medium)
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 (A bit unfair)
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 (Hard)
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <p
@@ -373,11 +526,28 @@
                                                                         </div>
 
                                                                         <div
-                                                                            class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                                                                            class="
+                                                                                mt-6
+                                                                                sm:mt-5
+                                                                                sm:grid
+                                                                                sm:grid-cols-3
+                                                                                sm:gap-4
+                                                                                sm:items-start
+                                                                                sm:border-t
+                                                                                sm:border-gray-200
+                                                                                sm:pt-5
+                                                                            "
                                                                         >
                                                                             <label
                                                                                 for="country"
-                                                                                class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
+                                                                                class="
+                                                                                    block
+                                                                                    text-sm
+                                                                                    font-medium
+                                                                                    leading-5
+                                                                                    text-gray-700
+                                                                                    sm:mt-px sm:pt-2
+                                                                                "
                                                                             >
                                                                                 Active
                                                                             </label>
@@ -385,15 +555,31 @@
                                                                                 <div class="max-w-lg">
                                                                                     <div class="mt-4">
                                                                                         <div
-                                                                                            class="relative flex items-start"
+                                                                                            class="
+                                                                                                relative
+                                                                                                flex
+                                                                                                items-start
+                                                                                            "
                                                                                         >
                                                                                             <div
-                                                                                                class="flex items-center h-5"
+                                                                                                class="
+                                                                                                    flex
+                                                                                                    items-center
+                                                                                                    h-5
+                                                                                                "
                                                                                             >
                                                                                                 <input
                                                                                                     id="offers"
                                                                                                     type="checkbox"
-                                                                                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                                                                    class="
+                                                                                                        form-checkbox
+                                                                                                        h-4
+                                                                                                        w-4
+                                                                                                        text-indigo-600
+                                                                                                        transition
+                                                                                                        duration-150
+                                                                                                        ease-in-out
+                                                                                                    "
                                                                                                     v-model="
                                                                                                         picture.form
                                                                                                             .active
@@ -401,10 +587,16 @@
                                                                                                 />
                                                                                             </div>
                                                                                             <div
-                                                                                                class="ml-3 text-sm leading-5"
+                                                                                                class="
+                                                                                                    ml-3
+                                                                                                    text-sm
+                                                                                                    leading-5
+                                                                                                "
                                                                                             >
                                                                                                 <p
-                                                                                                    class="text-gray-500"
+                                                                                                    class="
+                                                                                                        text-gray-500
+                                                                                                    "
                                                                                                 >
                                                                                                     Make the picture
                                                                                                     active to be
@@ -413,14 +605,18 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <p
-                                                                                            class="mt-2 text-xs text-red-600"
+                                                                                            class="
+                                                                                                mt-2
+                                                                                                text-xs text-red-600
+                                                                                            "
                                                                                             v-show="
                                                                                                 $page.errors[
                                                                                                     'picture.active'
                                                                                                 ]
                                                                                             "
-                                                                                            v-for="(error,
-                                                                                            index) in $page.errors[
+                                                                                            v-for="(
+                                                                                                error, index
+                                                                                            ) in $page.errors[
                                                                                                 'picture.active'
                                                                                             ]"
                                                                                             :key="index"
@@ -433,11 +629,28 @@
                                                                         </div>
 
                                                                         <div
-                                                                            class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                                                                            class="
+                                                                                mt-6
+                                                                                sm:mt-5
+                                                                                sm:grid
+                                                                                sm:grid-cols-3
+                                                                                sm:gap-4
+                                                                                sm:items-start
+                                                                                sm:border-t
+                                                                                sm:border-gray-200
+                                                                                sm:pt-5
+                                                                            "
                                                                         >
                                                                             <label
                                                                                 for="country"
-                                                                                class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
+                                                                                class="
+                                                                                    block
+                                                                                    text-sm
+                                                                                    font-medium
+                                                                                    leading-5
+                                                                                    text-gray-700
+                                                                                    sm:mt-px sm:pt-2
+                                                                                "
                                                                             >
                                                                                 Picture
                                                                             </label>
@@ -454,10 +667,13 @@
                                                                                                 "
                                                                                                 type="file"
                                                                                                 ref="picture"
-                                                                                                style="display: none;"
+                                                                                                style="display: none"
                                                                                             />
                                                                                             <span
-                                                                                                class="rounded-md shadow-sm"
+                                                                                                class="
+                                                                                                    rounded-md
+                                                                                                    shadow-sm
+                                                                                                "
                                                                                             >
                                                                                                 <button
                                                                                                     @click="
@@ -469,7 +685,26 @@
                                                                                                             $page.errors
                                                                                                                 .image,
                                                                                                     }"
-                                                                                                    class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                                                                                                    class="
+                                                                                                        py-2
+                                                                                                        px-3
+                                                                                                        border
+                                                                                                        border-gray-300
+                                                                                                        rounded-md
+                                                                                                        text-sm
+                                                                                                        leading-4
+                                                                                                        font-medium
+                                                                                                        text-gray-600
+                                                                                                        hover:text-gray-500
+                                                                                                        focus:outline-none
+                                                                                                        focus:border-blue-300
+                                                                                                        focus:shadow-outline-blue
+                                                                                                        active:bg-gray-50
+                                                                                                        active:text-gray-800
+                                                                                                        transition
+                                                                                                        duration-150
+                                                                                                        ease-in-out
+                                                                                                    "
                                                                                                 >
                                                                                                     Browse
                                                                                                 </button>
@@ -478,14 +713,18 @@
 
                                                                                         <div class="mt-4 w-full">
                                                                                             <p
-                                                                                                class="mt-2 text-xs text-red-600"
+                                                                                                class="
+                                                                                                    mt-2
+                                                                                                    text-xs text-red-600
+                                                                                                "
                                                                                                 v-show="
                                                                                                     $page.errors[
                                                                                                         'picture.image'
                                                                                                     ]
                                                                                                 "
-                                                                                                v-for="(error,
-                                                                                                index) in $page.errors[
+                                                                                                v-for="(
+                                                                                                    error, index
+                                                                                                ) in $page.errors[
                                                                                                     'picture.image'
                                                                                                 ]"
                                                                                                 :key="index"
@@ -500,23 +739,53 @@
                                                                                                     'border-red-500 text-red-900 placeholder-red-300':
                                                                                                         $page.errors
                                                                                                             .image,
-                                                                                                    'border-indigo-500': !$page
-                                                                                                        .errors.image,
+                                                                                                    'border-indigo-500':
+                                                                                                        !$page.errors
+                                                                                                            .image,
                                                                                                 }"
-                                                                                                class="relative text-gray-500 text-xs border rounded-md w-auto box-border p-4"
+                                                                                                class="
+                                                                                                    relative
+                                                                                                    text-gray-500
+                                                                                                    text-xs
+                                                                                                    border
+                                                                                                    rounded-md
+                                                                                                    w-auto
+                                                                                                    box-border
+                                                                                                    p-4
+                                                                                                "
                                                                                             >
                                                                                                 <div
-                                                                                                    class="hidden sm:block absolute top-0 right-0 pt-4 pr-4"
+                                                                                                    class="
+                                                                                                        hidden
+                                                                                                        sm:block
+                                                                                                        absolute
+                                                                                                        top-0
+                                                                                                        right-0
+                                                                                                        pt-4
+                                                                                                        pr-4
+                                                                                                    "
                                                                                                 >
                                                                                                     <button
                                                                                                         @click="
-                                                                                                            picture.form.image = null
+                                                                                                            picture.form.image =
+                                                                                                                null
                                                                                                         "
                                                                                                         type="button"
-                                                                                                        class="text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                                                                                        class="
+                                                                                                            text-gray-400
+                                                                                                            hover:text-gray-500
+                                                                                                            focus:outline-none
+                                                                                                            focus:text-gray-500
+                                                                                                            transition
+                                                                                                            ease-in-out
+                                                                                                            duration-150
+                                                                                                        "
                                                                                                     >
                                                                                                         <svg
-                                                                                                            class="h-6 w-6"
+                                                                                                            class="
+                                                                                                                h-6
+                                                                                                                w-6
+                                                                                                            "
                                                                                                             stroke="currentColor"
                                                                                                             fill="none"
                                                                                                             viewBox="0 0 24 24"
@@ -555,7 +824,11 @@
                                                                                         <div class="w-full">
                                                                                             <div class="px-2 py-2">
                                                                                                 <a
-                                                                                                    class="flex justify-center self-center"
+                                                                                                    class="
+                                                                                                        flex
+                                                                                                        justify-center
+                                                                                                        self-center
+                                                                                                    "
                                                                                                     :href="
                                                                                                         picture.form
                                                                                                             .image
@@ -563,7 +836,10 @@
                                                                                                     target="_blank"
                                                                                                 >
                                                                                                     <img
-                                                                                                        class="rounded-lg w-auto"
+                                                                                                        class="
+                                                                                                            rounded-lg
+                                                                                                            w-auto
+                                                                                                        "
                                                                                                         :src="
                                                                                                             picture.form
                                                                                                                 .image
@@ -592,7 +868,29 @@
                                                     <button
                                                         @click="submitPicture"
                                                         type="button"
-                                                        class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                        class="
+                                                            inline-flex
+                                                            justify-center
+                                                            w-full
+                                                            rounded-md
+                                                            border border-transparent
+                                                            px-4
+                                                            py-2
+                                                            bg-indigo-600
+                                                            text-base
+                                                            leading-6
+                                                            font-medium
+                                                            text-white
+                                                            shadow-sm
+                                                            hover:bg-indigo-500
+                                                            focus:outline-none
+                                                            focus:border-indigo-700
+                                                            focus:shadow-outline-indigo
+                                                            transition
+                                                            ease-in-out
+                                                            duration-150
+                                                            sm:text-sm sm:leading-5
+                                                        "
                                                     >
                                                         {{ picture.form.id !== null ? 'Update' : 'Create' }}
                                                     </button>
@@ -601,7 +899,29 @@
                                                     <button
                                                         @click="pictureModal('close')"
                                                         type="button"
-                                                        class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                        class="
+                                                            inline-flex
+                                                            justify-center
+                                                            w-full
+                                                            rounded-md
+                                                            border border-gray-300
+                                                            px-4
+                                                            py-2
+                                                            bg-white
+                                                            text-base
+                                                            leading-6
+                                                            font-medium
+                                                            text-gray-700
+                                                            shadow-sm
+                                                            hover:text-gray-500
+                                                            focus:outline-none
+                                                            focus:border-blue-300
+                                                            focus:shadow-outline
+                                                            transition
+                                                            ease-in-out
+                                                            duration-150
+                                                            sm:text-sm sm:leading-5
+                                                        "
                                                     >
                                                         Go back
                                                     </button>
@@ -613,7 +933,29 @@
                                                     <button
                                                         @click="deletePicture(picture.form.id)"
                                                         type="button"
-                                                        class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                        class="
+                                                            inline-flex
+                                                            justify-center
+                                                            w-full
+                                                            rounded-md
+                                                            border border-transparent
+                                                            px-4
+                                                            py-2
+                                                            bg-red-600
+                                                            text-base
+                                                            leading-6
+                                                            font-medium
+                                                            text-white
+                                                            shadow-sm
+                                                            hover:bg-red-500
+                                                            focus:outline-none
+                                                            focus:border-red-700
+                                                            focus:shadow-outline-red
+                                                            transition
+                                                            ease-in-out
+                                                            duration-150
+                                                            sm:text-sm sm:leading-5
+                                                        "
                                                     >
                                                         Delete
                                                     </button>
@@ -662,12 +1004,41 @@
                                     v-model="fakeAnswer.form.callout"
                                     :disabled="loading"
                                     id="email"
-                                    class="form-input block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                    class="
+                                        form-input
+                                        block
+                                        w-full
+                                        rounded-none rounded-l-md
+                                        transition
+                                        ease-in-out
+                                        duration-150
+                                        sm:text-sm sm:leading-5
+                                    "
                                 />
                             </div>
                             <button
                                 @click="submitFakeAnswer"
-                                class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                class="
+                                    -ml-px
+                                    relative
+                                    inline-flex
+                                    items-center
+                                    px-4
+                                    py-2
+                                    border border-gray-300
+                                    text-sm
+                                    leading-5
+                                    font-medium
+                                    rounded-r-md
+                                    text-gray-700
+                                    bg-gray-50
+                                    hover:text-gray-500 hover:bg-white
+                                    focus:outline-none focus:shadow-outline-blue focus:border-blue-300
+                                    active:bg-gray-100 active:text-gray-700
+                                    transition
+                                    ease-in-out
+                                    duration-150
+                                "
                             >
                                 <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                     <path
@@ -695,12 +1066,26 @@
                                     class="col-span-1 flex shadow-sm rounded-md"
                                 >
                                     <div
-                                        class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md"
+                                        class="
+                                            flex-1 flex
+                                            items-center
+                                            justify-between
+                                            border-t border-r border-b border-gray-200
+                                            bg-white
+                                            rounded-r-md
+                                        "
                                     >
                                         <div class="flex-1 px-4 py-2 text-sm leading-5 truncate">
                                             <a
                                                 href="#"
-                                                class="text-gray-900 font-medium hover:text-gray-600 transition ease-in-out duration-150"
+                                                class="
+                                                    text-gray-900
+                                                    font-medium
+                                                    hover:text-gray-600
+                                                    transition
+                                                    ease-in-out
+                                                    duration-150
+                                                "
                                                 >{{ fakeAnswer.callout }}</a
                                             >
                                         </div>
@@ -708,7 +1093,21 @@
                                             <button
                                                 :disabled="loading"
                                                 @click="deleteFakeAnswer(fakeAnswer.id)"
-                                                class="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition ease-in-out duration-150"
+                                                class="
+                                                    w-8
+                                                    h-8
+                                                    inline-flex
+                                                    items-center
+                                                    justify-center
+                                                    text-gray-400
+                                                    rounded-full
+                                                    bg-transparent
+                                                    hover:text-gray-500
+                                                    focus:outline-none focus:text-gray-500 focus:bg-gray-100
+                                                    transition
+                                                    ease-in-out
+                                                    duration-150
+                                                "
                                             >
                                                 <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                                                     <path
@@ -733,7 +1132,13 @@
                                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
                                     <div>
                                         <legend
-                                            class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700"
+                                            class="
+                                                text-base
+                                                leading-6
+                                                font-medium
+                                                text-gray-900
+                                                sm:text-sm sm:leading-5 sm:text-gray-700
+                                            "
                                         >
                                             Others
                                         </legend>
@@ -746,7 +1151,15 @@
                                                         v-model="form.published"
                                                         id="published"
                                                         type="checkbox"
-                                                        class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                                        class="
+                                                            form-checkbox
+                                                            h-4
+                                                            w-4
+                                                            text-indigo-600
+                                                            transition
+                                                            duration-150
+                                                            ease-in-out
+                                                        "
                                                     />
                                                 </div>
                                                 <div class="pl-7 text-sm leading-5">
@@ -779,7 +1192,22 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <inertia-link
                             :href="$route('map.edit', { map_id: question.map.id })"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="
+                                py-2
+                                px-4
+                                border border-gray-300
+                                rounded-md
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-700
+                                hover:text-gray-500
+                                focus:outline-none focus:border-blue-300 focus:shadow-outline-blue
+                                active:bg-gray-50 active:text-gray-800
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Cancel
                         </inertia-link>
@@ -795,7 +1223,20 @@
                                 'text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700':
                                     loading === false,
                             }"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out"
+                            class="
+                                inline-flex
+                                justify-center
+                                py-2
+                                px-4
+                                border border-transparent
+                                text-sm
+                                leading-5
+                                font-medium
+                                rounded-md
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Save
                         </button>
