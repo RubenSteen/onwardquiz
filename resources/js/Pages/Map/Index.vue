@@ -8,9 +8,7 @@
                 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
                     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
                         <div class="ml-4 mt-4">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                Maps
-                            </h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Maps</h3>
                             <p class="mt-1 text-sm leading-5 text-gray-500">
                                 All maps that can be used for making quiz
                             </p>
@@ -19,7 +17,22 @@
                             <span class="inline-flex rounded-md shadow-sm">
                                 <inertia-link
                                     :href="$route('map.create')"
-                                    class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline"
+                                    class="
+                                        relative
+                                        inline-flex
+                                        items-center
+                                        px-4
+                                        py-2
+                                        border border-transparent
+                                        text-sm
+                                        leading-5
+                                        font-medium
+                                        rounded-md
+                                        text-white
+                                        bg-indigo-600
+                                        hover:bg-indigo-500
+                                        focus:outline-none focus:shadow-outline
+                                    "
                                 >
                                     Create new map
                                 </inertia-link>
@@ -29,15 +42,20 @@
                 </div>
                 <!-- /End card header -->
                 <div v-if="maps.length === 0" class="h-64 flex justify-center">
-                    <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">
-                        Nothing here...
-                    </h3>
+                    <h3 class="text-lg leading-6 font-medium text-gray-400 py-4 self-center">Nothing here...</h3>
                 </div>
                 <ul v-else>
                     <li v-for="map in maps">
                         <inertia-link
                             :href="$route('map.edit', { map_id: map.id })"
-                            class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
+                            class="
+                                block
+                                hover:bg-gray-50
+                                focus:outline-none focus:bg-gray-50
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             <div class="flex items-center px-2 py-2 sm:px-6">
                                 <div class="min-w-0 flex-1 flex items-center">

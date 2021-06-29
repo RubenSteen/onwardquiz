@@ -12,7 +12,9 @@
                     </div>
                     <div class="mt-6 sm:mt-5">
                         <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                            class="
+                                sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
+                            "
                         >
                             <label
                                 for="name"
@@ -30,7 +32,17 @@
                                             'border-red-500 text-red-900 placeholder-red-300 focus:border-red-500 focus:shadow-outline-red':
                                                 $page.errors.name,
                                         }"
-                                        class="flex-1 form-input block w-full rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        class="
+                                            flex-1
+                                            form-input
+                                            block
+                                            w-full
+                                            rounded-none rounded-md
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                            sm:text-sm sm:leading-5
+                                        "
                                     />
                                 </div>
                                 <p
@@ -50,7 +62,22 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <inertia-link
                             :href="$route('map.index')"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="
+                                py-2
+                                px-4
+                                border border-gray-300
+                                rounded-md
+                                text-sm
+                                leading-5
+                                font-medium
+                                text-gray-700
+                                hover:text-gray-500
+                                focus:outline-none focus:border-blue-300 focus:shadow-outline-blue
+                                active:bg-gray-50 active:text-gray-800
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Cancel
                         </inertia-link>
@@ -66,7 +93,20 @@
                                 'text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700':
                                     loading === false,
                             }"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out"
+                            class="
+                                inline-flex
+                                justify-center
+                                py-2
+                                px-4
+                                border border-transparent
+                                text-sm
+                                leading-5
+                                font-medium
+                                rounded-md
+                                transition
+                                duration-150
+                                ease-in-out
+                            "
                         >
                             Save
                         </button>
